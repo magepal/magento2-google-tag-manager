@@ -3,11 +3,11 @@ Google Tag Manager allows you to quickly and easily add or update AdWords, Googl
 
 #Features
 Quick and easy setup
-Add tag via XML layout
+Add tag via XML layout and/or observer
 Data layer support
 
 #### Installation
-1. Install Google Tag Manager
+Manual Installation GTM
  * Download the extension
  * Unzip the file
  * Create a folder {Magento root}/app/code/MagePal/GoogleTagManager
@@ -16,7 +16,13 @@ Data layer support
  * php -f bin/magento module:enable --clear-static-content MagePal_GoogleTagManager
  * php -f bin/magento setup:upgrade
 
-2. Log into your Magetno Admin, then goto Store -> System -> MagePal -> Google Tag Manager and enter your GTM account credentials
+#### Intalling GTM Using Composer
+
+``composer config repositories.magepal-googletagmanager git git@github.com:magepal/magento2-googletagmanager.git``
+``composer require magepal/magento2-googletagmanager:master``
+
+
+Log into your Magetno Admin, then goto Store -> System -> MagePal -> Google Tag Manager and enter your GTM account credentials
 
 ###Data layer attributes
 ---------
@@ -48,3 +54,12 @@ Data layer support
 * cart.hasCoupons
 * cart.couponCode
 
+####Order
+* transactionId
+* transactionAffiliation
+* transactionTotal
+* transactionShipping
+* transactionProducts[].sku
+* transactionProducts[].name
+* transactionProducts[].price
+* transactionProducts[].quantity
