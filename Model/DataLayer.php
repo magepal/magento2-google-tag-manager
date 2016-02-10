@@ -231,5 +231,14 @@ class DataLayer extends DataObject {
         }
         return $this->_quote;
     }
+    
+    /**
+     * Format Price
+     *
+     * @return float
+     */
+    public function formatPrice($price){
+        return sprintf('%.2F', $price);
+    }
 
 }

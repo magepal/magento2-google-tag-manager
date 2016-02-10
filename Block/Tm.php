@@ -22,7 +22,7 @@ class Tm extends Template {
     /**
      * Google Tag Manager Helper
      *
-     * @var \Google\TagManager\Helper\Data
+     * @var \MagePal\TagManager\Helper\Data
      */
     protected $_gtmHelper = null;
 
@@ -44,6 +44,13 @@ class Tm extends Template {
      * @var \Magento\Sales\Model\ResourceModel\Order\CollectionFactory
      */
     protected $_salesOrderCollection;
+    
+    private $_orderCollection;
+
+
+
+
+    protected $_customVariables = array();
 
 
     /**
@@ -75,15 +82,14 @@ class Tm extends Template {
      * 
      * @return void|string
      */
-    protected function getOrdersTrackingCode()
-    {
-        $orderIds = $this->getOrderIds();
-        if (empty($orderIds) || !is_array($orderIds)) {
+    public function getOrdersTrackingCode()
+    {       
+        $collection = $this->getOrderCollection();
+        
+        if(!$collection){
             return;
         }
-
-        $collection = $this->_salesOrderCollection->create();
-        $collection->addFieldToFilter('entity_id', ['in' => $orderIds]);
+        
         $result = [];
         
         foreach ($collection as $order) {
@@ -131,13 +137,79 @@ class Tm extends Template {
      * @return json
      */
     public function getGtmTrackingCode() {
-        return sprintf("dataLayer.push(%s);\n", json_encode($this->_dataLayerModel->getVariables()));
+        $this->_eventManager->dispatch(
+            'magepal_datalayer',
+            ['dataLayer' => $this]
+        );
+
+        $result = [];
+        $result[] = sprintf("dataLayer.push(%s);\n", json_encode($this->_dataLayerModel->getVariables()));
+        
+        if(!empty($this->_customVariables) && is_array($this->_customVariables)){
+           
+            foreach($this->_customVariables as $custom){
+                $result[] = sprintf("dataLayer.push(%s);\n", json_encode($custom));
+            }
+        }
+        
+        return implode("\n", $result) . "\n";
     }
 
+    /**
+     * Add variable to the default data layer
+     *
+     * @return $this
+     */
     public function addVariable($name, $value) {
         $this->_dataLayerModel->addVariable($name, $value);
         
         return $this;
+    }
+    
+    /**
+     * Add variable to the custom push data layer
+     *
+     * @return $this
+     */
+    public function addCustomVariable($name, $value = null) {
+       if(is_array($name)){
+          $this->_customVariables[] = $name;
+       }
+       else{
+           $this->_customVariables[] = [$name => $value];
+       }
+        
+        return $this;
+    }
+    
+    /**
+     * Format Price
+     *
+     * @return float
+     */
+    public function formatPrice($price){
+        return $this->_dataLayerModel->formatPrice($price);
+    }
+    
+    
+    /**
+     * Get order collection
+     *
+     * @return $this
+     */
+    public function getOrderCollection(){
+
+        $orderIds = $this->getOrderIds();
+        if (empty($orderIds) || !is_array($orderIds)) {
+            return;
+        }
+
+        if(!$this->_orderCollection){
+            $this->_orderCollection = $this->_salesOrderCollection->create();
+            $this->_orderCollection->addFieldToFilter('entity_id', ['in' => $orderIds]);
+        }
+        
+        return $this->_orderCollection;
     }
 
 }

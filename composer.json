@@ -7,19 +7,11 @@
         "magento/framework": "100.0.*"
     },
     "type": "magento2-module",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "extra": {
-        "map": [
-            [
-                "*",
-                "MagePal/GoogleTagManager"
-            ]
-        ]
-    },
     "autoload": {
         "files": [
             "registration.php"
