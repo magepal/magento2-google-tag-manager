@@ -6,21 +6,23 @@ Quick and easy setup
 Add tag via XML layout and/or observer
 Data layer support
 
-#### Installation
-Manual Installation GTM
+#### 1 - Installation GTM
+##### Manually
  * Download the extension
  * Unzip the file
  * Create a folder {Magento root}/app/code/MagePal/GoogleTagManager
  * Copy the content from the unzip folder
 
+##### Using Composer
+
+``composer config repositories.magepal-googletagmanager git git@github.com:magepal/magento2-googletagmanager.git``
+``composer require magepal/magento2-googletagmanager``
+
+#### 2 - Enable GTM (from {Magento root} folder)
  * php -f bin/magento module:enable --clear-static-content MagePal_GoogleTagManager
  * php -f bin/magento setup:upgrade
 
-#### Intalling GTM Using Composer
-
-``composer config repositories.magepal-googletagmanager git git@github.com:magepal/magento2-googletagmanager.git``
-``composer require magepal/magento2-googletagmanager:master``
-
+#### 3 - Configure GTM
 
 Log into your Magetno Admin, then goto Store -> System -> MagePal -> Google Tag Manager and enter your GTM account credentials
 
