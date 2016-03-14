@@ -1,5 +1,5 @@
 ## Google Tag Manager for Magento2 with Data Layer
-Google Tag Manager allows you to quickly and easily add or update AdWords, Google Analytics, Facebook Tags and other code snippets on your website without editing any site code.
+Google Tag Manager allows you to quickly and easily add or update AdWords, Google Analytics, Facebook Tags and other code snippets on your website without edit to your magento 2 codebase.
 
 #Features
 Quick and easy setup
@@ -10,7 +10,7 @@ Data layer support
 ##### Manually
  * Download the extension
  * Unzip the file
- * Create a folder {Magento root}/app/code/MagePal/GoogleTagManager
+ * Create a folder {Magento 2 root}/app/code/MagePal/GoogleTagManager
  * Copy the content from the unzip folder
 
 ##### Using Composer
@@ -24,7 +24,7 @@ Data layer support
 
 #### 3 - Configure GTM
 
-Log into your Magetno Admin, then goto Store -> System -> MagePal -> Google Tag Manager and enter your GTM account credentials
+Log into your Magetno 2 Admin, then goto Store -> System -> MagePal -> Google Tag Manager and enter your GTM account credentials
 
 ###Data layer attributes
 ---------
