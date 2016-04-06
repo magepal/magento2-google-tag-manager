@@ -1,6 +1,15 @@
 {
     "name": "magepal/magento2-googletagmanager",
-    "description":"",
+    "description":"Google Tag Manager (GTM) for Magento 2 with Advance Data Layer",
+    "keywords": [
+        "magento 2",
+        "gtm",
+        "google tag manager",
+        "ga",
+        "data layer",
+        "magento2",
+        "Tag Manager"
+    ],
     "require": {
         "php": "~5.5.0|~5.6.0|~7.0.0",
         "magento/module-backend": "100.0.*",
