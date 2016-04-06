@@ -15,8 +15,10 @@ Data layer support
 
 ##### Using Composer
 
-``composer config repositories.magepal-googletagmanager git git@github.com:magepal/magento2-googletagmanager.git``
-``composer require magepal/magento2-googletagmanager``
+```
+composer config repositories.magepal-googletagmanager git git@github.com:magepal/magento2-googletagmanager.git
+composer require magepal/magento2-googletagmanager
+```
 
 #### 2 - Enable GTM (from {Magento root} folder)
  * php -f bin/magento module:enable --clear-static-content MagePal_GoogleTagManager
