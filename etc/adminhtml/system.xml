@@ -16,6 +16,10 @@
             <resource>MagePal_GoogleTagManager::googletagmanager</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Google Tag Manager</label>
+                <field id="version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Version</label>
+                    <frontend_model>MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Version</frontend_model>
+                </field>
                 <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
