@@ -22,7 +22,7 @@ class Tm extends Template {
     /**
      * Google Tag Manager Helper
      *
-     * @var \MagePal\TagManager\Helper\Data
+     * @var \MagePal\GoogleTagManager\Helper\Data
      */
     protected $_gtmHelper = null;
 
@@ -36,7 +36,7 @@ class Tm extends Template {
     /**
      * Cookie Helper
      *
-     * @var \MagePal\TagManager\Model\DataLayer
+     * @var \MagePal\GoogleTagManager\Model\DataLayer
      */
     protected $_dataLayerModel = null;
     
@@ -91,6 +91,8 @@ class Tm extends Template {
         }
         
         $result = [];
+
+        /* @var \Magento\Sales\Model\Order $order */
         
         foreach ($collection as $order) {
                         
@@ -107,7 +109,11 @@ class Tm extends Template {
                 'transactionId' => $order->getIncrementId(),
                 'transactionAffiliation' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
                 'transactionTotal' => $order->getBaseGrandTotal(),
+                'transactionSubTotal' => $order->getBaseSubtotal(),
                 'transactionShipping' => $order->getBaseShippingAmount(),
+                'transactionTax' => $order->getTaxAmount(),
+                'transactionCouponCode' => $order->getCouponCode(),
+                'transactionDiscount' => $order->getDiscountAmount(),
                 'transactionProducts' => $product
             );
             

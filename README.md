@@ -63,6 +63,10 @@ Log into your Magetno 2 Admin, then goto Stores -> Configuration -> MagePal -> G
 * transactionAffiliation
 * transactionTotal
 * transactionShipping
+* transactionTax
+* transactionCouponCode
+* transactionDiscount
+* transactionSubTotal
 * transactionProducts[].sku
 * transactionProducts[].name
 * transactionProducts[].price
