@@ -182,10 +182,11 @@ class DataLayer extends DataObject {
         
         $quote = $this->getQuote();
         $cart = [];
+        
+        $cart['hasItems'] = false;
 
         if ($quote->getItemsCount()) {
-            $cart['hasItems'] = true;
-            
+            $items = [];
             // set items
             foreach($quote->getAllVisibleItems() as $item){
                 $items[] = [
@@ -196,7 +197,11 @@ class DataLayer extends DataObject {
                 ];
             }
             
-            $cart['items'] = $items;
+            if(count($items) > 0){
+                $cart['hasItems'] = true;
+                $cart['items'] = $items; 
+            }
+            
             $cart['total'] = $quote->getGrandTotal();
             $cart['itemCount'] = $quote->getItemsCount();
             
@@ -210,10 +215,8 @@ class DataLayer extends DataObject {
                 $cart['couponCode'] = $coupon;
             }
         }
-        else{
-           $cart['hasItems'] = false;
-        }
-         $this->addVariable('cart', $cart);
+        
+        $this->addVariable('cart', $cart);
         
         return $this;
     }
