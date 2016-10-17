@@ -72,6 +72,7 @@ class Tm extends Template {
         $this->_gtmHelper = $gtmHelper;
         $this->_dataLayerModel = $dataLayer;
         $this->_salesOrderCollection = $salesOrderCollection;
+		$this->_isScopePrivate = true;
         parent::__construct($context, $data);
 
         $this->addVariable('ecommerce', ['currencyCode' => $this->_storeManager->getStore()->getCurrentCurrency()->getCode()]);
