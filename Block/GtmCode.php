@@ -61,7 +61,7 @@ class GtmCode extends Template {
      * @return string
      */
     protected function _toHtml() {
-        if ($this->_cookieHelper->isUserNotAllowSaveCookie() || !$this->_gtmHelper->isEnabled()) {
+       if (!$this->_gtmHelper->isEnabled()) {
             return '';
         }
         return parent::_toHtml();
