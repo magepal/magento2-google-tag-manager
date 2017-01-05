@@ -16,7 +16,7 @@ Data layer support
 ##### Using Composer
 
 ```
-composer config repositories.magepal-googletagmanager git git@github.com:magepal/magento2-googletagmanager.git
+composer config repositories.magepal-googletagmanager git https://github.com/magepal/magento2-googletagmanager
 composer require magepal/magento2-googletagmanager
 ```
 
