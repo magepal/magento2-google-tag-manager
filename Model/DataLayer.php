@@ -59,8 +59,11 @@ class DataLayer extends DataObject {
 
 
     /**
-     * @param MessageInterface $message
-     * @param null $parameters
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Customer\Model\Session $customerSession
+     * @param \Magento\Checkout\Model\Session $checkoutSession
+     * @param \Magento\Framework\Registry $registry
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context, 
@@ -100,7 +103,7 @@ class DataLayer extends DataObject {
      * Add Variables
      * @param string $name
      * @param mix $value
-     * @return MagePal\GoogleTagManager\Model\DataLayer
+     * @return \MagePal\GoogleTagManager\Model\DataLayer
      */
     public function addVariable($name, $value) {
 
@@ -119,13 +122,13 @@ class DataLayer extends DataObject {
         if($this->fullActionName === 'catalog_category_view'
            && $_category = $this->_coreRegistry->registry('current_category')
         ) {
-                $category = [];
-                $category['id'] = $_category->getId();
-                $category['name'] = $_category->getName();
-                
-                $this->addVariable('category', $category);
-                
-                $this->addVariable('list', 'category');
+            $category = [
+                'id' => $_category->getId(),
+                'name' => $_category->getName(),
+            ];
+
+            $this->addVariable('category', $category);
+            $this->addVariable('list', 'category');
         }
 
         return $this;
@@ -141,11 +144,12 @@ class DataLayer extends DataObject {
         ) {
             $this->addVariable('list', 'detail');
 
-            $product = [];
-            $product['id'] = $_product->getId();
-            $product['sku'] = $_product->getSku();
-            $product['name'] = $_product->getName();
-            // $this->addVariable('productPrice', $_product->getPrice());
+            $product = [
+                'id' => $_product->getId(),
+                'sku' => $_product->getSku(),
+                'name' => $_product->getName(),
+            ];
+
             $this->addVariable('product', $product);
         }
 
@@ -161,7 +165,6 @@ class DataLayer extends DataObject {
             $customer['isLoggedIn'] = true;
             $customer['id'] = $this->_customerSession->getCustomerId();
             $customer['groupId'] = $this->_customerSession->getCustomerGroupId();
-            //$customer['groupCode'] = ;
         } else {
             $customer['isLoggedIn'] = false;
         }
@@ -193,7 +196,7 @@ class DataLayer extends DataObject {
                     'sku' => $item->getSku(),
                     'name' => $item->getName(),
                     'price' => $item->getPrice(),
-                    'quantity' => $item->getQty()
+                    'quantity' => $item->getQty(),
                 ];
             }
             
