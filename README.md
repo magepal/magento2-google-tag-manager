@@ -1,4 +1,8 @@
 ## Google Tag Manager for Magento2 with Data Layer
+
+[![Total Downloads](https://poser.pugx.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
+[![Latest Stable Version](https://poser.pugx.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
+
 Google Tag Manager allows you to quickly and easily add or update AdWords, Google Analytics, Facebook Tags and other code snippets on your website without edit to your magento 2 codebase.
 
 #Features
@@ -27,26 +31,26 @@ composer require magepal/magento2-googletagmanager
 
 Log into your Magetno 2 Admin, then goto Stores -> Configuration -> MagePal -> Google Tag Manager and enter your GTM account credentials
 
-###Data layer attributes
+### Data layer attributes
 ---------
 * pageType (i.e catalog_category_view)
 * list (cart, category, detail, other)
 
-####Customer
+#### Customer
 * customer.isLoggedIn
 * customer.id
 * customer.groupId
 
-####Category
+#### Category
 * category.id
 * customer.category
 
-####Product
+#### Product
 * product.id
 * product.name
 * product.sku
 
-####Cart
+#### Cart
 * cart.hasItems
 * cart.items[].sku
 * cart.items[].name
@@ -57,7 +61,7 @@ Log into your Magetno 2 Admin, then goto Stores -> Configuration -> MagePal -> G
 * cart.hasCoupons
 * cart.couponCode
 
-####Order
+#### Order
 * transactionId
 * transactionAffiliation
 * transactionTotal
