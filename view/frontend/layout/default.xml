@@ -11,7 +11,10 @@
           <block class="MagePal\GoogleTagManager\Block\GtmCode" name="gtm_iframe" as="gtm_iframe" template="MagePal_GoogleTagManager::iframe.phtml" />
         </referenceContainer>
         <referenceBlock name="head.additional">
-            <block class="MagePal\GoogleTagManager\Block\Tm" name="magepal_gtm_datalayer" as="magepal_gtm_datalayer" template="MagePal_GoogleTagManager::data_layer.phtml" />
+            <block class="MagePal\GoogleTagManager\Block\Tm" name="magepal_gtm_datalayer" as="magepal_gtm_datalayer" template="MagePal_GoogleTagManager::data_layer.phtml">
+                <block class="MagePal\GoogleTagManager\Block\Data\Session\Customer" name="magepal_googletagmanager_block_customer"/>
+                <block class="MagePal\GoogleTagManager\Block\Data\Session\Cart" name="magepal_googletagmanager_block_cart"/>
+            </block>
             <block class="MagePal\GoogleTagManager\Block\GtmCode" name="gtm_js" as="gtm_js" template="MagePal_GoogleTagManager::js.phtml" />
         </referenceBlock>
     </body>
