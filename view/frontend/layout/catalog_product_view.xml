@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Google Tag Manager
+ *
+ * Copyright © 2017 MagePal. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="magepal_gtm_datalayer">
+        <block class="MagePal\GoogleTagManager\Block\Data\Product" name="magepal_gtm_block_product"/>
+    </referenceBlock>
+</page>

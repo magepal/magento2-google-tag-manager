@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 MagePal. All rights reserved.
+ * Copyright © 2017 MagePal. All rights reserved.
  * See COPYING.txt for license details.
  */
 

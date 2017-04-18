@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2016 MagePal. All rights reserved.
+ * Google Tag Manager
+ *
+ * Copyright © 2017 MagePal. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="after.body.start">
-          <block class="MagePal\GoogleTagManager\Block\GtmCode" name="gtm_iframe" as="gtm_iframe" template="MagePal_GoogleTagManager::iframe.phtml" />
+          <block class="MagePal\GoogleTagManager\Block\GtmCode" name="magepal_gtm_iframe" as="magepal_gtm_iframe" template="MagePal_GoogleTagManager::iframe.phtml" />
+          <block class="MagePal\GoogleTagManager\Block\GtmCode" template="MagePal_GoogleTagManager::js.phtml" />
         </referenceContainer>
         <referenceBlock name="head.additional">
-            <block class="MagePal\GoogleTagManager\Block\Tm" name="magepal_gtm_datalayer" as="magepal_gtm_datalayer" template="MagePal_GoogleTagManager::data_layer.phtml" />
-            <block class="MagePal\GoogleTagManager\Block\GtmCode" name="gtm_js" as="gtm_js" template="MagePal_GoogleTagManager::js.phtml" />
+            <block class="MagePal\GoogleTagManager\Block\DataLayer" name="magepal_gtm_datalayer" as="magepal_gtm_datalayer" template="MagePal_GoogleTagManager::data_layer.phtml" />
+            <block class="MagePal\GoogleTagManager\Block\GtmCode" name="magepal_gtm_js" as="magepal_gtm_js" template="MagePal_GoogleTagManager::gtm_js.phtml" />
         </referenceBlock>
     </body>
 </page>

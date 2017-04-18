@@ -1,18 +1,17 @@
 <?php
 /**
- * MagePal Google Tag Manager for Magento 2
+ * Google Tag Manager
  *
- * Copyright © 2016 MagePal. All rights reserved.
+ * Copyright © 2017 MagePal. All rights reserved.
  * See COPYING.txt for license details.
  */
 ?>
-<?php /** @var $block \MagePal\GoogleTagManager\Block\Tm **/ ?>
-<?php $accountId = $block->getAccountId(); ?>
+<?php /** @var $block \MagePal\GoogleTagManager\Block\GtmCode **/ ?>
 
-<!-- Google Tag Manager by MagePal -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','<?php echo $accountId ?>');</script>
-<!-- End Google Tag Manager by MagePal -->
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "magepalGtmDatalayer": {"dataLayer" : "<?php echo $block->getDataLayerName() ?>"}
+        }
+    }
+</script>

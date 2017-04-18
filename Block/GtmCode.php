@@ -1,8 +1,9 @@
 <?php
 
 /**
- * DataLayer
- * Copyright © 2016 MagePal. All rights reserved.
+ * Google Tag Manager
+ *
+ * Copyright © 2017 MagePal. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -21,7 +22,7 @@ class GtmCode extends Template {
     /**
      * Google Tag Manager data
      *
-     * @var MagePal\GoogleTagManager\Helper\Data
+     * @var /MagePal\GoogleTagManager\Helper\Data
      */
     protected $_gtmHelper = null;
 
@@ -53,6 +54,13 @@ class GtmCode extends Template {
      */
     public function getAccountId() {
         return $this->_gtmHelper->getAccountId();
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataLayerName(){
+        return $this->_gtmHelper->getDataLayerName();
     }
 
     /**

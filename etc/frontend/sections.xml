@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Google Tag Manager
+ *
+ * Copyright © 2017 MagePal. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+    <action name="checkout/cart/add">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/cart/delete">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/cart/updatePost">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/cart/updateItemOptions">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/cart/couponPost">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/cart/estimatePost">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/cart/estimateUpdatePost">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/onepage/saveOrder">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/sidebar/removeItem">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="checkout/sidebar/updateItemQty">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="rest/*/V1/carts/*/payment-information">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="rest/*/V1/guest-carts/*/payment-information">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="rest/*/V1/guest-carts/*/selected-payment-method">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+    <action name="rest/*/V1/carts/*/selected-payment-method">
+        <section name="magepal-gtm-jsdatalayer"/>
+    </action>
+</config>

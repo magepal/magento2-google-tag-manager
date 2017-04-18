@@ -1,15 +1,14 @@
 <?php
 /**
- * MagePal Google Tag Manager for Magento 2
+ * Google Tag Manager
  *
- * Copyright © 2016 MagePal. All rights reserved.
+ * Copyright © 2017 MagePal. All rights reserved.
  * See COPYING.txt for license details.
  */
 ?>
-<?php /** @var $block \MagePal\GoogleTagManager\Block\Tm **/ ?>
-<?php $accountId = $block->getAccountId(); ?>
+<?php /** @var $block \MagePal\GoogleTagManager\Block\GtmCode **/ ?>
 
 <!-- Google Tag Manager by MagePal -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=<?php echo $accountId ?>"
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=<?php echo $block->getAccountId() ?>"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager by MagePal -->

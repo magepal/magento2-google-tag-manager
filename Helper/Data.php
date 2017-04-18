@@ -1,16 +1,20 @@
 <?php
-
 /**
- * DataLayer
- * Copyright © 2016 MagePal. All rights reserved.
+ * Google Tag Manager
+ *
+ * Copyright © 2017 MagePal. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace MagePal\GoogleTagManager\Helper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper {
 
     const XML_PATH_ACTIVE = 'googletagmanager/general/active';
     const XML_PATH_ACCOUNT = 'googletagmanager/general/account';
+
+
+    protected $_dataLayerName = 'dataLayer';
 
     /**
      * @var \Magento\Framework\ObjectManagerInterface
@@ -45,6 +49,33 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      */
     public function getAccountId() {
         return $this->scopeConfig->getValue(self::XML_PATH_ACCOUNT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * Format Price
+     *
+     * @return float
+     */
+    public function formatPrice($price){
+        return sprintf('%.2F', $price);
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function getDataLayerName(){
+        return $this->_dataLayerName;
+    }
+
+    /**
+     * @param $name
+     * @return $this
+     */
+    public function setDataLayerName($name){
+        $this->_dataLayerName = $name;
+        return $this;
     }
 
 }

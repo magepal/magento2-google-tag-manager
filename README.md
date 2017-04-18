@@ -43,12 +43,14 @@ Log into your Magetno 2 Admin, then goto Stores -> Configuration -> MagePal -> G
 
 #### Category
 * category.id
-* customer.category
+* category.name
+* category.path
 
 #### Product
 * product.id
 * product.name
 * product.sku
+* product.path
 
 #### Cart
 * cart.hasItems
@@ -58,6 +60,7 @@ Log into your Magetno 2 Admin, then goto Stores -> Configuration -> MagePal -> G
 * cart.items[].quantity
 * cart.total
 * cart.itemCount
+* cart.itemQty
 * cart.hasCoupons
 * cart.couponCode
 
