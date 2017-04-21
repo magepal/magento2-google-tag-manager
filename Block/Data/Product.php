@@ -25,19 +25,17 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
      *
      * @var Data
      */
-    protected $_catalogData = null;
+    protected $catalogHelper = null;
 
     /**
      * @param Context|Context $context
-     * @param Data $catalogData
      * @param array $data
      */
     public function __construct(
         Context $context,
-        Data $catalogData,
         array $data = []
     ) {
-        $this->_catalogData = $catalogData;
+        $this->catalogHelper = $context->getCatalogHelper();
         parent::__construct($context, $data);
     }
 
@@ -62,7 +60,7 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
 
 
         $titleArray = [];
-        $breadCrumbs = $this->_catalogData->getBreadcrumbPath();
+        $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
 
         foreach($breadCrumbs as $breadCrumb){
             $titleArray[] = $breadCrumb['label'];
