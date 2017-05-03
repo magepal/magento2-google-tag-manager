@@ -23,9 +23,11 @@ Google Tag Manager allows you to quickly and easily add or update AdWords, Googl
 composer require magepal/magento2-googletagmanager
 ```
 
-#### 2 - Enable GTM (from {Magento root} folder)
- * php -f bin/magento module:enable --clear-static-content MagePal_GoogleTagManager
- * php -f bin/magento setup:upgrade
+#### 2 - Enable GTM ("cd" to {Magento root} folder)
+```
+  php -f bin/magento module:enable --clear-static-content MagePal_GoogleTagManager
+  php -f bin/magento setup:upgrade
+```
 
 #### 3 - Configure GTM
 
