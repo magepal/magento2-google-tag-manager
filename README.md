@@ -5,12 +5,12 @@
 
 Google Tag Manager allows you to quickly and easily add or update AdWords, Google Analytics, Facebook Tags and other code snippets on your website without edit to your magento 2 codebase.
 
-#Features
-Quick and easy setup
-Add tag via XML layout and/or observer
-Data layer support
+### Features
+* Quick and easy setup
+* Add tag via XML layout and/or observer
+* Data layer support
 
-#### 1 - Installation GTM
+#### 1 - Installing GTM
 ##### Manually
  * Download the extension
  * Unzip the file
