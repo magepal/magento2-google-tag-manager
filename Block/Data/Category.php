@@ -74,10 +74,15 @@ class Category extends \Magento\Framework\View\Element\Template
         /** @var $product \Magento\Catalog\Api\Data\ProductInterface */ 
         $category = $this->getCurrentCategory();
 
+        if(!$category){
+            return;
+        }
+        
         $tm->addVariable(
             'list', 
             'category'
         );
+
 
         $titleArray = [];
         $breadCrumbs = $this->_catalogData->getBreadcrumbPath();
