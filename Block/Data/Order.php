@@ -52,12 +52,15 @@ class Order extends \Magento\Framework\View\Element\Template
      */
     public function addOrderLayer()
     {
-        $result = $this->orderDataArray->setOrderIds($this->getOrderIds())->getOrderLayer();
+        $transactions = $this->orderDataArray->setOrderIds($this->getOrderIds())->getOrderLayer();
 
-        if(!empty($result)){
+        if(!empty($transactions)){
             /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
             $tm = $this->getParentBlock();
-            $tm->addAdditionalVariable($result);
+            foreach($transactions as $order){
+                $tm->addAdditionalVariable($order);
+            }
+
         }
 
     }
