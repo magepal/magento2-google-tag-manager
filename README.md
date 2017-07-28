@@ -31,7 +31,7 @@ composer require magepal/magento2-googletagmanager
 
 #### 3 - Configure GTM
 
-Log into your Magetno 2 Admin, then goto Stores -> Configuration -> MagePal -> Google Tag Manager and enter your GTM account credentials
+Log into your Magento 2 Admin, then goto Stores -> Configuration -> MagePal -> Google Tag Manager and enter your GTM account credentials
 
 ### Data layer attributes
 ---------
