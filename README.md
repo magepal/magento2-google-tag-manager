@@ -79,3 +79,8 @@ Log into your Magento 2 Admin, then goto Stores -> Configuration -> MagePal -> G
 * transactionProducts[].name
 * transactionProducts[].price
 * transactionProducts[].quantity
+
+
+----
+
+Need help setting up or want to customize this extension to meet your business needs? Please email support@magepal.com and if we like your idea we will add this feature for free or at a discounted rate.
