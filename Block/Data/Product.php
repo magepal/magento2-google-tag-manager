@@ -2,7 +2,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal. All rights reserved.
+ * Copyright © 2017 MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -58,28 +58,27 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
         /** @var $product \Magento\Catalog\Api\Data\ProductInterface */ 
         $product = $this->getProduct();
         
-        if(!$product){
-            return $this;
+        if($product) {
+
+            $titleArray = [];
+            $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
+
+            foreach ($breadCrumbs as $breadCrumb) {
+                $titleArray[] = $breadCrumb['label'];
+            }
+
+            $tm->addVariable(
+                'product',
+                [
+                    'id' => $product->getId(),
+                    'sku' => $product->getSku(),
+                    'name' => $product->getName(),
+                    'price' => $product->getTypeId() == Type::TYPE_SIMPLE ? $tm->formatPrice($product->getPrice()) : $tm->formatPrice($product->getFinalPrice()),
+                    'attribute_set_id' => $product->getAttributeSetId(),
+                    'path' => implode(" > ", $titleArray)
+                ]
+            );
         }
-
-        $titleArray = [];
-        $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
-
-        foreach($breadCrumbs as $breadCrumb){
-            $titleArray[] = $breadCrumb['label'];
-        }
-
-        $tm->addVariable(
-            'product', 
-            [
-                'id' => $product->getId(),
-                'sku' => $product->getSku(),
-                'name' => $product->getName(),
-                'price' => $product->getTypeId() == Type::TYPE_SIMPLE ? $tm->formatPrice($product->getPrice()) : $tm->formatPrice($product->getFinalPrice()),
-                'attribute_set_id' => $product->getAttributeSetId(),
-                'path' => implode(" > ", $titleArray)
-            ]
-        );
         
         return $this;
     }

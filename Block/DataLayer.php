@@ -3,7 +3,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal. All rights reserved.
+ * Copyright © 2017 MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
