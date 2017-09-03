@@ -50,14 +50,17 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
         /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
         $tm = $this->getParentBlock();
 
-        /** @var $product \Magento\Catalog\Api\Data\ProductInterface */ 
-        $product = $this->getProduct();
-
         $tm->addVariable(
             'list', 
             'detail'
         );
-
+        
+        /** @var $product \Magento\Catalog\Api\Data\ProductInterface */ 
+        $product = $this->getProduct();
+        
+        if(!$product){
+            return $this;
+        }
 
         $titleArray = [];
         $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
@@ -77,5 +80,7 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
                 'path' => implode(" > ", $titleArray)
             ]
         );
+        
+        return $this;
     }
 }
