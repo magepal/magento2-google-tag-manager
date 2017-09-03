@@ -45,7 +45,7 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
      *
      * @return $this
      */
-    function _prepareLayout()
+    protected function _prepareLayout()
     {
         /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
         $tm = $this->getParentBlock();

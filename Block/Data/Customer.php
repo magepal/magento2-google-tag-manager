@@ -41,7 +41,7 @@ class Customer extends \Magento\Framework\View\Element\Template
      *
      * @return $this
      */
-    function _prepareLayout()
+    protected function _prepareLayout()
     {
         /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
         $tm = $this->getParentBlock();
