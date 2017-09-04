@@ -60,13 +60,6 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
         
         if($product) {
 
-            $titleArray = [];
-            $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
-
-            foreach ($breadCrumbs as $breadCrumb) {
-                $titleArray[] = $breadCrumb['label'];
-            }
-
             $tm->addVariable(
                 'product',
                 [
@@ -75,11 +68,27 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
                     'name' => $product->getName(),
                     'price' => $product->getTypeId() == Type::TYPE_SIMPLE ? $tm->formatPrice($product->getPrice()) : $tm->formatPrice($product->getFinalPrice()),
                     'attribute_set_id' => $product->getAttributeSetId(),
-                    'path' => implode(" > ", $titleArray)
+                    'path' => implode(" > ", $this->getBreadCrumbPath())
                 ]
             );
         }
         
         return $this;
+    }
+
+    /**
+     * Get bread crumb path
+     *
+     * @return array
+     */
+    protected function getBreadCrumbPath(){
+        $titleArray = [];
+        $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
+
+        foreach ($breadCrumbs as $breadCrumb) {
+            $titleArray[] = $breadCrumb['label'];
+        }
+
+        return $titleArray;
     }
 }
