@@ -71,7 +71,7 @@ class Order extends DataObject
     /**
      * Render information about specified orders and their items
      *
-     * @return void|string
+     * @return array
      */
     public function getOrderLayer()
     {
@@ -87,6 +87,7 @@ class Order extends DataObject
 
         foreach ($collection as $order) {
 
+            $products = [];
             foreach ($order->getAllVisibleItems() as $item) {
                 $products[] = [
                     'sku' => $item->getSku(),
@@ -105,7 +106,9 @@ class Order extends DataObject
                 'transactionTax' => $this->gtmHelper->formatPrice($order->getTaxAmount()),
                 'transactionCouponCode' => $order->getCouponCode(),
                 'transactionDiscount' => $this->gtmHelper->formatPrice($order->getDiscountAmount()),
-                'transactionProducts' => $products
+                'transactionProducts' => $products,
+                'transactionCurrency' => $order->getBaseCurrencyCode(),
+                'transactionPaymentType' => $order->getPayment()->getMethod(),
             ];
 
 
@@ -113,7 +116,6 @@ class Order extends DataObject
         }
 
         return $result;
-
     }
 
 
@@ -148,5 +150,4 @@ class Order extends DataObject
     {
         return $this->_escaper->escapeJsQuote($data, $quote);
     }
-
 }

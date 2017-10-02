@@ -57,20 +57,27 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
         
         /** @var $product \Magento\Catalog\Api\Data\ProductInterface */ 
         $product = $this->getProduct();
-        
+
         if($product) {
 
-            $tm->addVariable(
-                'product',
-                [
-                    'id' => $product->getId(),
-                    'sku' => $product->getSku(),
-                    'name' => $product->getName(),
-                    'price' => $product->getTypeId() == Type::TYPE_SIMPLE ? $tm->formatPrice($product->getPrice()) : $tm->formatPrice($product->getFinalPrice()),
-                    'attribute_set_id' => $product->getAttributeSetId(),
-                    'path' => implode(" > ", $this->getBreadCrumbPath())
-                ]
-            );
+            try {
+                $productId = $product->getId();
+
+                $tm->addVariable(
+                    'product',
+                    [
+                        'id' => $productId,
+                        'sku' => $product->getSku(),
+                        'name' => $product->getName(),
+                        'price' => $product->getTypeId() == Type::TYPE_SIMPLE ? $tm->formatPrice($product->getPrice()) : $tm->formatPrice($product->getFinalPrice()),
+                        'attribute_set_id' => $product->getAttributeSetId(),
+                        'path' => implode(" > ", $this->getBreadCrumbPath())
+                    ]
+                );
+            } catch (Exception $e) {
+                // Do nothing.
+            }
+
         }
         
         return $this;
