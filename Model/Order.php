@@ -97,12 +97,13 @@ class Order extends DataObject
             }
 
             $transaction =[
-                'transactionId' => $order->getIncrementId(),
+                'event' => 'gtm.orderComplete',
+                'transactionId' => is_numeric($order->getIncrementId()) ? (int)$order->getIncrementId() : $order->getIncrementId(),
                 'transactionAffiliation' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
-                'transactionTotal' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
+                'transactionTotal' => (float)$this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
                 'transactionSubTotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
-                'transactionShipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
-                'transactionTax' => $this->gtmHelper->formatPrice($order->getTaxAmount()),
+                'transactionShipping' => (float)$this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
+                'transactionTax' => (float)$this->gtmHelper->formatPrice($order->getTaxAmount()),
                 'transactionCouponCode' => $order->getCouponCode(),
                 'transactionDiscount' => $this->gtmHelper->formatPrice($order->getDiscountAmount()),
                 'transactionProducts' => $products
