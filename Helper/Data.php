@@ -57,7 +57,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      * @return float
      */
     public function formatPrice($price){
-        return sprintf('%.2F', $price);
+        return (float)sprintf('%.2F', $price);
     }
 
 
