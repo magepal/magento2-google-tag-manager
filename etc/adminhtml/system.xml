@@ -16,12 +16,19 @@
             <label>Google Tag Manager</label>
             <tab>magepal</tab>
             <resource>MagePal_GoogleTagManager::googletagmanager</resource>
+            <group id="about" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <label>About MagePal Google Tag Manager</label>
+                <field id="module_version" translate="label" type="label" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Version</label>
+                    <frontend_model>MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Module\Version</frontend_model>
+                </field>
+                <field id="composer_version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Composer Version</label>
+                    <frontend_model>MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Composer\Version</frontend_model>
+                </field>
+            </group>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Google Tag Manager</label>
-                <field id="version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Version</label>
-                    <frontend_model>MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Version</frontend_model>
-                </field>
                 <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
