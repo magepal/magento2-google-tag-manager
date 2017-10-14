@@ -8,12 +8,14 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <referenceBlock name="magepal_gtm_datalayer">
-        <action method="addVariable">
-            <argument name="name" xsi:type="string">list</argument>
-            <argument name="value" xsi:type="string">checkout</argument>
-        </action>
-        <block class="MagePal\GoogleTagManager\Block\Data\Customer" name="magepal_gtm_block_customer"/>
-        <block class="MagePal\GoogleTagManager\Block\Data\Cart" name="magepal_gtm_block_cart"/>
-    </referenceBlock>
+    <body>
+        <referenceBlock name="magepal_gtm_datalayer">
+            <action method="addVariable">
+                <argument name="name" xsi:type="string">list</argument>
+                <argument name="value" xsi:type="string">checkout</argument>
+            </action>
+            <block class="MagePal\GoogleTagManager\Block\Data\Customer" name="magepal_gtm_block_customer"/>
+            <block class="MagePal\GoogleTagManager\Block\Data\Cart" name="magepal_gtm_block_cart"/>
+        </referenceBlock>
+    </body>
 </page>
