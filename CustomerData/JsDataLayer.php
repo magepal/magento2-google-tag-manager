@@ -2,7 +2,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -27,18 +27,19 @@ class JsDataLayer implements SectionSourceInterface
 
     /**
      * @param GtmCustomerModel $gtmCustomer
+     * @param GtmCartModel $gtmCart
      */
     public function __construct(
         GtmCustomerModel $gtmCustomer,
         GtmCartModel $gtmCart
-    )
-    {
+    ) {
         $this->gtmCustomer = $gtmCustomer;
         $this->gtmCart = $gtmCart;
     }
 
     /**
      * {@inheritdoc}
+     * @return array
      */
     public function getSectionData()
     {

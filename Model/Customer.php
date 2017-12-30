@@ -2,7 +2,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -38,7 +38,8 @@ class Customer extends DataObject
      *
      * @return array
      */
-    public function getCustomer(){
+    public function getCustomer()
+    {
 
         if($this->_customerSession->isLoggedIn()){
             return [

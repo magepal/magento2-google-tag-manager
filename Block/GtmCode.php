@@ -3,7 +3,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -17,7 +17,8 @@ use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 /**
  * Google Tag Manager Page Block
  */
-class GtmCode extends Template {
+class GtmCode extends Template
+{
 
     /**
      * Google Tag Manager data
@@ -52,14 +53,16 @@ class GtmCode extends Template {
      *
      * @return string
      */
-    public function getAccountId() {
+    public function getAccountId()
+    {
         return $this->_gtmHelper->getAccountId();
     }
 
     /**
      * @return string
      */
-    public function getDataLayerName(){
+    public function getDataLayerName()
+    {
         return $this->_gtmHelper->getDataLayerName();
     }
 
@@ -68,11 +71,13 @@ class GtmCode extends Template {
      *
      * @return string
      */
-    protected function _toHtml() {
+    protected function _toHtml()
+    {
        if (!$this->_gtmHelper->isEnabled()) {
             return '';
-        }
-        return parent::_toHtml();
+       }
+
+       return parent::_toHtml();
     }
 
 }

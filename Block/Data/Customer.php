@@ -2,7 +2,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -46,5 +46,7 @@ class Customer extends \Magento\Framework\View\Element\Template
         /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
         $tm = $this->getParentBlock();
         $tm->addVariable('customer', $this->gtmCustomer->getCustomer());
+
+        return $this;
     }
 }

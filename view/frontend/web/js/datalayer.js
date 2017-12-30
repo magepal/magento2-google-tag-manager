@@ -1,7 +1,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,7 +10,6 @@ define([
     'jquery',
     'underscore'
 ], function(customerData, $, _){
-
     'use strict';
 
     function objectKeyExist(object){
@@ -18,7 +17,6 @@ define([
             return !_.isEmpty(_.pick(o, ["customer", "cart"]));
         })
     }
-
 
     function updateDataLayer(_gtmDataLayer, _dataObject, _forceUpdate){
         var customer = {isLoggedIn : false},
@@ -33,7 +31,7 @@ define([
                 cart = _dataObject.cart;
             }
 
-            _gtmDataLayer.push({"customer" : customer, "cart" : cart});
+            _gtmDataLayer.push({"event": 'mpCustomerSession', "customer" : customer, "cart" : cart});
         }
     }
 

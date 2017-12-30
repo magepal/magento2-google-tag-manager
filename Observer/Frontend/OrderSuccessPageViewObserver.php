@@ -2,7 +2,7 @@
 /**
  * * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace MagePal\GoogleTagManager\Observer\Frontend;
@@ -60,6 +60,7 @@ class OrderSuccessPageViewObserver implements ObserverInterface
         if (empty($orderIds) || !is_array($orderIds)) {
             return;
         }
+
         $block = $this->_layout->getBlock('magepal_gtm_datalayer');
         if ($block) {
             $block->setOrderIds($orderIds);

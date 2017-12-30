@@ -2,13 +2,27 @@
     "name": "magepal/magento2-googletagmanager",
     "description":"Google Tag Manager (GTM) for Magento 2 with Advance Data Layer",
     "keywords": [
-        "magento 2",
-        "gtm",
-        "google tag manager",
-        "ga",
-        "data layer",
-        "magento2",
-        "Tag Manager"
+      "magento 2",
+      "gtm",
+      "google tag manager",
+      "ga",
+      "data layer",
+      "magento2",
+      "tag Manager",
+      "google analytics",
+      "magento gtm",
+      "magento2 analytics"
+    ],
+    "license": [
+        "MagePal License"
+    ],
+    "authors": [
+        {
+            "name": "MagePal",
+            "email": "hello@magepal.com",
+            "homepage": "https://packagist.org/packages/magepal/",
+            "role": "Leader"
+        }
     ],
     "require": {
         "php": "~5.6.0|7.0.2|7.0.4|~7.0.6|~7.1.0",
@@ -16,11 +30,7 @@
         "magento/framework": "100.0.*|100.1.*|101.0.*"
     },
     "type": "magento2-module",
-    "version": "2.0.7",
-    "license": [
-        "OSL-3.0",
-        "AFL-3.0"
-    ],
+    "version": "2.1.0",
     "autoload": {
         "files": [
             "registration.php"

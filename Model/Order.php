@@ -2,7 +2,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -44,7 +44,6 @@ class Order extends DataObject
      */
     protected $_escaper;
 
-
     /**
      * Order constructor.
      * @param CollectionFactoryInterface $salesOrderCollection
@@ -66,7 +65,6 @@ class Order extends DataObject
         $this->_storeManager = $storeManager;
         $this->_escaper = $escaper;
     }
-
 
     /**
      * Render information about specified orders and their items
@@ -116,7 +114,6 @@ class Order extends DataObject
         return $result;
 
     }
-
 
     /**
      * Get order collection

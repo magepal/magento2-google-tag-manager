@@ -2,7 +2,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -81,7 +81,8 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
      *
      * @return array
      */
-    protected function getBreadCrumbPath(){
+    protected function getBreadCrumbPath()
+    {
         $titleArray = [];
         $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
 

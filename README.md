@@ -35,52 +35,60 @@ composer require magepal/magento2-googletagmanager
 
 Log into your Magento 2 Admin, then goto Stores -> Configuration -> MagePal -> Google Tag Manager and enter your GTM account credentials
 
-### Data layer attributes
----------
-* pageType (i.e catalog_category_view)
-* list (cart, category, detail, other)
+## Data layer attributes
+
+* Trigger: event equals gtm.dom
+  * pageType (i.e catalog_category_view)
+  * list (cart, category, detail, other)
+
 
 #### Customer
-* customer.isLoggedIn
-* customer.id
-* customer.groupId
+* Trigger: event equals mpCustomerSession
+  * customer.isLoggedIn
+  * customer.id
+  * customer.groupId
+
 
 #### Category
-* category.id
-* category.name
-* category.path
+* Trigger: event equals gtm.dom
+  * category.id
+  * category.name
+  * category.path
 
 #### Product
-* product.id
-* product.name
-* product.sku
-* product.path
+* Trigger: event equals gtm.dom
+  * product.id
+  * product.name
+  * product.sku
+  * product.path
 
 #### Cart
-* cart.hasItems
-* cart.items[].sku
-* cart.items[].name
-* cart.items[].price
-* cart.items[].quantity
-* cart.total
-* cart.itemCount
-* cart.itemQty
-* cart.hasCoupons
-* cart.couponCode
+* Trigger: event equals mpCustomerSession
+  * cart.hasItems
+  * cart.items[].sku
+  * cart.items[].name
+  * cart.items[].price
+  * cart.items[].quantity
+  * cart.total
+  * cart.itemCount
+  * cart.itemQty
+  * cart.hasCoupons
+  * cart.couponCode
 
 #### Order
-* transactionId
-* transactionAffiliation
-* transactionTotal
-* transactionShipping
-* transactionTax
-* transactionCouponCode
-* transactionDiscount
-* transactionSubTotal
-* transactionProducts[].sku
-* transactionProducts[].name
-* transactionProducts[].price
-* transactionProducts[].quantity
+* Trigger: event equals gtm.dom
+  * transactionId
+  * transactionAffiliation
+  * transactionTotal
+  * transactionShipping
+  * transactionTax
+  * transactionCouponCode
+  * transactionDiscount
+  * transactionSubTotal
+  * transactionProducts[].sku
+  * transactionProducts[].name
+  * transactionProducts[].price
+  * transactionProducts[].quantity
 
 Contribution
 ---

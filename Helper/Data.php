@@ -2,13 +2,16 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace MagePal\GoogleTagManager\Helper;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper {
+use \Magento\Store\Model\ScopeInterface;
+
+class Data extends \Magento\Framework\App\Helper\AbstractHelper
+{
 
     const XML_PATH_ACTIVE = 'googletagmanager/general/active';
     const XML_PATH_ACCOUNT = 'googletagmanager/general/account';
@@ -22,9 +25,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      *
      * @return bool
      */
-    public function isEnabled() {
-        $accountId = $this->scopeConfig->getValue(self::XML_PATH_ACCOUNT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        return $accountId && $this->scopeConfig->isSetFlag(self::XML_PATH_ACTIVE, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    public function isEnabled()
+    {
+        $accountId = $this->scopeConfig->getValue(self::XML_PATH_ACCOUNT, ScopeInterface::SCOPE_STORE);
+        $active = $this->scopeConfig->isSetFlag(self::XML_PATH_ACTIVE, ScopeInterface::SCOPE_STORE);
+        return $accountId && $active;
     }
 
     /**
@@ -32,16 +37,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      *
      * @return bool | null | string
      */
-    public function getAccountId() {
-        return $this->scopeConfig->getValue(self::XML_PATH_ACCOUNT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    public function getAccountId()
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_ACCOUNT, ScopeInterface::SCOPE_STORE);
     }
 
     /**
      * Format Price
      *
+     * @param $price
      * @return float
      */
-    public function formatPrice($price){
+    public function formatPrice($price)
+    {
         return (float)sprintf('%.2F', $price);
     }
 
@@ -50,7 +58,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     /**
      * @return string
      */
-    public function getDataLayerName(){
+    public function getDataLayerName()
+    {
         return $this->_dataLayerName;
     }
 
@@ -58,7 +67,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      * @param $name
      * @return $this
      */
-    public function setDataLayerName($name){
+    public function setDataLayerName($name)
+    {
         $this->_dataLayerName = $name;
         return $this;
     }

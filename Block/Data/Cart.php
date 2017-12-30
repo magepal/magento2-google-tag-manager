@@ -2,7 +2,7 @@
 /**
  * Google Tag Manager
  *
- * Copyright © 2017 MagePal LLC. All rights reserved.
+ * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -32,8 +32,7 @@ class Cart extends \Magento\Framework\View\Element\Template
     public function __construct(
         Context $context,
         GtmCartModel $gtmCart
-    )
-    {
+    ) {
         $this->gtmCart = $gtmCart;
     }
 
@@ -49,6 +48,8 @@ class Cart extends \Magento\Framework\View\Element\Template
         $tm = $this->getParentBlock();
 
         $tm->addVariable('cart', $this->gtmCart->getCart());
+
+        return $this;
     }
 
 }
