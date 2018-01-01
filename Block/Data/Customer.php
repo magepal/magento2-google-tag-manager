@@ -24,7 +24,6 @@ class Customer extends \Magento\Framework\View\Element\Template
      */
     protected $gtmCustomer;
 
-
     /**
      * @param Context $context
      * @param GtmCustomerModel $gtmCustomer
@@ -32,8 +31,7 @@ class Customer extends \Magento\Framework\View\Element\Template
     public function __construct(
         Context $context,
         GtmCustomerModel $gtmCustomer
-    )
-    {
+    ) {
         $this->gtmCustomer = $gtmCustomer;
     }
     /**

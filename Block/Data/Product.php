@@ -9,8 +9,8 @@
 namespace MagePal\GoogleTagManager\Block\Data;
 
 use Magento\Catalog\Block\Product\Context;
-use \Magento\Catalog\Model\Product\Type;
 use Magento\Catalog\Helper\Data;
+use Magento\Catalog\Model\Product\Type;
 
 /**
  * Block : Product for catalog product view page
@@ -39,7 +39,6 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
         parent::__construct($context, $data);
     }
 
-
     /**
      * Add product data to datalayer
      *
@@ -51,15 +50,14 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
         $tm = $this->getParentBlock();
 
         $tm->addVariable(
-            'list', 
+            'list',
             'detail'
         );
-        
-        /** @var $product \Magento\Catalog\Api\Data\ProductInterface */ 
-        $product = $this->getProduct();
-        
-        if($product) {
 
+        /** @var $product \Magento\Catalog\Api\Data\ProductInterface */
+        $product = $this->getProduct();
+
+        if ($product) {
             $tm->addVariable(
                 'product',
                 [
@@ -72,7 +70,7 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
                 ]
             );
         }
-        
+
         return $this;
     }
 

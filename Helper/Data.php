@@ -8,17 +8,14 @@
 
 namespace MagePal\GoogleTagManager\Helper;
 
-use \Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-
     const XML_PATH_ACTIVE = 'googletagmanager/general/active';
     const XML_PATH_ACCOUNT = 'googletagmanager/general/account';
 
-
     protected $_dataLayerName = 'dataLayer';
-    
 
     /**
      * Whether Tag Manager is ready to use
@@ -53,8 +50,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return (float)sprintf('%.2F', $price);
     }
 
-
-
     /**
      * @return string
      */
@@ -72,5 +67,4 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_dataLayerName = $name;
         return $this;
     }
-
 }

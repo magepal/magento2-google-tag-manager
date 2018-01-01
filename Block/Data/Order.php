@@ -40,10 +40,7 @@ class Order extends \Magento\Framework\View\Element\Template
     ) {
         parent::__construct($context, $data);
         $this->orderDataArray = $orderDataArray;
-
     }
-
-
 
     /**
      * Render information about specified orders and their items
@@ -54,15 +51,12 @@ class Order extends \Magento\Framework\View\Element\Template
     {
         $transactions = $this->orderDataArray->setOrderIds($this->getOrderIds())->getOrderLayer();
 
-        if(!empty($transactions)){
+        if (!empty($transactions)) {
             /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
             $tm = $this->getParentBlock();
-            foreach($transactions as $order){
+            foreach ($transactions as $order) {
                 $tm->addAdditionalVariable($order);
             }
-
         }
-
     }
-
 }

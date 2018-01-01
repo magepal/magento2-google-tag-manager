@@ -9,8 +9,8 @@
 namespace MagePal\GoogleTagManager\CustomerData;
 
 use Magento\Customer\CustomerData\SectionSourceInterface;
-use MagePal\GoogleTagManager\Model\Customer as GtmCustomerModel;
 use MagePal\GoogleTagManager\Model\Cart as GtmCartModel;
+use MagePal\GoogleTagManager\Model\Customer as GtmCustomerModel;
 
 class JsDataLayer implements SectionSourceInterface
 {
@@ -23,7 +23,6 @@ class JsDataLayer implements SectionSourceInterface
      * @var GtmCartModel
      */
     protected $gtmCart;
-
 
     /**
      * @param GtmCustomerModel $gtmCustomer
@@ -43,11 +42,9 @@ class JsDataLayer implements SectionSourceInterface
      */
     public function getSectionData()
     {
-
         return [
             'customer' => $this->gtmCustomer->getCustomer(),
             'cart' => $this->gtmCart->getCart()
         ];
     }
-
 }

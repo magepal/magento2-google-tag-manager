@@ -8,8 +8,8 @@
 
 namespace MagePal\GoogleTagManager\Model;
 
-use Magento\Framework\DataObject;
 use Magento\Checkout\Model\Session as CheckoutSession;
+use Magento\Framework\DataObject;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 class Cart extends DataObject
@@ -31,7 +31,6 @@ class Cart extends DataObject
      * @var \Magento\Framework\Escaper
      */
     protected $_escaper;
-
 
     /**
      * Cart constructor.
@@ -58,7 +57,6 @@ class Cart extends DataObject
      */
     public function getCart()
     {
-
         $quote = $this->getQuote();
 
         $cart = [];
@@ -68,7 +66,7 @@ class Cart extends DataObject
         if ($quote->getItemsCount()) {
             $items = [];
             // set items
-            foreach($quote->getAllVisibleItems() as $item){
+            foreach ($quote->getAllVisibleItems() as $item) {
                 $items[] = [
                     'sku' => $item->getSku(),
                     'name' => $this->escapeJsQuote($item->getName()),
@@ -77,7 +75,7 @@ class Cart extends DataObject
                 ];
             }
 
-            if(count($items) > 0){
+            if (count($items) > 0) {
                 $cart['hasItems'] = true;
                 $cart['items'] = $items;
             }
@@ -91,7 +89,7 @@ class Cart extends DataObject
 
             $cart['hasCoupons'] = $coupon ? true : false;
 
-            if($coupon){
+            if ($coupon) {
                 $cart['couponCode'] = $coupon;
             }
         }
@@ -120,5 +118,4 @@ class Cart extends DataObject
     {
         return $this->_escaper->escapeJsQuote($data, $quote);
     }
-
 }

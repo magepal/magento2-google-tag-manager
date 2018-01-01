@@ -40,20 +40,16 @@ class Customer extends DataObject
      */
     public function getCustomer()
     {
-
-        if($this->_customerSession->isLoggedIn()){
+        if ($this->_customerSession->isLoggedIn()) {
             return [
                 'isLoggedIn' => $this->_customerSession->isLoggedIn(),
                 'id' => $this->_customerSession->getCustomerId(),
                 'groupId' => $this->_customerSession->getCustomerGroupId(),
             ];
-        }
-        else{
+        } else {
             return [
                 'isLoggedIn' => $this->_customerSession->isLoggedIn(),
             ];
         }
-
     }
-
 }

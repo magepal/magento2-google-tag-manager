@@ -71,24 +71,23 @@ class Category extends \Magento\Framework\View\Element\Template
         /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
         $tm = $this->getParentBlock();
 
-        /** @var $product \Magento\Catalog\Api\Data\ProductInterface */ 
+        /** @var $product \Magento\Catalog\Api\Data\ProductInterface */
         $category = $this->getCurrentCategory();
 
-        if(!$category){
+        if (!$category) {
             return;
         }
-        
+
         $tm->addVariable(
-            'list', 
+            'list',
             'category'
         );
-
 
         $titleArray = [];
         $breadCrumbs = $this->_catalogData->getBreadcrumbPath();
 
-        foreach($breadCrumbs as $breadCrumb){
-              $titleArray[] = $breadCrumb['label'];
+        foreach ($breadCrumbs as $breadCrumb) {
+            $titleArray[] = $breadCrumb['label'];
         }
 
         $tm->addVariable(

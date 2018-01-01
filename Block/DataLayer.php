@@ -9,11 +9,11 @@
 
 namespace MagePal\GoogleTagManager\Block;
 
-
 /**
  * Google Tag Manager Block
  */
-class DataLayer extends DataLayerAbstract {
+class DataLayer extends DataLayerAbstract
+{
 
     /**
      * Render tag manager script
@@ -27,7 +27,7 @@ class DataLayer extends DataLayerAbstract {
         }
 
         /** @var $blockOnepageOrder \MagePal\GoogleTagManager\Block\Data\Order */
-        if($this->getOrderIds() && $blockOnepageOrder = $this->getChildBlock("magepal_gtm_block_order")){
+        if ($this->getOrderIds() && $blockOnepageOrder = $this->getChildBlock("magepal_gtm_block_order")) {
             $blockOnepageOrder->setOrderIds($this->getOrderIds())->addOrderLayer();
         }
 
@@ -43,5 +43,4 @@ class DataLayer extends DataLayerAbstract {
     {
         return $this->_gtmHelper->getAccountId();
     }
-
 }

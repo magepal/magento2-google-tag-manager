@@ -9,9 +9,9 @@
 
 namespace MagePal\GoogleTagManager\Block;
 
+use Magento\Cookie\Helper\Cookie as CookieHelper;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Cookie\Helper\Cookie as CookieHelper;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 /**
@@ -41,7 +41,10 @@ class GtmCode extends Template
      * @param array $data
      */
     public function __construct(
-    Context $context, CookieHelper $cookieHelper, GtmHelper $gtmHelper, array $data = []
+        Context $context,
+        CookieHelper $cookieHelper,
+        GtmHelper $gtmHelper,
+        array $data = []
     ) {
         $this->_cookieHelper = $cookieHelper;
         $this->_gtmHelper = $gtmHelper;
@@ -73,11 +76,10 @@ class GtmCode extends Template
      */
     protected function _toHtml()
     {
-       if (!$this->_gtmHelper->isEnabled()) {
+        if (!$this->_gtmHelper->isEnabled()) {
             return '';
-       }
+        }
 
-       return parent::_toHtml();
+        return parent::_toHtml();
     }
-
 }

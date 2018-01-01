@@ -10,6 +10,7 @@ namespace MagePal\GoogleTagManager\Block\Data;
 
 use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Model\Cart as GtmCartModel;
+
 /**
  * Block : Datalayer for cart view page
  *
@@ -24,7 +25,6 @@ class Cart extends \Magento\Framework\View\Element\Template
      */
     protected $gtmCart;
 
-
     /**
      * @param Context $context
      * @param GtmCartModel $gtmCart
@@ -35,7 +35,6 @@ class Cart extends \Magento\Framework\View\Element\Template
     ) {
         $this->gtmCart = $gtmCart;
     }
-
 
     /**
      * Add product data to datalayer
@@ -51,5 +50,4 @@ class Cart extends \Magento\Framework\View\Element\Template
 
         return $this;
     }
-
 }

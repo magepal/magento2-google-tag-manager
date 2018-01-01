@@ -8,10 +8,9 @@
 
 namespace MagePal\GoogleTagManager\Model;
 
+use Magento\Framework\DataObject;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactoryInterface;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
-use Magento\Framework\DataObject;
-
 
 /**
  * Class Order
@@ -75,7 +74,7 @@ class Order extends DataObject
     {
         $collection = $this->getOrderCollection();
 
-        if(!$collection){
+        if (!$collection) {
             return false;
         }
 
@@ -84,7 +83,6 @@ class Order extends DataObject
         /* @var \Magento\Sales\Model\Order $order */
 
         foreach ($collection as $order) {
-
             foreach ($order->getAllVisibleItems() as $item) {
                 $products[] = [
                     'sku' => $item->getSku(),
@@ -107,12 +105,10 @@ class Order extends DataObject
                 'transactionProducts' => $products
             ];
 
-
             $result[] = $transaction;
         }
 
         return $result;
-
     }
 
     /**
@@ -120,14 +116,14 @@ class Order extends DataObject
      *
      * @return $this
      */
-    public function getOrderCollection(){
-
+    public function getOrderCollection()
+    {
         $orderIds = $this->getOrderIds();
         if (empty($orderIds) || !is_array($orderIds)) {
             return false;
         }
 
-        if(!$this->_orderCollection){
+        if (!$this->_orderCollection) {
             $this->_orderCollection = $this->_salesOrderCollection->create();
             $this->_orderCollection->addFieldToFilter('entity_id', ['in' => $orderIds]);
         }
@@ -146,5 +142,4 @@ class Order extends DataObject
     {
         return $this->_escaper->escapeJsQuote($data, $quote);
     }
-
 }
