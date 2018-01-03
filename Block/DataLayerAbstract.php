@@ -150,7 +150,7 @@ class DataLayerAbstract extends Template
      */
     public function formatPrice($price)
     {
-        return sprintf('%.2F', $price);
+        return $this->_gtmHelper->formatPrice($price);
     }
 
     /**
