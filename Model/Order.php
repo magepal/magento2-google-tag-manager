@@ -83,6 +83,7 @@ class Order extends DataObject
         /* @var \Magento\Sales\Model\Order $order */
 
         foreach ($collection as $order) {
+            $products = [];
             foreach ($order->getAllVisibleItems() as $item) {
                 $products[] = [
                     'sku' => $item->getSku(),
@@ -114,7 +115,7 @@ class Order extends DataObject
     /**
      * Get order collection
      *
-     * @return $this
+     * @return bool|\Magento\Sales\Model\ResourceModel\Order\Collection|null
      */
     public function getOrderCollection()
     {
