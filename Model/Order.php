@@ -95,7 +95,7 @@ class Order extends DataObject
 
             $transaction =[
                 'event' => 'gtm.orderComplete',
-                'transactionId' => is_numeric($order->getIncrementId()) ? (int)$order->getIncrementId() : $order->getIncrementId(),
+                'transactionId' => $order->getIncrementId(),
                 'transactionAffiliation' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
                 'transactionTotal' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
                 'transactionSubTotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),

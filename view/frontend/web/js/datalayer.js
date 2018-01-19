@@ -46,7 +46,7 @@ define([
         }, this);
 
         if(!_.contains(customerData.getExpiredKeys(), "magepal-gtm-jsdatalayer")){
-            updateDataLayer(gtmDataLayer, dataObject(), false)
+            updateDataLayer(gtmDataLayer, dataObject(), false);
         }
 
     }
