@@ -12,6 +12,9 @@ define([
 ], function(customerData, $, _){
     'use strict';
 
+    var lastPushedCart = {};
+    var lastPushedCustomer = {};
+
     function objectKeyExist(object){
         return _.some(object, function(o) {
             return !_.isEmpty(_.pick(o, ["customer", "cart"]));
@@ -31,7 +34,13 @@ define([
                 cart = _dataObject.cart;
             }
 
-            _gtmDataLayer.push({"event": 'mpCustomerSession', "customer" : customer, "cart" : cart});
+            if(_.isEqual(lastPushedCart, cart) || !_.isEqual(lastPushedCustomer, customer)){
+                _gtmDataLayer.push({"event": 'mpCustomerSession', "customer" : customer, "cart" : cart});
+
+                lastPushedCustomer = customer;
+                lastPushedCart = cart;
+            }
+
         }
     }
 

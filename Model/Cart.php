@@ -100,7 +100,7 @@ class Cart extends DataObject
     /**
      * Get active quote
      *
-     * @return Quote
+     * @return \Magento\Quote\Model\Quote
      */
     public function getQuote()
     {
