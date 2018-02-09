@@ -34,7 +34,7 @@ define([
                 cart = _dataObject.cart;
             }
 
-            if(_.isEqual(lastPushedCart, cart) || !_.isEqual(lastPushedCustomer, customer)){
+            if(!_.isEqual(lastPushedCart, cart) || !_.isEqual(lastPushedCustomer, customer)){
                 _gtmDataLayer.push({"event": 'mpCustomerSession', "customer" : customer, "cart" : cart});
 
                 lastPushedCustomer = customer;
