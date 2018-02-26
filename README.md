@@ -1,3 +1,5 @@
+<a href="http://bit.ly/MagePal" ><img src="https://image.ibb.co/dHBkYH/Magepal_logo.png" width="100" align="right" /></a>
+
 ## Google Tag Manager for Magento2 with Data Layer
 
 [![Total Downloads](https://poser.pugx.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
