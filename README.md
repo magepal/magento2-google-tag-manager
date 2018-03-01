@@ -1,4 +1,4 @@
-<a href="http://bit.ly/MagePal" ><img src="https://image.ibb.co/dHBkYH/Magepal_logo.png" width="100" align="right" /></a>
+<a href="http://www.magepal.com" ><img src="https://image.ibb.co/dHBkYH/Magepal_logo.png" width="100" align="right" /></a>
 
 ## Google Tag Manager for Magento2 with Data Layer
 
