@@ -14,6 +14,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     const XML_PATH_ACTIVE = 'googletagmanager/general/active';
     const XML_PATH_ACCOUNT = 'googletagmanager/general/account';
+    const XML_PATH_DATALAYER_NAME = 'googletagmanager/general/datalayer_name';
 
     protected $_dataLayerName = 'dataLayer';
 
@@ -55,6 +56,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getDataLayerName()
     {
+        if(!$this->_dataLayerName){
+            $this->_dataLayerName = $this->scopeConfig->getValue(
+                self::XML_PATH_DATALAYER_NAME,
+                ScopeInterface::SCOPE_STORE
+            );
+        }
         return $this->_dataLayerName;
     }
 

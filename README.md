@@ -22,7 +22,7 @@ Google Tag Manager allows you to quickly and easily add or update AdWords, Googl
 composer require magepal/magento2-googletagmanager
 ```
 
-##### Manually
+##### Manually  (not recommended)
  * Download the extension
  * Unzip the file
  * Create a folder {Magento 2 root}/app/code/MagePal/GoogleTagManager
@@ -105,4 +105,4 @@ If you encounter any problems or bugs, please open an issue on [GitHub](https://
 
 Need help setting up or want to customize this extension to meet your business needs? Please email support@magepal.com and if we like your idea we will add this feature for free or at a discounted rate.
 
-© MagePal LLC.
+© MagePal LLC. | [www.magepal.com](http:/www.magepal.com)

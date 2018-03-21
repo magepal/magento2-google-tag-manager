@@ -59,7 +59,7 @@ class DataLayerAbstract extends Template
     protected function _init()
     {
         if ($this->getShowEcommerceCurrencyCode()) {
-            $this->addVariable('ecommerce', ['currencyCode' => $this->_storeManager->getStore()->getCurrentCurrency()->getCode()]);
+            $this->addVariable('ecommerce', ['currencyCode' => $this->getStoreCurrencyCode()]);
         }
 
         $this->addVariable('pageType', $this->_request->getFullActionName());
@@ -158,6 +158,14 @@ class DataLayerAbstract extends Template
      */
     public function getDataLayerName()
     {
-        return $this->_gtmHelper->getDataLayerName();
+        if(!$this->getData('data_layer_name')){
+            $this->setData('data_layer_name', $this->_gtmHelper->getDataLayerName());
+        }
+        return $this->getData('data_layer_name');
+    }
+
+    public function getStoreCurrencyCode()
+    {
+        return $this->_storeManager->getStore()->getCurrentCurrency()->getCode();
     }
 }
