@@ -56,7 +56,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getDataLayerName()
     {
-        if(!$this->_dataLayerName){
+        if (!$this->_dataLayerName) {
             $this->_dataLayerName = $this->scopeConfig->getValue(
                 self::XML_PATH_DATALAYER_NAME,
                 ScopeInterface::SCOPE_STORE

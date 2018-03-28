@@ -158,7 +158,7 @@ class DataLayerAbstract extends Template
      */
     public function getDataLayerName()
     {
-        if(!$this->getData('data_layer_name')){
+        if (!$this->getData('data_layer_name')) {
             $this->setData('data_layer_name', $this->_gtmHelper->getDataLayerName());
         }
         return $this->getData('data_layer_name');
