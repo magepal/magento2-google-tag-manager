@@ -1,26 +1,30 @@
 {
     "name": "magepal/magento2-googletagmanager",
-    "description":"Google Tag Manager (GTM) for Magento 2 with Advance Data Layer",
+    "description": "Google Tag Manager (GTM) for Magento 2 with Advance Data Layer",
     "keywords": [
-      "magento 2",
-      "gtm",
-      "google tag manager",
-      "ga",
-      "data layer",
-      "magento2",
-      "tag Manager",
-      "google analytics",
-      "magento gtm",
-      "magento2 analytics"
+        "magento 2",
+        "gtm",
+        "google tag manager",
+        "ga",
+        "data layer",
+        "magento2",
+        "tag Manager",
+        "google analytics",
+        "magento gtm",
+        "magento2 analytics"
     ],
     "license": [
         "proprietary"
     ],
     "homepage": "http://www.magepal.com/",
+    "support": {
+        "email": "support@magepal.org",
+        "issues": "https://github.com/magepal/magento2-google-tag-manager/issues/"
+    },
     "authors": [
         {
-            "name": "MagePal",
-            "email": "hello@magepal.com",
+            "name": "Renon Stewart",
+            "email": "renon@magepal.com",
             "homepage": "http://www.magepal.com/",
             "role": "Leader"
         }
@@ -31,7 +35,7 @@
         "magento/framework": "100.0.*|100.1.*|101.0.*"
     },
     "type": "magento2-module",
-    "version": "2.2.3",
+    "version": "2.2.4",
     "autoload": {
         "files": [
             "registration.php"

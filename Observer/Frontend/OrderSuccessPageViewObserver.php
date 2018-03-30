@@ -6,6 +6,7 @@
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
  */
+
 namespace MagePal\GoogleTagManager\Observer\Frontend;
 
 use Magento\Framework\Event\Observer as EventObserver;
@@ -54,6 +55,7 @@ class OrderSuccessPageViewObserver implements ObserverInterface
      *
      * @param EventObserver $observer
      * @return void
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function execute(EventObserver $observer)
     {
