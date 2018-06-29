@@ -22,23 +22,39 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Whether Tag Manager is ready to use
      *
+     * @param null $store_id
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled($store_id = null)
     {
-        $accountId = $this->scopeConfig->getValue(self::XML_PATH_ACCOUNT, ScopeInterface::SCOPE_STORE);
-        $active = $this->scopeConfig->isSetFlag(self::XML_PATH_ACTIVE, ScopeInterface::SCOPE_STORE);
+        $accountId = $this->scopeConfig->getValue(
+            self::XML_PATH_ACCOUNT,
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+
+        $active = $this->scopeConfig->isSetFlag(
+            self::XML_PATH_ACTIVE,
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+
         return $accountId && $active;
     }
 
     /**
      * Get Tag Manager Account ID
      *
+     * @param null $store_id
      * @return bool | null | string
      */
-    public function getAccountId()
+    public function getAccountId($store_id = null)
     {
-        return $this->scopeConfig->getValue(self::XML_PATH_ACCOUNT, ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_ACCOUNT,
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
     }
 
     /**
@@ -53,14 +69,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * @param null $store_id
      * @return string
      */
-    public function getDataLayerName()
+    public function getDataLayerName($store_id = null)
     {
         if (!$this->_dataLayerName) {
             $this->_dataLayerName = $this->scopeConfig->getValue(
                 self::XML_PATH_DATALAYER_NAME,
-                ScopeInterface::SCOPE_STORE
+                ScopeInterface::SCOPE_STORE,
+                $store_id
             );
         }
         return $this->_dataLayerName;
