@@ -21,11 +21,6 @@ use Magento\Framework\View\Element\Template\Context;
  */
 class Order extends \Magento\Framework\View\Element\Template
 {
-    /**
-     * @var gtmHelper
-     */
-    protected $gtmHelper;
-
     /** @var \MagePal\GoogleTagManager\Model\Order */
     protected $orderDataArray;
 

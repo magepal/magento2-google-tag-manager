@@ -19,13 +19,6 @@ use Magento\Framework\Event\ObserverInterface;
 class OrderSuccessPageViewObserver implements ObserverInterface
 {
     /**
-     * Google analytics data
-     *
-     * @var \Magento\GoogleAnalytics\Helper\Data
-     */
-    protected $_googleAnalyticsData = null;
-
-    /**
      * @var \Magento\Framework\View\LayoutInterface
      */
     protected $_layout;
@@ -38,14 +31,11 @@ class OrderSuccessPageViewObserver implements ObserverInterface
     /**
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\View\LayoutInterface $layout
-     * @param \Magento\GoogleAnalytics\Helper\Data $googleAnalyticsData
      */
     public function __construct(
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\View\LayoutInterface $layout,
-        \Magento\GoogleAnalytics\Helper\Data $googleAnalyticsData
+        \Magento\Framework\View\LayoutInterface $layout
     ) {
-        $this->_googleAnalyticsData = $googleAnalyticsData;
         $this->_layout = $layout;
         $this->_storeManager = $storeManager;
     }
@@ -55,7 +45,6 @@ class OrderSuccessPageViewObserver implements ObserverInterface
      *
      * @param EventObserver $observer
      * @return void
-     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function execute(EventObserver $observer)
     {
