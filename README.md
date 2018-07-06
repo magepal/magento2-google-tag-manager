@@ -9,6 +9,10 @@ Google Tag Manager allows you to quickly and easily add or update AdWords, Googl
 
 ![Google Tag Manager for Magento](https://image.ibb.co/dhmoLx/Google_Tag_Manager_for_Magento2_by_Magepal.png)
 
+
+Upgrade to our new Enhanced E-commerce for Google Tag Manager at https://www.magepal.com/magento2/extensions/enhanced-ecommerce-for-google-tag-manager.html to take full advantage of Google Analytics features.
+
+
 ### Features
 * Quick and easy setup
 * Add tag via XML layout and/or observer
