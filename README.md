@@ -5,13 +5,13 @@
 [![Total Downloads](https://poser.pugx.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 [![Latest Stable Version](https://poser.pugx.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 
-Google Tag Manager allows you to quickly and easily add or update AdWords, Google Analytics, Facebook Tags and other code snippets on your website without edit to your magento 2 codebase.
+Google Tag Manager (GTM) is a user-friendly solution which simplifies the process of adding, edit and manage JavaScript tags and other snippets of code on your Magento site. You can quickly and easily add Facebook tags, AdWords Conversion Tracking, Remarketing, DoubleClick code, Google Analytics and many more in a breeze without the need for a developer to make changes to your Magento code base. GTM makes running your digital marketing campaigns much easier when calibrating with multiple department and agencies by making available the right set of tools so that everyone can get their job done quickly.
+
+Upgrade to our new [Enhanced E-commerce for Google Tag Manager](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html) to take full advantage of analyzing your customer behaviors and products interactions within Google Analytics.
+
+https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html 
 
 ![Google Tag Manager for Magento](https://image.ibb.co/dhmoLx/Google_Tag_Manager_for_Magento2_by_Magepal.png)
-
-
-Upgrade to our new Enhanced E-commerce for Google Tag Manager at https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html to take full advantage of Google Analytics features.
-
 
 ### Features
 * Quick and easy setup
