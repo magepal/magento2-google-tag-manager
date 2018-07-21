@@ -10,7 +10,7 @@ Google Tag Manager (GTM) is a user-friendly solution which simplifies the proces
 Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. A small increase in your store’s conversion rate can make a giant impact on your revenue. Gain valuable insight and increase your conversion rate by leveraging Google Enhanced Ecommerce to understand the value of each user actions and behaviors.
 
 
-Learn more at [https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github)
+Learn more at [Google Enhanced Ecommerce](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github)
 
 ![Google Tag Manager for Magento](https://image.ibb.co/dhmoLx/Google_Tag_Manager_for_Magento2_by_Magepal.png)
 
