@@ -40,7 +40,7 @@ composer require magepal/magento2-googletagmanager
   php -f bin/magento setup:upgrade
 ```
 
-#### Step 3 - Configure GTM
+#### Step 3 - How to Configure Google Tag Manager
 
 Log into your Magento 2 Admin, then goto Stores -> Configuration -> MagePal -> Google Tag Manager and enter your GTM account credentials
 
