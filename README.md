@@ -7,10 +7,10 @@
 
 Google Tag Manager (GTM) is a user-friendly solution which simplifies the process of adding, edit and manage JavaScript tags and other snippets of code on your Magento site. You can quickly and easily add Facebook tags, AdWords Conversion Tracking, Remarketing, DoubleClick code, Google Analytics and many more in a breeze without the need for a developer to make changes to your Magento code base. GTM makes running your digital marketing campaigns much easier when calibrating with multiple department and agencies by making available the right set of tools so that everyone can get their job done quickly.
 
-Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. A small increase in your store’s conversion rate can make a giant impact on your revenue. Gain valuable insight and increase your conversion rate by leveraging Google Enhanced Ecommerce to understand the value of each user actions and behaviors.
+Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. Gain valuable insight and increase your conversion rate by leveraging Google Enhanced Ecommerce to understand the value of each user actions and behaviors.
 
 
-Learn more at [Google Enhanced Ecommerce](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github)
+Learn more about our [Google Enhanced Ecommerce](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) extension. A small increase in your store’s conversion rate can make a giant impact on your revenue.
 
 ![Google Tag Manager for Magento](https://image.ibb.co/dhmoLx/Google_Tag_Manager_for_Magento2_by_Magepal.png)
 
