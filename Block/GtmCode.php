@@ -71,6 +71,27 @@ class GtmCode extends Template
     }
 
     /**
+     * Return cookie restriction mode value.
+     *
+     * @return bool
+     */
+    public function isCookieRestrictionModeEnabled()
+    {
+        return $this->_cookieHelper->isCookieRestrictionModeEnabled();
+    }
+
+    /**
+     * Return current website id.
+     *
+     * @return int
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getCurrentWebsiteId()
+    {
+        return $this->_storeManager->getWebsite()->getId();
+    }
+
+    /**
      * Render tag manager JS
      *
      * @return string

@@ -20,7 +20,6 @@
                     <argument name="show_ecommerce_currency_code" xsi:type="boolean">true</argument>
                 </arguments>
             </block>
-            <block class="MagePal\GoogleTagManager\Block\GtmCode" name="magepal_gtm_js" as="magepal_gtm_js" template="MagePal_GoogleTagManager::gtm_js.phtml" />
         </referenceBlock>
     </body>
 </page>

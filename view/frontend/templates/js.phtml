@@ -7,12 +7,18 @@
  * http://www.magepal.com | support@magepal.com
  */
 ?>
-<?php /** @var $block \MagePal\GoogleTagManager\Block\GtmCode **/ ?>
+<?php /** @var $block \MagePal\GoogleTagManager\Block\GtmCode * */ ?>
 
 <script type="text/x-magento-init">
     {
         "*": {
-            "magepalGtmDatalayer": {"dataLayer" : "<?php echo $block->getDataLayerName() ?>"}
+            "MagePal_GoogleTagManager/js/datalayer": {
+                "isCookieRestrictionModeEnabled": <?= (int)$block->isCookieRestrictionModeEnabled() ?>,
+                "currentWebsite": <?= (int)$block->getCurrentWebsiteId() ?>,
+                "cookieName": "<?= \Magento\Cookie\Helper\Cookie::IS_USER_ALLOWED_SAVE_COOKIE ?>",
+                "dataLayer" : "<?= $block->getDataLayerName() ?>",
+                "accountId" : "<?= $block->getAccountId() ?>"
+            }
         }
     }
 </script>
