@@ -69,7 +69,8 @@ class Order extends DataObject
     /**
      * Render information about specified orders and their items
      *
-     * @return void|string
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getOrderLayer()
     {
