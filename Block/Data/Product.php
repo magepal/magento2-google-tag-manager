@@ -61,6 +61,7 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
                     'id' => $product->getId(),
                     'sku' => $product->getSku(),
                     'parent_sku' => $product->getData('sku'),
+                    'product_type' => $product->getTypeId(),
                     'name' => $product->getName(),
                     'price' => $this->getPrice($product, $tm),
                     'attribute_set_id' => $product->getAttributeSetId(),

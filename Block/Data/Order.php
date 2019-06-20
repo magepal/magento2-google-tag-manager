@@ -7,7 +7,9 @@
 
 namespace MagePal\GoogleTagManager\Block\Data;
 
+use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use MagePal\GoogleTagManager\Block\DataLayer;
 
 /**
  * Class Order
@@ -15,7 +17,7 @@ use Magento\Framework\View\Element\Template\Context;
  * @method Array setOrderIds(Array $orderIds)
  * @method Array getOrderIds()
  */
-class Order extends \Magento\Framework\View\Element\Template
+class Order extends Template
 {
     /** @var \MagePal\GoogleTagManager\Model\Order */
     protected $orderDataArray;
@@ -44,7 +46,7 @@ class Order extends \Magento\Framework\View\Element\Template
         $transactions = $this->orderDataArray->setOrderIds($this->getOrderIds())->getOrderLayer();
 
         if (!empty($transactions)) {
-            /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
+            /** @var $tm DataLayer */
             $tm = $this->getParentBlock();
             foreach ($transactions as $order) {
                 $tm->addAdditionalVariable($order);

@@ -3,3 +3,8 @@
 "Version","Version"
 "Enable","Enable"
 "Account Number","Account Number"
+"GDPR","GDPR"
+"Ignore Cookie Restriction Mode","Ignore Cookie Restriction Mode"
+"Cookie Name","Cookie Name"
+"Disable tracking if cookie exist","Disable tracking if cookie exist"
+"To enable disable tracking  goto Stores > Configuration > General > Web > Default Cookie Settings > Cookie Restriction Mode","To enable disable tracking goto Stores > Configuration > General > Web > Default Cookie Settings > Cookie Restriction Mode"

@@ -7,6 +7,7 @@
 
 namespace MagePal\GoogleTagManager\Model;
 
+use Magento\Customer\Model\Session;
 use Magento\Framework\DataObject;
 
 /**
@@ -17,17 +18,17 @@ class Customer extends DataObject
 {
 
     /**
-     * @var \Magento\Customer\Model\Session
+     * @var Session
      */
     protected $customerSession;
 
     /**
      * Customer constructor.
-     * @param \Magento\Customer\Model\Session $customerSession
+     * @param Session $customerSession
      * @param array $data
      */
     public function __construct(
-        \Magento\Customer\Model\Session $customerSession,
+        Session $customerSession,
         array $data = []
     ) {
         $this->customerSession = $customerSession;

@@ -11,6 +11,7 @@ use Exception;
 use Magento\Framework\DataObject;
 use Magento\Framework\Escaper;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Sales\Model\Order as SalesOrder;
 use Magento\Sales\Model\Order\Item;
 use Magento\Sales\Model\Order\Payment;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
@@ -24,7 +25,7 @@ use MagePal\GoogleTagManager\Helper\DataLayerItem;
 /**
  * Class Order
  * @package MagePal\GoogleTagManager\Model
- * @method Array setOrderIds(Array $orderIds)
+ * @method $this setOrderIds(Array $orderIds)
  * @method Array getOrderIds()
  */
 class Order extends DataObject
@@ -114,7 +115,7 @@ class Order extends DataObject
 
         $result = [];
 
-        /* @var \Magento\Sales\Model\Order $order */
+        /* @var OrderAlias $order */
 
         foreach ($collection as $order) {
             $products = [];
@@ -153,6 +154,11 @@ class Order extends DataObject
             ];
 
             $result[] = $this->orderProvider->setOrder($order)->setTransactionData($transaction)->getData();
+
+            // retain backward comparability with gtm.orderComplete event
+            $result[] = $transaction = [
+                'event' => 'purchase'
+            ];
         }
 
         return $result;
@@ -200,22 +206,31 @@ class Order extends DataObject
     }
 
     /**
-     * @param \Magento\Sales\Model\Order $order
+     * @param OrderAlias $order
      * @return array
      * @throws NoSuchEntityException
      */
-    public function getOrderDataLayer(\Magento\Sales\Model\Order $order)
+    public function getOrderDataLayer(SalesOrder $order)
     {
-        /* @var \Magento\Sales\Model\Order $order */
-
+        /* @var OrderAlias $order */
+        /* @var Item $item */
         $products = [];
         foreach ($order->getAllVisibleItems() as $item) {
             $product = [
                 'sku' => $item->getSku(),
+                'id' => $item->getSku(),
                 'parent_sku' => $item->getProduct()->getData('sku'),
-                'name' => $this->escapeJsQuote($item->getName()),
+                'name' => $this->escapeJsQuote($item->getProductOptionByCode('simple_name') ?: $item->getName()),
+                'parent_name' => $this->escapeJsQuote($item->getName()),
                 'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
-                'quantity' => $item->getQtyOrdered() * 1
+                'quantity' => $item->getQtyOrdered() * 1,
+                'subtotal' => $this->gtmHelper->formatPrice($item->getBaseRowTotal()),
+                'product_type' => $item->getProductType(),
+                'product_id' => $item->getProductId(),
+                'discount_amount' => $this->gtmHelper->formatPrice($item->getDiscountAmount()),
+                'discount_percent' => $this->gtmHelper->formatPrice($item->getDiscountPercent()),
+                'tax_amount' => $this->gtmHelper->formatPrice($item->getTaxAmount()),
+                'is_virtual' => $item->getIsVirtual() ? true : false,
             ];
 
             if ($variant = $this->dataLayerItemHelper->getItemVariant($item)) {
@@ -233,7 +248,7 @@ class Order extends DataObject
                                 ->getData();
         }
 
-        $transaction =[
+        $transaction = [
             'order_id' => $order->getIncrementId(),
             'store_name' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
             'total' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
@@ -257,7 +272,7 @@ class Order extends DataObject
      * @param $order
      * @return string
      */
-    public function getPaymentMethod(\Magento\Sales\Model\Order $order)
+    public function getPaymentMethod(SalesOrder $order)
     {
         try {
             /** @var Payment $payment */

@@ -7,6 +7,7 @@
 
 namespace MagePal\GoogleTagManager\Block;
 
+use Magento\Cookie\Helper\Cookie;
 use MagePal\GoogleTagManager\Block\Data\Order;
 
 /**
@@ -43,5 +44,24 @@ class DataLayer extends DataLayerAbstract
     public function getAccountId()
     {
         return $this->_gtmHelper->getAccountId();
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionName($store_id = null)
+    {
+        return $this->_gtmHelper->getCookieRestrictionName($store_id) ?
+            $this->_gtmHelper->getCookieRestrictionName($store_id) : Cookie::IS_USER_ALLOWED_SAVE_COOKIE ;
+    }
+
+    /**
+     * @param null $store_id
+     * @return bool
+     */
+    public function hasIgnoreRestriction($store_id = null)
+    {
+        return (int) $this->_gtmHelper->hasIgnoreRestriction($store_id);
     }
 }

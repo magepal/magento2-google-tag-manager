@@ -14,7 +14,7 @@
                 <argument name="value" xsi:type="string">checkout</argument>
             </action>
             <block class="MagePal\GoogleTagManager\Block\Data\Customer" name="magepal_gtm_block_customer"/>
-            <block class="MagePal\GoogleTagManager\Block\Data\Cart" name="magepal_gtm_block_cart"/>
+            <block class="MagePal\GoogleTagManager\Block\Data\Checkout" name="magepal_gtm_block_cart"/>
         </referenceBlock>
     </body>
 </page>

@@ -60,10 +60,36 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionName($store_id = null)
+    {
+        return $this->scopeConfig->getValue(
+            'googletagmanager/gdpr/restriction_cookie_name',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * @param null $store_id
+     * @return bool
+     */
+    public function hasIgnoreRestriction($store_id = null)
+    {
+        return $this->scopeConfig->isSetFlag(
+            'googletagmanager/gdpr/ignore_restriction',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
      * Get Tag Manager Account ID
      *
      * @param null $store_id
-     * @return bool | null | string
+     * @return null | string
      */
     public function getAccountId($store_id = null)
     {
@@ -80,7 +106,7 @@ class Data extends AbstractHelper
      * @param $price
      * @return float
      */
-    public function formatPrice($price)
+    public static function formatPrice($price)
     {
         return (float)sprintf('%.2F', $price);
     }

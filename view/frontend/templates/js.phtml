@@ -5,12 +5,25 @@
  * http://www.magepal.com | support@magepal.com
  */
 ?>
-<?php /** @var $block \MagePal\GoogleTagManager\Block\GtmCode **/ ?>
+<?php /** @var $block MagePal\GoogleTagManager\Block\DataLayer **/ ?>
+<!-- Google Tag Manager by MagePal -->
+<script type="text/javascript">
+    window.<?php echo $block->getDataLayerName() ?> = window.<?php echo $block->getDataLayerName() ?> || [];
+</script>
 
 <script type="text/x-magento-init">
     {
         "*": {
-            "magepalGtmDatalayer": {"dataLayer" : "<?php echo $block->getDataLayerName() ?>"}
+            "magepalGtmDatalayer": {
+                "isCookieRestrictionModeEnabled": <?= $block->isCookieRestrictionModeEnabled() ?>,
+                "currentWebsite": <?= $block->getCurrentWebsiteId() ?>,
+                "cookieName": "<?= $block->getCookieRestrictionName() ?>",
+                "dataLayer": "<?= $block->getDataLayerName() ?>",
+                "accountId": "<?= $block->getAccountId() ?>",
+                "data": <?= $block->getDataLayer() ?>,
+                "ignoreRestriction": <?= $block->hasIgnoreRestriction() ?>
+            }
         }
     }
 </script>
+<!-- End Google Tag Manager by MagePal -->

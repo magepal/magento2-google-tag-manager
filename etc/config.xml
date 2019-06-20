@@ -15,6 +15,10 @@
                 <item_variant_format>2</item_variant_format>
                 <category_layer>1</category_layer>
             </general>
+            <gdpr>
+                <restriction_cookie_name>user_allowed_save_cookie</restriction_cookie_name>
+                <ignore_restriction>0</ignore_restriction>
+            </gdpr>
         </googletagmanager>
     </default>
 </config>

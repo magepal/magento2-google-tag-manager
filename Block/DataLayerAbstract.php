@@ -7,6 +7,7 @@
 
 namespace MagePal\GoogleTagManager\Block;
 
+use Magento\Cookie\Helper\Cookie as CookieHelper;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
@@ -15,6 +16,7 @@ use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 /**
  * Class DataLayerAbstract
  * @package MagePal\GoogleTagManager\Block
+ * @method getList()
  */
 class DataLayerAbstract extends Template
 {
@@ -40,18 +42,28 @@ class DataLayerAbstract extends Template
     protected $_variables = [];
 
     /**
+     * Cookie Helper
+     *
+     * @var CookieHelper
+     */
+    protected $_cookieHelper = null;
+
+    /**
      * @param Context $context
      * @param GtmHelper $gtmHelper
+     * @param CookieHelper $cookieHelper
      * @param array $data
      * @throws NoSuchEntityException
      */
     public function __construct(
         Context $context,
         GtmHelper $gtmHelper,
+        CookieHelper $cookieHelper,
         array $data = []
     ) {
         $this->_gtmHelper = $gtmHelper;
         parent::__construct($context, $data);
+        $this->_cookieHelper = $cookieHelper;
         $this->_init();
     }
 
@@ -83,23 +95,19 @@ class DataLayerAbstract extends Template
             ['dataLayer' => $this]
         );
 
-        if (empty($this->getVariables()) && empty($this->_additionalVariables)) {
-            return null;
-        }
-
         $result = [];
 
         if (!empty($this->getVariables())) {
-            $result[] = sprintf("%s.push(%s);\n", $this->getDataLayerName(), json_encode($this->getVariables()));
+            $result[] = $this->getVariables();
         }
 
         if (!empty($this->_additionalVariables) && is_array($this->_additionalVariables)) {
             foreach ($this->_additionalVariables as $custom) {
-                $result[] = sprintf("%s.push(%s);\n", $this->getDataLayerName(), json_encode($custom));
+                $result[] = $custom;
             }
         }
 
-        return implode("\n", $result);
+        return json_encode($result);
     }
 
     /**
@@ -174,5 +182,25 @@ class DataLayerAbstract extends Template
     public function getStoreCurrencyCode()
     {
         return $this->_storeManager->getStore()->getCurrentCurrency()->getCode();
+    }
+
+    /**
+     * Return cookie restriction mode value.
+     *
+     * @return bool
+     */
+    public function isCookieRestrictionModeEnabled()
+    {
+        return (int) $this->_cookieHelper->isCookieRestrictionModeEnabled();
+    }
+    /**
+     * Return current website id.
+     *
+     * @return int
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getCurrentWebsiteId()
+    {
+        return $this->_storeManager->getWebsite()->getId();
     }
 }

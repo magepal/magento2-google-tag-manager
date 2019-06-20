@@ -13,10 +13,10 @@ use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\Model\Cart as GtmCartModel;
 
 /**
- * Class Cart
+ * Class Checkout
  * @package MagePal\GoogleTagManager\Block\Data
  */
-class Cart extends Template
+class Checkout extends Template
 {
 
     /**
@@ -47,8 +47,10 @@ class Cart extends Template
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
+
         $tm->addVariable('cart', $this->gtmCart->getCart());
-        $tm->addVariable('event', 'cartPage');
+        $tm->addVariable('event', 'checkoutPage');
+
         return $this;
     }
 }

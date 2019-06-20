@@ -7,26 +7,31 @@
 
 namespace MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Module;
 
+use Magento\Backend\Block\Template\Context;
+use Magento\Config\Block\System\Config\Form\Field;
+use Magento\Framework\Data\Form\Element\AbstractElement;
+use Magento\Framework\Module\ModuleListInterface;
+
 /**
  * Class Version
  * @package MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Module
  */
-class Version extends \Magento\Config\Block\System\Config\Form\Field
+class Version extends Field
 {
 
     /**
-     * @var \Magento\Framework\Module\ModuleListInterface
+     * @var ModuleListInterface
      */
     protected $_moduleList;
 
     /**
-     * @param \Magento\Backend\Block\Template\Context $context
-     * @param \Magento\Framework\Module\ModuleListInterface $moduleList
+     * @param Context $context
+     * @param ModuleListInterface $moduleList
      * @param array $data
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Module\ModuleListInterface $moduleList,
+        Context $context,
+        ModuleListInterface $moduleList,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -36,10 +41,10 @@ class Version extends \Magento\Config\Block\System\Config\Form\Field
     /**
      * Render button
      *
-     * @param  \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @param  AbstractElement $element
      * @return string
      */
-    public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    public function render(AbstractElement $element)
     {
         // Remove scope label
         $element->unsScope()->unsCanUseWebsiteValue()->unsCanUseDefaultValue();
@@ -49,11 +54,11 @@ class Version extends \Magento\Config\Block\System\Config\Form\Field
     /**
      * Return element html
      *
-     * @param  \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @param  AbstractElement $element
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    protected function _getElementHtml(AbstractElement $element)
     {
         return 'v' . $this->getVersion();
     }
@@ -67,15 +72,5 @@ class Version extends \Magento\Config\Block\System\Config\Form\Field
     {
         $moduleInfo = $this->_moduleList->getOne($this->getModuleName());
         return $moduleInfo['setup_version'];
-    }
-
-    /**
-     * @return string
-     */
-    public function getModuleName()
-    {
-        $classArray = explode('\\', get_class($this));
-
-        return count($classArray) > 2 ? "{$classArray[0]}_{$classArray[1]}" : '';
     }
 }
