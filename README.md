@@ -51,9 +51,9 @@ Add, changing or removing information from the data layer to meet your client ne
 
 [How to Installing Google Tag Manager](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#installation)
 
-[How to setup Google Tag Manger](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#configuration)
+[How to setup Google Tag Manager](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#configuration)
 
-[How to customizing Google Tag Manger](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#api)
+[How to customizing Google Tag Manager](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#api)
 
 [Google Tag Manger data layer attributes](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#datalayer)
 
