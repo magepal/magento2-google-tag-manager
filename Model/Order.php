@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -9,9 +7,19 @@
 
 namespace MagePal\GoogleTagManager\Model;
 
+use Exception;
 use Magento\Framework\DataObject;
+use Magento\Framework\Escaper;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Sales\Model\Order\Item;
+use Magento\Sales\Model\Order\Payment;
+use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactoryInterface;
+use Magento\Store\Model\StoreManagerInterface;
+use MagePal\GoogleTagManager\DataLayer\OrderData\OrderItemProvider;
+use MagePal\GoogleTagManager\DataLayer\OrderData\OrderProvider;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
+use MagePal\GoogleTagManager\Helper\DataLayerItem;
 
 /**
  * Class Order
@@ -32,31 +40,52 @@ class Order extends DataObject
      */
     protected $_salesOrderCollection;
 
+    /**
+     * @var null
+     */
     protected $_orderCollection = null;
 
-    /** @var \Magento\Store\Model\StoreManagerInterface */
+    /** @var StoreManagerInterface */
     protected $_storeManager;
 
     /**
      * Escaper
      *
-     * @var \Magento\Framework\Escaper
+     * @var Escaper
      */
     protected $_escaper;
+
+    /**
+     * @var OrderProvider
+     */
+    protected $orderProvider;
+
+    /**
+     * @var OrderItemProvider
+     */
+    protected $orderItemProvider;
+
+    protected $dataLayerItemHelper;
 
     /**
      * Order constructor.
      * @param CollectionFactoryInterface $salesOrderCollection
      * @param GtmHelper $gtmHelper
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\Escaper $escaper
+     * @param StoreManagerInterface $storeManager
+     * @param Escaper $escaper
+     * @param OrderProvider $orderProvider
+     * @param OrderItemProvider $orderItemProvider
+     * @param DataLayerItem $dataLayerItemHelper
      * @param array $data
      */
     public function __construct(
         CollectionFactoryInterface $salesOrderCollection,
         GtmHelper $gtmHelper,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Escaper $escaper,
+        StoreManagerInterface $storeManager,
+        Escaper $escaper,
+        OrderProvider $orderProvider,
+        OrderItemProvider $orderItemProvider,
+        DataLayerItem  $dataLayerItemHelper,
         array $data = []
     ) {
         parent::__construct($data);
@@ -64,13 +93,16 @@ class Order extends DataObject
         $this->_salesOrderCollection = $salesOrderCollection;
         $this->_storeManager = $storeManager;
         $this->_escaper = $escaper;
+        $this->orderProvider = $orderProvider;
+        $this->orderItemProvider = $orderItemProvider;
+        $this->dataLayerItemHelper = $dataLayerItemHelper;
     }
 
     /**
      * Render information about specified orders and their items
      *
-     * @return array
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @return array|bool
+     * @throws NoSuchEntityException
      */
     public function getOrderLayer()
     {
@@ -86,16 +118,27 @@ class Order extends DataObject
 
         foreach ($collection as $order) {
             $products = [];
+            /* @var Item $item */
             foreach ($order->getAllVisibleItems() as $item) {
-                $products[] = [
+                $product = [
                     'sku' => $item->getSku(),
                     'name' => $this->escapeJsQuote($item->getName()),
                     'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
                     'quantity' => $item->getQtyOrdered() * 1
                 ];
+
+                if ($category = $this->dataLayerItemHelper->getFirstCategory($item)) {
+                    $product['category'] = $category;
+                }
+
+                $products[] = $this->orderItemProvider
+                                    ->setItem($item)
+                                    ->setItemData($product)
+                                    ->setListType(OrderItemProvider::LIST_TYPE_GOOGLE)
+                                    ->getData();
             }
 
-            $transaction =[
+            $transaction = [
                 'event' => 'gtm.orderComplete',
                 'transactionId' => $order->getIncrementId(),
                 'transactionAffiliation' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
@@ -103,12 +146,13 @@ class Order extends DataObject
                 'transactionSubTotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
                 'transactionShipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
                 'transactionTax' => $this->gtmHelper->formatPrice($order->getTaxAmount()),
-                'transactionCouponCode' => $order->getCouponCode(),
+                'transactionCouponCode' => $order->getCouponCode() ? $order->getCouponCode() : '',
                 'transactionDiscount' => $this->gtmHelper->formatPrice($order->getDiscountAmount()),
-                'transactionProducts' => $products
+                'transactionProducts' => $products,
+                'order' => $this->getOrderDataLayer($order)
             ];
 
-            $result[] = $transaction;
+            $result[] = $this->orderProvider->setOrder($order)->setTransactionData($transaction)->getData();
         }
 
         return $result;
@@ -117,7 +161,7 @@ class Order extends DataObject
     /**
      * Get order collection
      *
-     * @return bool|\Magento\Sales\Model\ResourceModel\Order\Collection|null
+     * @return bool|Collection|null
      */
     public function getOrderCollection()
     {
@@ -143,6 +187,94 @@ class Order extends DataObject
      */
     public function escapeJsQuote($data, $quote = '\'')
     {
-        return $this->_escaper->escapeJsQuote($data, $quote);
+        return $this->_escaper->escapeJsQuote($this->escapeReturn($data), $quote);
+    }
+
+    /**
+     * @param $data
+     * @return string
+     */
+    public function escapeReturn($data)
+    {
+        return trim(str_replace(["\r\n", "\r", "\n"], ' ', $data));
+    }
+
+    /**
+     * @param \Magento\Sales\Model\Order $order
+     * @return array
+     * @throws NoSuchEntityException
+     */
+    public function getOrderDataLayer(\Magento\Sales\Model\Order $order)
+    {
+        /* @var \Magento\Sales\Model\Order $order */
+
+        $products = [];
+        foreach ($order->getAllVisibleItems() as $item) {
+            $product = [
+                'sku' => $item->getSku(),
+                'parent_sku' => $item->getProduct()->getData('sku'),
+                'name' => $this->escapeJsQuote($item->getName()),
+                'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
+                'quantity' => $item->getQtyOrdered() * 1
+            ];
+
+            if ($variant = $this->dataLayerItemHelper->getItemVariant($item)) {
+                $product['variant'] = $variant;
+            }
+
+            if ($categories = $this->dataLayerItemHelper->getCategories($item)) {
+                $product['categories'] = $categories;
+            }
+
+            $products[] = $this->orderItemProvider
+                                ->setItem($item)
+                                ->setItemData($product)
+                                ->setListType(OrderItemProvider::LIST_TYPE_GENERIC)
+                                ->getData();
+        }
+
+        $transaction =[
+            'order_id' => $order->getIncrementId(),
+            'store_name' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
+            'total' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
+            'subtotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
+            'shipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
+            'tax' => $this->gtmHelper->formatPrice($order->getTaxAmount()),
+            'coupon_code' => $order->getCouponCode() ?: '' ,
+            'coupon_name' => $order->getDiscountDescription() ?: '',
+            'discount' => $this->gtmHelper->formatPrice($order->getDiscountAmount()),
+            'payment_method' => $this->getPaymentMethod($order),
+            'shipping_method' => ['title' => $order->getShippingDescription(), 'code' => $order->getShippingMethod()],
+            'is_virtual' => $order->getIsVirtual() ? true : false,
+            'is_guest_checkout' => $order->getCustomerIsGuest() ? true : false,
+            'items' => $products
+        ];
+
+        return $transaction;
+    }
+
+    /**
+     * @param $order
+     * @return string
+     */
+    public function getPaymentMethod(\Magento\Sales\Model\Order $order)
+    {
+        try {
+            /** @var Payment $payment */
+            $payment = $order->getPayment();
+            $method = $payment->getMethodInstance();
+
+            $method = [
+                'title' => $method->getTitle(),
+                'code' => $method->getCode()
+            ];
+        } catch (Exception $e) {
+            $method = [
+                'title' => '',
+                'code' => ''
+            ];
+        }
+
+        return $method;
     }
 }

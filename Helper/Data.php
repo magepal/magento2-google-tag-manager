@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -9,14 +7,33 @@
 
 namespace MagePal\GoogleTagManager\Helper;
 
+use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+/**
+ * Class Data
+ * @package MagePal\GoogleTagManager\Helper
+ */
+class Data extends AbstractHelper
 {
+    /**
+     * Active flag
+     */
     const XML_PATH_ACTIVE = 'googletagmanager/general/active';
+
+    /**
+     * Account number
+     */
     const XML_PATH_ACCOUNT = 'googletagmanager/general/account';
+
+    /**
+     * Datalayer name
+     */
     const XML_PATH_DATALAYER_NAME = 'googletagmanager/general/datalayer_name';
 
+    /**
+     * @var string
+     */
     protected $_dataLayerName = 'dataLayer';
 
     /**

@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -12,10 +10,8 @@ namespace MagePal\GoogleTagManager\Block\Data;
 use Magento\Catalog\Helper\Data;
 
 /**
- * Block : Category for catalog category view page
- *
- * @package MagePal\GoogleTagManager
- * @class   Category
+ * Class Category
+ * @package MagePal\GoogleTagManager\Block\Data
  */
 class Category extends \Magento\Framework\View\Element\Template
 {
@@ -36,6 +32,7 @@ class Category extends \Magento\Framework\View\Element\Template
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Framework\Registry $registry
+     * @param Data $catalogData
      * @param array $data
      */
     public function __construct(
@@ -98,6 +95,11 @@ class Category extends \Magento\Framework\View\Element\Template
                 'name' => $category->getName(),
                 'path' => implode(" > ", $titleArray)
             ]
+        );
+
+        $tm->addVariable(
+            'event',
+            'categoryPage'
         );
 
         return $this;

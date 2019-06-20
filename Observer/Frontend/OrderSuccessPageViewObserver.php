@@ -1,7 +1,5 @@
 <?php
 /**
- * * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -13,8 +11,8 @@ use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
 
 /**
- * Google Analytics module observer
- *
+ * Class OrderSuccessPageViewObserver
+ * @package MagePal\GoogleTagManager\Observer\Frontend
  */
 class OrderSuccessPageViewObserver implements ObserverInterface
 {

@@ -11,6 +11,9 @@
         <googletagmanager>
             <general>
                 <datalayer_name>dataLayer</datalayer_name>
+                <item_variant_layer>1</item_variant_layer>
+                <item_variant_format>2</item_variant_format>
+                <category_layer>1</category_layer>
             </general>
         </googletagmanager>
     </default>

@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -14,10 +12,8 @@ use Magento\Catalog\Helper\Data;
 use Magento\Catalog\Model\Product\Type;
 
 /**
- * Block : Product for catalog product view page
- *
- * @package MagePal\GoogleTagManager
- * @class   Product
+ * Class Product
+ * @package MagePal\GoogleTagManager\Block\Data
  */
 class Product extends \Magento\Catalog\Block\Product\AbstractProduct
 {
@@ -64,15 +60,35 @@ class Product extends \Magento\Catalog\Block\Product\AbstractProduct
                 [
                     'id' => $product->getId(),
                     'sku' => $product->getSku(),
+                    'parent_sku' => $product->getData('sku'),
                     'name' => $product->getName(),
-                    'price' => $product->getTypeId() == Type::TYPE_SIMPLE ? $tm->formatPrice($product->getPrice()) : $tm->formatPrice($product->getFinalPrice()),
+                    'price' => $this->getPrice($product, $tm),
                     'attribute_set_id' => $product->getAttributeSetId(),
-                    'path' => implode(" > ", $this->getBreadCrumbPath())
+                    'path' => implode(" > ", $this->getBreadCrumbPath()),
                 ]
+            );
+
+            $tm->addVariable(
+                'event',
+                'productPage'
             );
         }
 
         return $this;
+    }
+
+    /**
+     * @param \Magento\Catalog\Api\Data\ProductInterface $product
+     * @param \MagePal\GoogleTagManager\Block\DataLayer $tm
+     * @return mixed
+     */
+    public function getPrice($product, $tm)
+    {
+        if ($product->getTypeId() == Type::TYPE_SIMPLE) {
+            return $tm->formatPrice($product->getPrice());
+        } else {
+            return $tm->formatPrice($product->getFinalPrice());
+        }
     }
 
     /**

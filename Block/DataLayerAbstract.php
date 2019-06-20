@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -10,20 +7,20 @@
 
 namespace MagePal\GoogleTagManager\Block;
 
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 /**
- * Google Tag Manager Block
+ * Class DataLayerAbstract
+ * @package MagePal\GoogleTagManager\Block
  */
 class DataLayerAbstract extends Template
 {
 
     /**
-     * Google Tag Manager Helper
-     *
-     * @var \MagePal\GoogleTagManager\Helper\Data
+     * @var GtmHelper
      */
     protected $_gtmHelper;
 
@@ -37,12 +34,16 @@ class DataLayerAbstract extends Template
      */
     protected $_additionalVariables = [];
 
+    /**
+     * @var array
+     */
     protected $_variables = [];
 
     /**
      * @param Context $context
      * @param GtmHelper $gtmHelper
      * @param array $data
+     * @throws NoSuchEntityException
      */
     public function __construct(
         Context $context,
@@ -56,6 +57,7 @@ class DataLayerAbstract extends Template
 
     /**
      * @return $this
+     * @throws NoSuchEntityException
      */
     protected function _init()
     {
@@ -165,6 +167,10 @@ class DataLayerAbstract extends Template
         return $this->getData('data_layer_name');
     }
 
+    /**
+     * @return mixed
+     * @throws NoSuchEntityException
+     */
     public function getStoreCurrencyCode()
     {
         return $this->_storeManager->getStore()->getCurrentCurrency()->getCode();

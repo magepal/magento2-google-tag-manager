@@ -1,15 +1,13 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+    <type name="Magento\Customer\CustomerData\SectionPool">
         <arguments>
             <argument name="sectionSourceMap" xsi:type="array">
                 <item name="magepal-gtm-jsdatalayer" xsi:type="string">MagePal\GoogleTagManager\CustomerData\JsDataLayer</item>

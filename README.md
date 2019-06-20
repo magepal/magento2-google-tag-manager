@@ -7,7 +7,9 @@
 
 Google Tag Manager (GTM) is a user-friendly solution which simplifies the process of adding, edit and manage JavaScript tags and other snippets of code on your Magento site. You can quickly and easily add Facebook tags, AdWords Conversion Tracking, Remarketing, DoubleClick code, Google Analytics and many more in a breeze without the need for a developer to make changes to your Magento code base. GTM makes running your digital marketing campaigns much easier when calibrating with multiple department and agencies by making available the right set of tools so that everyone can get their job done quickly.
 
-Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. Gain valuable insight and increase your conversion rate by leveraging Google Enhanced Ecommerce to understand the value of each user actions and behaviors.
+Our extension provide a vast array of data to make integrating your Magento store with Google Tag Manager a breeze, and easily customize to add your own customization or data.
+
+Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager v1.2.0](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. Gain valuable insight and increase your conversion rate by leveraging Google Enhanced Ecommerce to understand the value of each user actions and behaviors.
 
 
 Learn more about our [Google Enhanced Ecommerce](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) extension. A small increase in your store’s conversion rate can make a giant impact on your revenue.
@@ -17,7 +19,8 @@ Learn more about our [Google Enhanced Ecommerce](https://www.magepal.com/enhance
 ### Features
 * Quick and easy setup
 * Add tag via XML layout and/or observer
-* Data layer support
+* Advance Data layer
+* Customizable to add any data to the data layer 
 
 ## Installation
 
@@ -59,22 +62,25 @@ Log into your Magento 2 Admin, then goto Stores -> Configuration -> MagePal -> G
 
 
 #### Category
-* Trigger: event equals gtm.dom
+* Trigger: event equals categoryPage
   * category.id
   * category.name
   * category.path
 
 #### Product
-* Trigger: event equals gtm.dom
+* Trigger: event equals productPage
   * product.id
   * product.name
   * product.sku
+  * product.parent_sku
   * product.path
 
 #### Cart
-* Trigger: event equals mpCustomerSession
+* Trigger: event equals cartPage
   * cart.hasItems
   * cart.items[].sku
+  * cart.items[].parent_sku
+  * cart.items[].product_type
   * cart.items[].name
   * cart.items[].price
   * cart.items[].quantity
@@ -85,7 +91,7 @@ Log into your Magento 2 Admin, then goto Stores -> Configuration -> MagePal -> G
   * cart.couponCode
 
 #### Order
-* Trigger: event equals gtm.dom
+* Trigger: event equals gtm.orderComplete (Google Analytics)
   * transactionId
   * transactionAffiliation
   * transactionTotal
@@ -95,9 +101,110 @@ Log into your Magento 2 Admin, then goto Stores -> Configuration -> MagePal -> G
   * transactionDiscount
   * transactionSubTotal
   * transactionProducts[].sku
+  * transactionProducts[].parent_sku
+  * transactionProducts[].product_type
   * transactionProducts[].name
   * transactionProducts[].price
   * transactionProducts[].quantity
+  
+* Additional Order Date (Generic)
+  * order.order_id
+  * order.store_name
+  * order.total
+  * order.subtotal
+  * order.shipping
+  * order.tax
+  * order.coupon_code
+  * order.coupon_name
+  * order.discount
+  * order.payment_method.title
+  * order.payment_method.code
+  * order.shipping_method.title
+  * order.shipping_method.code
+  * order.is_virtual
+  * order.is_guest_checkout
+  * order.items[].sku
+  * order.items[].parent_sku
+  * order.items[].name
+  * order.items[].price
+  * order.items[].quantity
+  * order.items[].variant
+  * order.items[].categories
+  
+  
+#### Need to add more content to the data layer or change existing values?
+Add more information to the data layer to meet your client needs is as simple as adding few lines of php and di.xml code in your custom extension.
+
+##### API Class Name
+MagePal\GoogleTagManager\DataLayer\CategoryData\CategoryAbstract
+
+MagePal\GoogleTagManager\DataLayer\ProductData\ProductAbstract
+
+MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteItemAbstract
+
+MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteAbstract
+
+MagePal\GoogleTagManager\DataLayer\OrderData\OrderItemAbstract
+
+MagePal\GoogleTagManager\DataLayer\OrderData\OrderAbstract
+
+##### di.xml DataProvider name
+MagePal\GoogleTagManager\DataLayer\CategoryData\CategoryProvider
+
+MagePal\GoogleTagManager\DataLayer\ProductData\ProductProvider
+
+MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteItemProvider
+
+MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider
+
+MagePal\GoogleTagManager\DataLayer\OrderData\OrderItemProvider
+
+MagePal\GoogleTagManager\DataLayer\OrderData\OrderProvider
+
+
+
+##### Sample Extension
+  
+```
+namespace MagePal\GoogleTagManagerAddons\DataLayer\OrderData;
+    
+/**
+ * Class OrderProvider
+ * @package MagePal\GoogleTagManager\DataLayer
+ * @method getItem()
+ * @method getOrder()
+ * @method getListType()
+ */
+class ItemBrandProvider extends MagePal\GoogleTagManager\DataLayer\OrderData\OrderItemAbstract
+{
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        $data =  [
+            'brand' => $this->getItem()->getProduct()->getManufacturer()
+        ];
+
+        return $data;
+    }
+}
+```
+
+di.xml
+```
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MagePal\GoogleTagManager\DataLayer\OrderData\OrderItemProvider">
+        <arguments>
+            <argument name="orderItemProviders" xsi:type="array">
+                <item name="order-item-provider-brand" xsi:type="object">MagePal\GoogleTagManagerAddons\DataLayer\OrderData\ItemBrandProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
+```
+  
 
 Contribution
 ---

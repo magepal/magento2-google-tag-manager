@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -16,22 +13,21 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 /**
- * Google Tag Manager Page Block
+ * Class GtmCode
+ * @package MagePal\GoogleTagManager\Block
  */
 class GtmCode extends Template
 {
 
     /**
-     * Google Tag Manager data
-     *
-     * @var /MagePal\GoogleTagManager\Helper\Data
+     * @var GtmHelper
      */
     protected $_gtmHelper = null;
 
     /**
      * Cookie Helper
      *
-     * @var \Magento\Cookie\Helper\Cookie
+     * @var CookieHelper
      */
     protected $_cookieHelper = null;
 

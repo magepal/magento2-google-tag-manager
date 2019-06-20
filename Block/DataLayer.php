@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -10,8 +7,11 @@
 
 namespace MagePal\GoogleTagManager\Block;
 
+use MagePal\GoogleTagManager\Block\Data\Order;
+
 /**
- * Google Tag Manager Block
+ * Class DataLayer
+ * @package MagePal\GoogleTagManager\Block
  */
 class DataLayer extends DataLayerAbstract
 {
@@ -27,7 +27,7 @@ class DataLayer extends DataLayerAbstract
             return '';
         }
 
-        /** @var $blockOnepageOrder \MagePal\GoogleTagManager\Block\Data\Order */
+        /** @var $blockOnepageOrder Order */
         if ($this->getOrderIds() && $blockOnepageOrder = $this->getChildBlock("magepal_gtm_block_order")) {
             $blockOnepageOrder->setOrderIds($this->getOrderIds())->addOrderLayer();
         }

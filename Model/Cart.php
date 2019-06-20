@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -11,8 +9,13 @@ namespace MagePal\GoogleTagManager\Model;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\DataObject;
-use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
+use MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteItemProvider;
+use MagePal\GoogleTagManager\Helper\DataLayerItem as dataLayerItemHelper;
 
+/**
+ * Class Cart
+ * @package MagePal\GoogleTagManager\Model
+ */
 class Cart extends DataObject
 {
 
@@ -22,9 +25,9 @@ class Cart extends DataObject
     protected $checkoutSession;
 
     /**
-     * @var GtmHelper
+     * @var dataLayerdataLayerItemHelper
      */
-    protected $gtmHelper;
+    protected $dataLayerItemHelper;
 
     /**
      * Escaper
@@ -34,20 +37,37 @@ class Cart extends DataObject
     protected $_escaper;
 
     /**
+     * @var \MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider
+     */
+    protected $quoteProvider;
+
+    /**
+     * @var QuoteItemProvider
+     */
+    protected $quoteItemProvider;
+
+    /**
      * Cart constructor.
      * @param CheckoutSession $checkoutSession
-     * @param GtmHelper $gtmHelper
+     * @param dataLayerItemHelper $dataLayerItemHelper
+     * @param \Magento\Framework\Escaper $escaper
+     * @param \MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider $quoteProvider
+     * @param QuoteItemProvider $quoteItemProvider
      * @param array $data
      */
     public function __construct(
         CheckoutSession $checkoutSession,
-        GtmHelper $gtmHelper,
+        dataLayerItemHelper $dataLayerItemHelper,
         \Magento\Framework\Escaper $escaper,
+        \MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider $quoteProvider,
+        QuoteItemProvider $quoteItemProvider,
         array $data = []
     ) {
         $this->checkoutSession = $checkoutSession;
-        $this->gtmHelper = $gtmHelper;
+        $this->dataLayerItemHelper = $dataLayerItemHelper;
         $this->_escaper = $escaper;
+        $this->quoteProvider = $quoteProvider;
+        $this->quoteItemProvider = $quoteItemProvider;
         parent::__construct($data);
     }
 
@@ -66,14 +86,31 @@ class Cart extends DataObject
 
         if ($quote->getItemsCount()) {
             $items = [];
-            // set items
+            /** @var \Magento\Quote\Model\Quote\Item $item */
             foreach ($quote->getAllVisibleItems() as $item) {
-                $items[] = [
+                $itemData = [
                     'sku' => $item->getSku(),
+                    'parent_sku' => $item->getProduct()->getData('sku'),
                     'name' => $this->escapeJsQuote($item->getName()),
-                    'price' => $this->gtmHelper->formatPrice($item->getPrice()),
+                    'product_type' => $item->getProductType(),
+                    'price' => $this->dataLayerItemHelper->formatPrice($item->getPrice()),
                     'quantity' => $item->getQty(),
                 ];
+
+                if ($variant = $this->dataLayerItemHelper->getItemVariant($item)) {
+                    $itemData['variant'] = $variant;
+                }
+
+                if (!empty($category = $this->dataLayerItemHelper->getCategories($item))) {
+                    $itemData['categories'] = $category;
+                }
+
+                $items[] = $this->quoteItemProvider
+                                ->setItem($item)
+                                ->setItemData($itemData)
+                                ->setActionType(QuoteItemProvider::ACTION_VIEW_CART)
+                                ->setListType(QuoteItemProvider::LIST_TYPE_GENERIC)
+                                ->getData();
             }
 
             if (count($items) > 0) {
@@ -81,7 +118,7 @@ class Cart extends DataObject
                 $cart['items'] = $items;
             }
 
-            $cart['total'] = $this->gtmHelper->formatPrice($quote->getGrandTotal());
+            $cart['total'] = $this->dataLayerItemHelper->formatPrice($quote->getGrandTotal());
             $cart['itemCount'] = $quote->getItemsCount() * 1;
             $cart['cartQty'] = $quote->getItemsQty() * 1;
 
@@ -95,7 +132,7 @@ class Cart extends DataObject
             }
         }
 
-        return $cart;
+        return $this->quoteProvider->setQuote($this->getQuote())->setTransactionData($cart)->getData();
     }
 
     /**

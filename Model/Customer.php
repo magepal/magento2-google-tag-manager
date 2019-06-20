@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -11,15 +9,17 @@ namespace MagePal\GoogleTagManager\Model;
 
 use Magento\Framework\DataObject;
 
+/**
+ * Class Customer
+ * @package MagePal\GoogleTagManager\Model
+ */
 class Customer extends DataObject
 {
 
     /**
-     * Customer session
-     *
      * @var \Magento\Customer\Model\Session
      */
-    protected $_customerSession;
+    protected $customerSession;
 
     /**
      * Customer constructor.
@@ -30,7 +30,7 @@ class Customer extends DataObject
         \Magento\Customer\Model\Session $customerSession,
         array $data = []
     ) {
-        $this->_customerSession = $customerSession;
+        $this->customerSession = $customerSession;
         parent::__construct($data);
     }
 
@@ -41,16 +41,16 @@ class Customer extends DataObject
      */
     public function getCustomer()
     {
-        if ($this->_customerSession->isLoggedIn()) {
-            return [
-                'isLoggedIn' => $this->_customerSession->isLoggedIn(),
-                'id' => $this->_customerSession->getCustomerId(),
-                'groupId' => $this->_customerSession->getCustomerGroupId(),
-            ];
-        } else {
-            return [
-                'isLoggedIn' => $this->_customerSession->isLoggedIn(),
-            ];
+        $isLoggedIn = $this->customerSession->isLoggedIn();
+        $data = [
+            'isLoggedIn' => $isLoggedIn,
+        ];
+
+        if ($isLoggedIn) {
+            $data['id'] = $this->customerSession->getCustomerId();
+            $data['groupId'] = $this->customerSession->getCustomerGroupId();
         }
+
+        return $data;
     }
 }

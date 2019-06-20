@@ -7,6 +7,10 @@
 
 namespace MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Composer;
 
+/**
+ * Class Version
+ * @package MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Composer
+ */
 class Version extends \Magento\Config\Block\System\Config\Form\Field
 {
 
@@ -26,9 +30,11 @@ class Version extends \Magento\Config\Block\System\Config\Form\Field
     protected $readFactory;
 
     /**
+     * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\App\DeploymentConfig $deploymentConfig
      * @param \Magento\Framework\Component\ComponentRegistrarInterface $componentRegistrar
      * @param \Magento\Framework\Filesystem\Directory\ReadFactory $readFactory
+     * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -48,7 +54,6 @@ class Version extends \Magento\Config\Block\System\Config\Form\Field
      *
      * @param  \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
@@ -93,7 +98,7 @@ class Version extends \Magento\Config\Block\System\Config\Form\Field
      * Get module composer version
      *
      * @param $moduleName
-     * @return \Magento\Framework\Phrase|string|void
+     * @return \Magento\Framework\Phrase|string
      */
     public function getComposerVersion($moduleName)
     {

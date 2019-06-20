@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -12,10 +10,8 @@ namespace MagePal\GoogleTagManager\Block\Data;
 use Magento\Framework\View\Element\Template\Context;
 
 /**
- * Block : Datalayer for order success page
- *
- * @package MagePal\GoogleTagManager
- * @class   Order
+ * Class Order
+ * @package MagePal\GoogleTagManager\Block\Data
  * @method Array setOrderIds(Array $orderIds)
  * @method Array getOrderIds()
  */
@@ -30,7 +26,7 @@ class Order extends \Magento\Framework\View\Element\Template
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
+        Context $context,
         \MagePal\GoogleTagManager\Model\Order $orderDataArray,
         array $data = []
     ) {

@@ -1,7 +1,5 @@
 <?php
 /**
- * Google Tag Manager
- *
  * Copyright © MagePal LLC. All rights reserved.
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
@@ -13,10 +11,8 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Model\Customer as GtmCustomerModel;
 
 /**
- * Block : Customer Datalayer for un-cached page
- *
- * @package MagePal\GoogleTagManager
- * @class   Customer
+ * Class Customer
+ * @package MagePal\GoogleTagManager\Block\Data
  */
 class Customer extends \Magento\Framework\View\Element\Template
 {
@@ -28,12 +24,15 @@ class Customer extends \Magento\Framework\View\Element\Template
     /**
      * @param Context $context
      * @param GtmCustomerModel $gtmCustomer
+     * @param array $data
      */
     public function __construct(
         Context $context,
-        GtmCustomerModel $gtmCustomer
+        GtmCustomerModel $gtmCustomer,
+        array $data = []
     ) {
         $this->gtmCustomer = $gtmCustomer;
+        parent::__construct($context, $data);
     }
     /**
      * Add product data to datalayer

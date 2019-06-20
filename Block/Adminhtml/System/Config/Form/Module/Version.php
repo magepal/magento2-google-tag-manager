@@ -7,6 +7,10 @@
 
 namespace MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Module;
 
+/**
+ * Class Version
+ * @package MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Module
+ */
 class Version extends \Magento\Config\Block\System\Config\Form\Field
 {
 
@@ -34,7 +38,6 @@ class Version extends \Magento\Config\Block\System\Config\Form\Field
      *
      * @param  \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
