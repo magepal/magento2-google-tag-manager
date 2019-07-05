@@ -2,8 +2,8 @@
 
 ## Google Tag Manager for Magento2 with Data Layer
 
-[![Total Downloads](https://poser.pugx.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
-[![Latest Stable Version](https://poser.pugx.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
+[![Total Downloads](https://poser.okvpn.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
+[![Latest Stable Version](https://poser.okvpn.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 
 Google Tag Manager (GTM) is a user-friendly solution which simplifies the process of adding, edit and manage JavaScript tags and other snippets of code on your Magento site. You can quickly and easily add Facebook tags, AdWords Conversion Tracking, Remarketing, DoubleClick code, Google Analytics and many more in a breeze without the need for a developer to make changes to your Magento code base. GTM makes running your digital marketing campaigns much easier when calibrating with multiple department and agencies by making available the right set of tools so that everyone can get their job done quickly.
 
