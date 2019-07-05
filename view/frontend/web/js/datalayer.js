@@ -54,9 +54,9 @@ define([
             allowedCookies,
             allowedWebsites;
 
-        if (config.ignoreRestriction) {
+        if (!config.isGdprEnabled) {
             allowServices = true;
-        } else if (config.isCookieRestrictionModeEnabled) {
+        } else if (config.isCookieRestrictionModeEnabled && config.gdprOption === 1) {
             allowedCookies = $.mage.cookies.get(config.cookieName);
 
             if (allowedCookies !== null) {
@@ -66,8 +66,10 @@ define([
                     allowServices = true;
                 }
             }
-        } else {
-            allowServices = true;
+        } else if (config.gdprOption === 2) {
+            allowServices = $.mage.cookies.get(config.cookieName) !== null ? true : false;
+        } else if (config.gdprOption === 3) {
+            allowServices = $.mage.cookies.get(config.cookieName) === null ? true : false;
         }
 
         return allowServices;

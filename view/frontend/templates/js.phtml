@@ -21,7 +21,8 @@
                 "dataLayer": "<?= $block->getDataLayerName() ?>",
                 "accountId": "<?= $block->getAccountId() ?>",
                 "data": <?= $block->getDataLayer() ?>,
-                "ignoreRestriction": <?= $block->hasIgnoreRestriction() ?>
+                "isGdprEnabled": <?= $block->isGdprEnabled() ?>,
+                "gdprOption": <?= $block->getGdprOption() ?>
             }
         }
     }

@@ -8,6 +8,7 @@
 namespace MagePal\GoogleTagManager\Block;
 
 use Magento\Cookie\Helper\Cookie as CookieHelper;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
@@ -197,7 +198,7 @@ class DataLayerAbstract extends Template
      * Return current website id.
      *
      * @return int
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function getCurrentWebsiteId()
     {

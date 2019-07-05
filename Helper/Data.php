@@ -76,10 +76,23 @@ class Data extends AbstractHelper
      * @param null $store_id
      * @return bool
      */
-    public function hasIgnoreRestriction($store_id = null)
+    public function isGdprEnabled($store_id = null)
     {
         return $this->scopeConfig->isSetFlag(
-            'googletagmanager/gdpr/ignore_restriction',
+            'googletagmanager/gdpr/enabled',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * @param null $store_id
+     * @return int
+     */
+    public function getGdprOption($store_id = null)
+    {
+        return (int) $this->scopeConfig->isSetFlag(
+            'googletagmanager/gdpr/option',
             ScopeInterface::SCOPE_STORE,
             $store_id
         );

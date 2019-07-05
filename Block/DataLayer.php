@@ -9,6 +9,7 @@ namespace MagePal\GoogleTagManager\Block;
 
 use Magento\Cookie\Helper\Cookie;
 use MagePal\GoogleTagManager\Block\Data\Order;
+use MagePal\GoogleTagManager\Model\Config\Source\GdprOption;
 
 /**
  * Class DataLayer
@@ -48,20 +49,33 @@ class DataLayer extends DataLayerAbstract
 
     /**
      * @param null $store_id
+     * @return int
+     */
+    public function getGdprOption($store_id = null)
+    {
+        return $this->_gtmHelper->getGdprOption($store_id);
+    }
+
+    /**
+     * @param null $store_id
      * @return string
      */
     public function getCookieRestrictionName($store_id = null)
     {
-        return $this->_gtmHelper->getCookieRestrictionName($store_id) ?
-            $this->_gtmHelper->getCookieRestrictionName($store_id) : Cookie::IS_USER_ALLOWED_SAVE_COOKIE ;
+        if ($this->_gtmHelper->getGdprOption($store_id) == GdprOption::USE_COOKIE_RESTRICTION_MODE) {
+            return Cookie::IS_USER_ALLOWED_SAVE_COOKIE;
+        } else {
+            return $this->_gtmHelper->getCookieRestrictionName($store_id) ?
+                $this->_gtmHelper->getCookieRestrictionName($store_id) : Cookie::IS_USER_ALLOWED_SAVE_COOKIE;
+        }
     }
 
     /**
      * @param null $store_id
      * @return bool
      */
-    public function hasIgnoreRestriction($store_id = null)
+    public function isGdprEnabled($store_id = null)
     {
-        return (int) $this->_gtmHelper->hasIgnoreRestriction($store_id);
+        return (int) $this->_gtmHelper->isGdprEnabled($store_id);
     }
 }

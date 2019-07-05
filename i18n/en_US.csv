@@ -8,3 +8,7 @@
 "Cookie Name","Cookie Name"
 "Disable tracking if cookie exist","Disable tracking if cookie exist"
 "To enable disable tracking  goto Stores > Configuration > General > Web > Default Cookie Settings > Cookie Restriction Mode","To enable disable tracking goto Stores > Configuration > General > Web > Default Cookie Settings > Cookie Restriction Mode"
+"General Data Protection Regulation (GDPR)","General Data Protection Regulation (GDPR)"
+"Use Magento Cookie Restriction Mode","Use Magento Cookie Restriction Mode"
+"Enable Google Analytics Tracking if Cookie Exist","Enable Google Analytics Tracking if Cookie Exist"
+"Disable Google Analytics Tracking if Cookie Exist","Disable Google Analytics Tracking if Cookie Exist"

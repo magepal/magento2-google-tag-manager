@@ -11,13 +11,13 @@
         <googletagmanager>
             <general>
                 <datalayer_name>dataLayer</datalayer_name>
-                <item_variant_layer>1</item_variant_layer>
+                <item_variant_layer>0</item_variant_layer>
                 <item_variant_format>2</item_variant_format>
-                <category_layer>1</category_layer>
+                <category_layer>0</category_layer>
             </general>
             <gdpr>
+                <enabled>0</enabled>
                 <restriction_cookie_name>user_allowed_save_cookie</restriction_cookie_name>
-                <ignore_restriction>0</ignore_restriction>
             </gdpr>
         </googletagmanager>
     </default>
