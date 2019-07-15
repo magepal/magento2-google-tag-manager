@@ -29,7 +29,7 @@ Learn more about our [Google Enhanced Ecommerce](https://www.magepal.com/enhance
 ### Third Party Integration with Google Tag Manager
 Adding Facebook pixel, Bing UAT, SnapChat or any other third-party code snippet to your website but frustrated by
 all the hassle and time it take to configure Google Tag Manager? Learn how simple and easy it is to integrate any 
-tracking code to your Magento store with our new DataLayer extension.
+tracking code to your Magento store with our new [DataLayer extension](https://www.magepal.com/datalayer-for-google-tag-manager.html?utm_source=data%20layer%20for%20Google%20Tag%20Manager&utm_medium=github).
 
 ### General Data Protection Regulation (GDPR) Support
 Now you can quickly disable analytic tracking for customer who do not want to by track by enabling Cookie Restriction Mode or base on existing or non-existing cookie.
