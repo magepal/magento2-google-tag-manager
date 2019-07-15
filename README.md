@@ -2,8 +2,9 @@
 
 # Google Tag Manager for Magento 2 with Advance Data Layer
 
-[![Total Downloads](https://poser.pugx.org/magepal/magento2-googletagmanager/downloads)](https://www.magepal.com/magento2/extensions/google-tag-manager.html)
-[![Latest Stable Version](https://poser.pugx.org/magepal/magento2-googletagmanager/v/stable)](https://www.magepal.com/magento2/extensions/google-tag-manager.html)
+[![Total Downloads](https://poser.okvpn.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
+[![Latest Stable Version](https://poser.okvpn.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
+
 
 ### What is Google Tag Manager
 Google Tag Manager (GTM) is a user-friendly, powerful and essential integration for every Magento store. It simplifies the process of adding, edit and manage third-party JavaScript tags and other snippets of code on your Magento site. 
