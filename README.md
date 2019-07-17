@@ -17,6 +17,9 @@ Without having the all data you need at your finger tips your integration will b
 Our extension provide a vast array of over 60 preconfigure data layer elements to make integrating your Magento store with any other third-party service a breeze using Google Tag Manager. 
 Extracting, customizing and adding your own custom data from your Magento store to Google Tag Manager is as easy as 10 lines of code using our easy to customize APIs.
 
+>:warning: Google Tag Manager 2.3.0 has some breaking changes to Enhanced Ecommerce. Please download the latest version of Enhanced Ecommerce 1.2.0 or greater from www.magepal.com account.
+
+
 ### Why use our Google Tag Manager extension?
 Google Tag Manager is only as powerful as the data layer powering it. Adding Google Tag Manager code snippet to the header section of your Magento store may seems like the ideal quick and easy way to add GTM. But this will not be sufficient when integrating any third-parties tracking codes that require site specific data from Magento, such as page type, product name, product price, order items, order id or any other data. Our extension provide all the necessary data elements to accomplish any integration with in 2 minutes and if the data is not available then you can quickly extending our extension with a few lines of code.
 Learn more about [customizing Google Tag Manger](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#api). 
