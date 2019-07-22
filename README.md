@@ -86,6 +86,175 @@ php and di.xml code. See our documentation to learn more about
 composer require magepal/magento2-googletagmanager
 ```
 
+### Data layer attributes
+
+Our Magento extension provide a vast array of over 60 preconfigure data layer elements to make integrating your Magento store with any third-party service a breeze using Google Tag Manager.
+
+* Trigger: event equals gtm.dom
+  * pageType (i.e catalog_category_view)
+  * list (cart, category, detail, other)
+
+
+#### Customer
+* Trigger: event equals mpCustomerSession
+  * customer.isLoggedIn
+  * customer.id
+  * customer.groupId
+  * order.email_sha1**
+  * order.email**
+  * order.customer_id**
+  
+#### Product Impression  
+* Trigger: event equals productImpression
+  * ecommerce.impressions[].name*
+  * ecommerce.impressions[].id*
+  * ecommerce.impressions[].price*
+  * ecommerce.impressions[].list*
+  * ecommerce.impressions[].position*
+  * ecommerce.impressions[].category*
+
+
+#### Category
+* Trigger: event equals categoryPage
+  * category.id
+  * category.name
+  * category.path
+
+#### Product Detail Page
+* Trigger: event equals productPage
+  * product.id
+  * product.name
+  * product.sku
+  * product.parent_sku
+  * product.price
+  * product.product_type
+  * attribute_set_id
+  * product.path
+  
+* Trigger: event equals productDetail
+  * ecommerce.currencyCode*
+  * ecommerce.products[].id*
+  * ecommerce.products[].name*
+  * ecommerce.products[].category*
+  * ecommerce.products[].price*  
+
+#### Cart
+* Trigger: event equals cartPage
+  * cart.hasItems
+  * cart.items[].sku
+  * cart.items[].parent_sku
+  * cart.items[].product_type
+  * cart.items[].name
+  * cart.items[].parent_name
+  * cart.items[].price
+  * cart.items[].quantity
+  * cart.total
+  * cart.itemCount
+  * cart.itemQty
+  * cart.hasCoupons
+  * cart.couponCode
+  
+##### Add to Cart
+* Trigger: event equals addToCart
+  * ecommerce.add.products[].id*
+  * ecommerce.add.products[].name*
+  * ecommerce.add.products[].price*
+  * ecommerce.add.products[].quantity*
+  * ecommerce.add.products[].parent_sku*
+  * ecommerce.add.products[].variant*
+  * ecommerce.add.products[].category*
+
+##### Remove from Cart
+* Trigger: event equals removeFromCart
+  * ecommerce.remove.products[].id*
+  * ecommerce.remove.products[].name*
+  * ecommerce.remove.products[].price*
+  * ecommerce.remove.products[].quantity*
+  * ecommerce.remove.products[].variant*
+  * ecommerce.remove.products[].category*
+
+### Global Data Layer
+
+* Trigger: event equals addToCart
+  * cart.add.products[].id*
+  * cart.add.products[].name*
+  * cart.add.products[].price*
+  * cart.add.products[].quantity*
+  * cart.add.products[].parent_sku*
+  * cart.add.products[].variant*
+  * cart.add.products[].category*
+  
+* Trigger: event equals removeFromCart
+  * cart.remove.products[].id*
+  * cart.remove.products[].name*
+  * cart.remove.products[].price*
+  * cart.remove.products[].quantity*
+  * cart.add.products[].parent_sku*
+  * cart.remove.products[].variant*
+  * cart.remove.products[].category*  
+
+#### Order
+* Trigger: event equals gtm.orderComplete (Google Analytics)
+  * transactionId
+  * transactionAffiliation
+  * transactionTotal
+  * transactionShipping
+  * transactionTax
+  * transactionCouponCode
+  * transactionDiscount
+  * transactionSubTotal
+  * transactionProducts[].sku
+  * transactionProducts[].parent_sku
+  * transactionProducts[].product_type
+  * transactionProducts[].name
+  * transactionProducts[].price
+  * transactionProducts[].quantity
+  
+* Additional Order Date (Generic)
+  * order.order_id
+  * order.store_name
+  * order.total
+  * order.subtotal
+  * order.shipping
+  * order.tax
+  * order.coupon_code
+  * order.coupon_name
+  * order.discount
+  * order.payment_method.title
+  * order.payment_method.code
+  * order.shipping_method.title
+  * order.shipping_method.code
+  * order.is_virtual
+  * order.is_guest_checkout
+  * order.email_sha1**
+  * order.email**
+  * order.customer_id**
+  * order.has_previous_order**
+  * order.is_first_order**
+  * order.previous_order_count**
+  * order.is_new_customer**
+  * order.items[].sku
+  * order.items[].id
+  * order.items[].parent_sku
+  * order.items[].product_id
+  * order.items[].name
+  * order.items[].parent_name
+  * order.items[].price
+  * order.items[].quantity
+  * order.items[].subtotal
+  * order.items[].product_type
+  * order.items[].discount_amount
+  * order.items[].discount_percent
+  * order.items[].tax_amount
+  * order.items[].is_virtual
+  * order.items[].variant
+  * order.items[].categories
+ 
+`*` - Data layer provide by our [Enhanced Ecommerce Extension](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html)
+
+`**`  - Data layer provide by our [Data Layer Extension](https://www.magepal.com/magento2/extensions/datalayer-for-google-tag-manager.html)
+  
+
 Contribution
 ---
 Want to contribute to this extension? The quickest way is to open a [pull request on GitHub](https://help.github.com/articles/using-pull-requests).
