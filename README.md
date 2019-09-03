@@ -148,6 +148,9 @@ Our Magento extension provide a vast array of over 60 preconfigure data layer el
   * cart.items[].name
   * cart.items[].parent_name
   * cart.items[].price
+  * cart.items[].price_incl_tax
+  * cart.items[].discount_amount
+  * cart.items[].tax_amount
   * cart.items[].quantity
   * cart.total
   * cart.itemCount
@@ -241,6 +244,7 @@ Our Magento extension provide a vast array of over 60 preconfigure data layer el
   * order.items[].name
   * order.items[].parent_name
   * order.items[].price
+  * order.items[].price_incl_tax
   * order.items[].quantity
   * order.items[].subtotal
   * order.items[].product_type

@@ -94,7 +94,10 @@ class Cart extends DataObject
                     'name' => $this->escapeJsQuote($item->getName()),
                     'product_type' => $item->getProductType(),
                     'price' => $this->dataLayerItemHelper->formatPrice($item->getPrice()),
-                    'quantity' => $item->getQty(),
+                    'price_incl_tax' => $this->dataLayerItemHelper->formatPrice($item->getPriceInclTax()),
+                    'discount_amount' => $this->dataLayerItemHelper->formatPrice($item->getDiscountAmount()),
+                    'tax_amount' => $this->dataLayerItemHelper->formatPrice($item->getTaxAmount()),
+                    'quantity' => $item->getQty() * 1,
                 ];
 
                 if ($variant = $this->dataLayerItemHelper->getItemVariant($item)) {

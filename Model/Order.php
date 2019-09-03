@@ -223,6 +223,7 @@ class Order extends DataObject
                 'name' => $this->escapeJsQuote($item->getProductOptionByCode('simple_name') ?: $item->getName()),
                 'parent_name' => $this->escapeJsQuote($item->getName()),
                 'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
+                'price_incl_tax' => $this->dataLayerItemHelper->formatPrice($item->getPriceInclTax()),
                 'quantity' => $item->getQtyOrdered() * 1,
                 'subtotal' => $this->gtmHelper->formatPrice($item->getBaseRowTotal()),
                 'product_type' => $item->getProductType(),
