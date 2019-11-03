@@ -44,11 +44,6 @@ Now you can quickly disable analytic tracking for customer who do not want to by
 Please Note: Merchants should consult with their own legal counsel to ensure that they are compliant with the GDPR. 
 
 ### Get more from Google Tag Manager with our add-on Extensions
-GTM - [Google Tag Manager for Magento 2 Extension](https://www.magepal.com/magento2/extensions/google-tag-manager.html)
-
-EE - [Enhanced E-commerce for Google Tag Manager Extension](https://www.magepal.com/magento2/extensions/enhanced-ecommerce-for-google-tag-manager.html)
-
-DL - [DataLayer for Google Tag Manager Extension](https://www.magepal.com/magento2/extensions/datalayer-for-google-tag-manager.html)
 
 | Features                    | GTM | EE | DL |
 |-----------------------------|:---:|:--:|:--:|
@@ -69,6 +64,11 @@ DL - [DataLayer for Google Tag Manager Extension](https://www.magepal.com/magent
 | Custom iFrame Tracking      |     |    |  X |
 | Third-Party Integration     |     |    |  X |
 
+GTM - [Google Tag Manager for Magento 2 Extension](https://www.magepal.com/magento2/extensions/google-tag-manager.html)
+
+EE - [Enhanced E-commerce for Google Tag Manager Extension](https://www.magepal.com/magento2/extensions/enhanced-ecommerce-for-google-tag-manager.html)
+
+DL - [DataLayer for Google Tag Manager Extension](https://www.magepal.com/magento2/extensions/datalayer-for-google-tag-manager.html)
 
 
 ### Features
