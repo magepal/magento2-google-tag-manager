@@ -9,7 +9,13 @@ namespace MagePal\GoogleTagManager\Model;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\DataObject;
+use Magento\Framework\Escaper;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Quote\Model\Quote;
+use Magento\Quote\Model\Quote\Item;
 use MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteItemProvider;
+use MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider;
 use MagePal\GoogleTagManager\Helper\DataLayerItem as dataLayerItemHelper;
 
 /**
@@ -32,12 +38,12 @@ class Cart extends DataObject
     /**
      * Escaper
      *
-     * @var \Magento\Framework\Escaper
+     * @var Escaper
      */
     protected $_escaper;
 
     /**
-     * @var \MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider
+     * @var QuoteProvider
      */
     protected $quoteProvider;
 
@@ -50,16 +56,16 @@ class Cart extends DataObject
      * Cart constructor.
      * @param CheckoutSession $checkoutSession
      * @param dataLayerItemHelper $dataLayerItemHelper
-     * @param \Magento\Framework\Escaper $escaper
-     * @param \MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider $quoteProvider
+     * @param Escaper $escaper
+     * @param QuoteProvider $quoteProvider
      * @param QuoteItemProvider $quoteItemProvider
      * @param array $data
      */
     public function __construct(
         CheckoutSession $checkoutSession,
         dataLayerItemHelper $dataLayerItemHelper,
-        \Magento\Framework\Escaper $escaper,
-        \MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider $quoteProvider,
+        Escaper $escaper,
+        QuoteProvider $quoteProvider,
         QuoteItemProvider $quoteItemProvider,
         array $data = []
     ) {
@@ -75,6 +81,8 @@ class Cart extends DataObject
      * Get cart array
      *
      * @return array
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function getCart()
     {
@@ -86,7 +94,7 @@ class Cart extends DataObject
 
         if ($quote->getItemsCount()) {
             $items = [];
-            /** @var \Magento\Quote\Model\Quote\Item $item */
+            /** @var Item $item */
             foreach ($quote->getAllVisibleItems() as $item) {
                 $itemData = [
                     'sku' => $item->getSku(),
@@ -106,6 +114,7 @@ class Cart extends DataObject
 
                 if (!empty($category = $this->dataLayerItemHelper->getCategories($item))) {
                     $itemData['categories'] = $category;
+                    $itemData['category'] = $this->dataLayerItemHelper->getFirstCategory($item);
                 }
 
                 $items[] = $this->quoteItemProvider
@@ -141,7 +150,9 @@ class Cart extends DataObject
     /**
      * Get active quote
      *
-     * @return \Magento\Quote\Model\Quote
+     * @return Quote
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function getQuote()
     {

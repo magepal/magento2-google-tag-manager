@@ -129,6 +129,16 @@
                     <label>Enable GDPR</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="add_js_in_header" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add GTM code in html header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/enabled">0</field>
+                    </depends>
+                    <comment>
+                        Note: Data Layer event firing Order may change
+                    </comment>
+                </field>
                 <field id="option" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Options</label>
                     <source_model>MagePal\GoogleTagManager\Model\Config\Source\GdprOption</source_model>

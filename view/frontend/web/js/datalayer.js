@@ -44,7 +44,6 @@ define([
                 lastPushedCustomer = customer;
                 lastPushedCart = cart;
             }
-
         }
     }
 
@@ -54,7 +53,7 @@ define([
             allowedCookies,
             allowedWebsites;
 
-        if (!config.isGdprEnabled) {
+        if (!config.isGdprEnabled || (!config.isGdprEnabled && !config.addJsInHeader)) {
             allowServices = true;
         } else if (config.isCookieRestrictionModeEnabled && config.gdprOption === 1) {
             allowedCookies = $.mage.cookies.get(config.cookieName);

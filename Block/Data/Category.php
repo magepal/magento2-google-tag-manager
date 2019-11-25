@@ -7,13 +7,20 @@
 
 namespace MagePal\GoogleTagManager\Block\Data;
 
+use Magento\Catalog\Model\Category as ProductCategory;
 use Magento\Catalog\Helper\Data;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
+use MagePal\GoogleTagManager\Block\DataLayer;
+use MagePal\GoogleTagManager\DataLayer\CategoryData\CategoryProvider;
+use MagePal\GoogleTagManager\Model\DataLayerEvent;
 
 /**
  * Class Category
  * @package MagePal\GoogleTagManager\Block\Data
  */
-class Category extends \Magento\Framework\View\Element\Template
+class Category extends Template
 {
     /**
      * Catalog data
@@ -25,25 +32,32 @@ class Category extends \Magento\Framework\View\Element\Template
     /**
      * Core registry
      *
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     protected $_coreRegistry = null;
+    /**
+     * @var CategoryProvider
+     */
+    private $categoryProvider;
 
     /**
-     * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param Data $catalogData
-     * @param array $data
+     * @param  Context  $context
+     * @param  Registry  $registry
+     * @param  Data  $catalogData
+     * @param  CategoryProvider  $categoryProvider
+     * @param  array  $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Framework\Registry $registry,
+        Context $context,
+        Registry $registry,
         Data $catalogData,
+        CategoryProvider $categoryProvider,
         array $data = []
     ) {
         $this->_catalogData = $catalogData;
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
+        $this->categoryProvider = $categoryProvider;
     }
 
     /**
@@ -66,21 +80,38 @@ class Category extends \Magento\Framework\View\Element\Template
      */
     protected function _prepareLayout()
     {
-        /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
+        /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
 
-        /** @var $product \Magento\Catalog\Api\Data\ProductInterface */
+        /** @var $category ProductCategory */
         $category = $this->getCurrentCategory();
 
-        if (!$category) {
-            return;
+        if ($category) {
+            $categoryData = [
+                'id' => $category->getId(),
+                'name' => $category->getName(),
+                'path' => $this->getCategoryPath()
+            ];
+
+            $categoryData = $this->categoryProvider
+                ->setCategory($category)
+                ->setCategoryData($categoryData)
+                ->getData();
+
+            $data = [
+                'event' => DataLayerEvent::CATEGORY_PAGE_EVENT,
+                'category' => $categoryData
+            ];
+
+            $tm->addVariable('list', 'category');
+            $tm->addCustomDataLayerByEvent(DataLayerEvent::CATEGORY_PAGE_EVENT, $data);
         }
 
-        $tm->addVariable(
-            'list',
-            'category'
-        );
+        return $this;
+    }
 
+    public function getCategoryPath()
+    {
         $titleArray = [];
         $breadCrumbs = $this->_catalogData->getBreadcrumbPath();
 
@@ -88,20 +119,6 @@ class Category extends \Magento\Framework\View\Element\Template
             $titleArray[] = $breadCrumb['label'];
         }
 
-        $tm->addVariable(
-            'category',
-            [
-                'id' => $category->getId(),
-                'name' => $category->getName(),
-                'path' => implode(" > ", $titleArray)
-            ]
-        );
-
-        $tm->addVariable(
-            'event',
-            'categoryPage'
-        );
-
-        return $this;
+        return implode(" > ", $titleArray);
     }
 }

@@ -7,6 +7,7 @@
 
 namespace MagePal\GoogleTagManager\Block\Data;
 
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Block\DataLayer;
@@ -40,6 +41,7 @@ class Order extends Template
      * Render information about specified orders and their items
      *
      * @return void|string
+     * @throws NoSuchEntityException
      */
     public function addOrderLayer()
     {
@@ -49,7 +51,7 @@ class Order extends Template
             /** @var $tm DataLayer */
             $tm = $this->getParentBlock();
             foreach ($transactions as $order) {
-                $tm->addAdditionalVariable($order);
+                $tm->addCustomDataLayer($order);
             }
         }
     }

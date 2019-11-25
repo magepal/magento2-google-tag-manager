@@ -18,7 +18,7 @@ abstract class QuoteAbstract
     /**
      * @var QuoteProvider[]
      */
-    private $quoteProviders;
+    protected $quoteProviders;
 
     /**
      * @var array
@@ -29,16 +29,6 @@ abstract class QuoteAbstract
      * @var Quote
      */
     private $quote;
-
-    /**
-     * @param array $quoteProviders
-     * @codeCoverageIgnore
-     */
-    public function __construct(
-        array $quoteProviders = []
-    ) {
-        $this->quoteProviders = $quoteProviders;
-    }
 
     /**
      * @return array

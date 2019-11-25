@@ -14,6 +14,16 @@ namespace MagePal\GoogleTagManager\DataLayer\OrderData;
 class OrderItemProvider extends OrderItemAbstract
 {
     /**
+     * @param array $orderItemProviders
+     * @codeCoverageIgnore
+     */
+    public function __construct(
+        array $orderItemProviders = []
+    ) {
+        $this->orderItemProviders = $orderItemProviders;
+    }
+
+    /**
      * @return array
      */
     public function getData()
@@ -23,7 +33,7 @@ class OrderItemProvider extends OrderItemAbstract
         foreach ($this->getOrderItemProviders() as $orderItemProvider) {
             $orderItemProvider->setItem($this->getItem())->setItemData($data);
 
-            $data = array_merge_recursive($data, $orderItemProvider->getData());
+            $data = array_merge($data, $orderItemProvider->getData());
         }
 
         return $data;

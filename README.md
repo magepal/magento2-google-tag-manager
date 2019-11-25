@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.okvpn.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 [![Latest Stable Version](https://poser.okvpn.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 
-##### For Magento 2.0.x, 2.1.x, 2.2.x and 2.3.x
+##### Integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions.  (For Magento 2.0.x, 2.1.x, 2.2.x and 2.3.x)
 
 ### What is Google Tag Manager
 Google Tag Manager (GTM) is a user-friendly, powerful and essential integration for every Magento store. It simplifies the process of adding, edit and manage third-party JavaScript tags and other snippets of code on your Magento site. 
@@ -18,7 +18,7 @@ Without having the all data you need at your finger tips your integration will b
 Our extension provide a vast array of over 60 preconfigure data layer elements to make integrating your Magento store with any other third-party service a breeze using Google Tag Manager. 
 Extracting, customizing and adding your own custom data from your Magento store to Google Tag Manager is as easy as 10 lines of code using our easy to customize APIs.
 
->:warning: Google Tag Manager 2.3.0 has some breaking changes to Enhanced Ecommerce. Please download the latest version of Enhanced Ecommerce 1.2.0 or greater from www.magepal.com account.
+>:warning: Google Tag Manager 2.4.0 has some breaking changes to Enhanced Ecommerce. Please download the latest version of Enhanced Ecommerce 1.4.0 or greater from www.magepal.com account.
 
 
 ### Why use our Google Tag Manager extension?
@@ -148,6 +148,10 @@ Our Magento extension provide a vast array of over 60 preconfigure data layer el
   * category.id
   * category.name
   * category.path
+ 
+#### Search Page
+* Trigger: event equals searchPage
+  * search_term* 
 
 #### Product Detail Page
 * Trigger: event equals productPage
@@ -157,8 +161,9 @@ Our Magento extension provide a vast array of over 60 preconfigure data layer el
   * product.parent_sku
   * product.price
   * product.product_type
-  * attribute_set_id
+  * product.attribute_set_id
   * product.path
+  * product.image_url
   
 * Trigger: event equals productDetail
   * ecommerce.currencyCode*

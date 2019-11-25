@@ -14,6 +14,16 @@ namespace MagePal\GoogleTagManager\DataLayer\QuoteData;
 class QuoteProvider extends QuoteAbstract
 {
     /**
+     * @param array $quoteProviders
+     * @codeCoverageIgnore
+     */
+    public function __construct(
+        array $quoteProviders = []
+    ) {
+        $this->quoteProviders = $quoteProviders;
+    }
+
+    /**
      * @return array
      */
     public function getData()
@@ -23,7 +33,7 @@ class QuoteProvider extends QuoteAbstract
         foreach ($this->getQuoteProviders() as $quoteProvider) {
             $quoteProvider->setQuote($this->getQuote())->setTransactionData($data);
 
-            $data = array_merge_recursive($data, $quoteProvider->getData());
+            $data = array_merge($data, $quoteProvider->getData());
         }
 
         return $data;

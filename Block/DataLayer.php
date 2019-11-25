@@ -78,4 +78,13 @@ class DataLayer extends DataLayerAbstract
     {
         return (int) $this->_gtmHelper->isGdprEnabled($store_id);
     }
+
+    /**
+     * @param null $store_id
+     * @return bool
+     */
+    public function addJsInHead($store_id = null)
+    {
+        return (int) $this->_gtmHelper->addJsInHead($store_id);
+    }
 }

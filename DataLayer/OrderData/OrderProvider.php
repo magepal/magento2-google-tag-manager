@@ -14,6 +14,16 @@ namespace MagePal\GoogleTagManager\DataLayer\OrderData;
 class OrderProvider extends OrderAbstract
 {
     /**
+     * @param array $orderProviders
+     * @codeCoverageIgnore
+     */
+    public function __construct(
+        array $orderProviders = []
+    ) {
+        $this->orderProviders = $orderProviders;
+    }
+
+    /**
      * @return array
      */
     public function getData()
@@ -23,7 +33,7 @@ class OrderProvider extends OrderAbstract
         foreach ($this->getOrderProviders() as $orderProvider) {
             $orderProvider->setOrder($this->getOrder())->setTransactionData($data);
 
-            $data = array_merge_recursive($data, $orderProvider->getData());
+            $data = array_merge($data, $orderProvider->getData());
         }
 
         return $data;

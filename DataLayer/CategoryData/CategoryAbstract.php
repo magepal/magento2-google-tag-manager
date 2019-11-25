@@ -7,10 +7,10 @@
 
 namespace MagePal\GoogleTagManager\DataLayer\CategoryData;
 
-use Magento\Sales\Model\Category;
+use Magento\Catalog\Model\Category;
 
 /**
- * Class CategoryProvider
+ * Class CategoryPageProvider
  * @package MagePal\GoogleTagManager\Model\DataLayer
  */
 abstract class CategoryAbstract
@@ -18,27 +18,17 @@ abstract class CategoryAbstract
     /**
      * @var CategoryProvider[]
      */
-    private $categoryProviders;
+    protected $categoryProviders;
 
     /**
      * @var array
      */
-    private $transactionData = [];
+    private $categoryData = [];
 
     /**
      * @var Category
      */
     private $category;
-
-    /**
-     * @param array $categoryProviders
-     * @codeCoverageIgnore
-     */
-    public function __construct(
-        array $categoryProviders = []
-    ) {
-        $this->categoryProviders = $categoryProviders;
-    }
 
     /**
      * @return array
@@ -48,18 +38,18 @@ abstract class CategoryAbstract
     /**
      * @return array
      */
-    public function getTransactionData()
+    public function getCategoryData()
     {
-        return (array) $this->transactionData;
+        return (array) $this->categoryData;
     }
 
     /**
-     * @param array $transactionData
+     * @param array $categoryData
      * @return CategoryAbstract
      */
-    public function setTransactionData(array $transactionData)
+    public function setCategoryData(array $categoryData)
     {
-        $this->transactionData = $transactionData;
+        $this->categoryData = $categoryData;
         return $this;
     }
 

@@ -32,6 +32,11 @@ class Data extends AbstractHelper
     const XML_PATH_DATALAYER_NAME = 'googletagmanager/general/datalayer_name';
 
     /**
+     * Path to configuration, check is enable cookie restriction mode
+     */
+    const XML_PATH_COOKIE_RESTRICTION = 'web/cookie/cookie_restriction';
+
+    /**
      * @var string
      */
     protected $_dataLayerName = 'dataLayer';
@@ -91,10 +96,37 @@ class Data extends AbstractHelper
      */
     public function getGdprOption($store_id = null)
     {
-        return (int) $this->scopeConfig->isSetFlag(
+        return (int) $this->scopeConfig->getValue(
             'googletagmanager/gdpr/option',
             ScopeInterface::SCOPE_STORE,
             $store_id
+        );
+    }
+
+
+    /**
+     * @param null $store_id
+     * @return int
+     */
+    public function addJsInHead($store_id = null)
+    {
+        return (int) $this->scopeConfig->isSetFlag(
+            'googletagmanager/gdpr/add_js_in_header',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * Check if cookie restriction mode is enabled for this store
+     * Fix issue in 2.1.9
+     * @return bool
+     */
+    public function isCookieRestrictionModeEnabled()
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_COOKIE_RESTRICTION,
+            ScopeInterface::SCOPE_STORE
         );
     }
 

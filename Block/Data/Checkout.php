@@ -7,10 +7,13 @@
 
 namespace MagePal\GoogleTagManager\Block\Data;
 
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\Model\Cart as GtmCartModel;
+use MagePal\GoogleTagManager\Model\DataLayerEvent;
 
 /**
  * Class Checkout
@@ -42,14 +45,21 @@ class Checkout extends Template
      * Add product data to datalayer
      *
      * @return $this
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     protected function _prepareLayout()
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
 
-        $tm->addVariable('cart', $this->gtmCart->getCart());
-        $tm->addVariable('event', 'checkoutPage');
+        $data = [
+            'event' => DataLayerEvent::CHECKOUT_PAGE_EVENT,
+            'cart' => $this->gtmCart->getCart()
+        ];
+
+        $tm->addVariable('list', 'checkout');
+        $tm->addCustomDataLayerByEvent(DataLayerEvent::CHECKOUT_PAGE_EVENT, $data);
 
         return $this;
     }

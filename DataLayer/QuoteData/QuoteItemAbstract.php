@@ -16,16 +16,16 @@ use Magento\Quote\Model\Quote\Item;
 abstract class QuoteItemAbstract
 {
     const LIST_TYPE_GOOGLE = 1;
-
     const LIST_TYPE_GENERIC = 2;
-
     const ACTION_ADDED_ITEM = 1;
-
     const ACTION_REMOVED_ITEM = 2;
-
     const ACTION_UPDATED_ITEM = 3;
-
     const ACTION_VIEW_CART = 4;
+
+    /**
+     * @var QuoteItemProvider[]
+     */
+    protected $quoteItemProviders;
 
     /**
      * @var
@@ -38,11 +38,6 @@ abstract class QuoteItemAbstract
     protected $listType;
 
     /**
-     * @var QuoteItemProvider[]
-     */
-    private $quoteItemProviders;
-
-    /**
      * @var array
      */
     private $itemData = [];
@@ -51,16 +46,6 @@ abstract class QuoteItemAbstract
      * @var Item
      */
     private $item;
-
-    /**
-     * @param array $quoteItemProviders
-     * @codeCoverageIgnore
-     */
-    public function __construct(
-        array $quoteItemProviders = []
-    ) {
-        $this->quoteItemProviders = $quoteItemProviders;
-    }
 
     /**
      * @return array

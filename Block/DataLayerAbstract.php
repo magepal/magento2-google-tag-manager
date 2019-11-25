@@ -7,7 +7,6 @@
 
 namespace MagePal\GoogleTagManager\Block;
 
-use Magento\Cookie\Helper\Cookie as CookieHelper;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
@@ -38,33 +37,29 @@ class DataLayerAbstract extends Template
     protected $_additionalVariables = [];
 
     /**
+     * Push elements last to the data layer
+     * @var array
+     */
+    protected $customVariables = [];
+
+    /**
      * @var array
      */
     protected $_variables = [];
 
     /**
-     * Cookie Helper
-     *
-     * @var CookieHelper
-     */
-    protected $_cookieHelper = null;
-
-    /**
      * @param Context $context
      * @param GtmHelper $gtmHelper
-     * @param CookieHelper $cookieHelper
      * @param array $data
      * @throws NoSuchEntityException
      */
     public function __construct(
         Context $context,
         GtmHelper $gtmHelper,
-        CookieHelper $cookieHelper,
         array $data = []
     ) {
         $this->_gtmHelper = $gtmHelper;
         parent::__construct($context, $data);
-        $this->_cookieHelper = $cookieHelper;
         $this->_init();
     }
 
@@ -74,10 +69,7 @@ class DataLayerAbstract extends Template
      */
     protected function _init()
     {
-        if ($this->getShowEcommerceCurrencyCode()) {
-            $this->addVariable('ecommerce', ['currencyCode' => $this->getStoreCurrencyCode()]);
-        }
-
+        $this->addVariable('ecommerce', ['currencyCode' => $this->getStoreCurrencyCode()]);
         $this->addVariable('pageType', $this->_request->getFullActionName());
         $this->addVariable('list', 'other');
 
@@ -87,7 +79,7 @@ class DataLayerAbstract extends Template
     /**
      * Return data layer json
      *
-     * @return json
+     * @return array
      */
     public function getDataLayer()
     {
@@ -108,7 +100,38 @@ class DataLayerAbstract extends Template
             }
         }
 
-        return json_encode($result);
+        if (!empty($this->customVariables)) {
+            ksort($this->customVariables);
+            foreach ($this->customVariables as $priorityVariable) {
+                foreach ($priorityVariable as $data) {
+                    $result[] = $data;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataLayerJson()
+    {
+        return json_encode($this->getDataLayer());
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataLayerJs()
+    {
+        $result = [];
+
+        foreach ($this->getDataLayer() as $data) {
+            $result[] = sprintf("%s.push(%s);\n", $this->getDataLayerName(), json_encode($data));
+        }
+
+        return implode("\n", $result);
     }
 
     /**
@@ -139,6 +162,7 @@ class DataLayerAbstract extends Template
     /**
      * Add variable to the custom push data layer
      *
+     * @deprecated - use addCustomDataLayer and addCustomDataLayerByEvent
      * @param $name
      * @param null $value
      * @return $this
@@ -149,6 +173,52 @@ class DataLayerAbstract extends Template
             $this->_additionalVariables[] = $name;
         } else {
             $this->_additionalVariables[] = [$name => $value];
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add variable to the custom push data layer
+     *
+     * @param  array  $data
+     * @param  int  $priority
+     * @param  null  $group
+     * @return $this
+     */
+    public function addCustomDataLayer($data, $priority = 0, $group = null)
+    {
+        $priority = (int) $priority;
+
+        if (is_array($data) && empty($group)) {
+            $this->customVariables[$priority][] = $data;
+        } elseif (is_array($data) && !empty($group)) {
+            if (array_key_exists($priority, $this->customVariables)
+                && array_key_exists($group, $this->customVariables[$priority])
+            ) {
+                $this->customVariables[$priority][$group] = array_merge(
+                    $this->customVariables[$priority][$group],
+                    $data
+                );
+            } else {
+                $this->customVariables[$priority][$group] =  $data;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $event
+     * @param $data
+     * @param  int  $priority
+     * @return $this
+     */
+    public function addCustomDataLayerByEvent($event, $data, $priority = 20)
+    {
+        if (!empty($event)) {
+            $data['event'] = $event;
+            $this->addCustomDataLayer($data, $priority, $event);
         }
 
         return $this;
@@ -192,7 +262,7 @@ class DataLayerAbstract extends Template
      */
     public function isCookieRestrictionModeEnabled()
     {
-        return (int) $this->_cookieHelper->isCookieRestrictionModeEnabled();
+        return (int) $this->_gtmHelper->isCookieRestrictionModeEnabled();
     }
     /**
      * Return current website id.

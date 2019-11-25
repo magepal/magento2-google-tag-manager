@@ -7,7 +7,7 @@
 
 namespace MagePal\GoogleTagManager\DataLayer\ProductData;
 
-use Magento\Sales\Model\Product;
+use Magento\Catalog\Model\Product;
 
 /**
  * Class ProductAbstract
@@ -18,26 +18,16 @@ abstract class ProductAbstract
     /**
      * @var ProductProvider[]
      */
-    private $productProviders;
+    protected $productProviders;
 
     /**
      * @var array
      */
-    private $transactionData = [];
+    private $productData = [];
 
     /**
      */
     private $product;
-
-    /**
-     * @param array $productProviders
-     * @codeCoverageIgnore
-     */
-    public function __construct(
-        array $productProviders = []
-    ) {
-        $this->productProviders = $productProviders;
-    }
 
     /**
      * @return array
@@ -47,18 +37,18 @@ abstract class ProductAbstract
     /**
      * @return array
      */
-    public function getTransactionData()
+    public function getProductData()
     {
-        return (array) $this->transactionData;
+        return (array) $this->productData;
     }
 
     /**
-     * @param array $transactionData
+     * @param array $productData
      * @return ProductAbstract
      */
-    public function setTransactionData(array $transactionData)
+    public function setProductData(array $productData)
     {
-        $this->transactionData = $transactionData;
+        $this->productData = $productData;
         return $this;
     }
 

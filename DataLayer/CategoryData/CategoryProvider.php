@@ -14,15 +14,25 @@ namespace MagePal\GoogleTagManager\DataLayer\CategoryData;
 class CategoryProvider extends CategoryAbstract
 {
     /**
+     * @param array $categoryProviders
+     * @codeCoverageIgnore
+     */
+    public function __construct(
+        array $categoryProviders = []
+    ) {
+        $this->categoryProviders = $categoryProviders;
+    }
+
+    /**
      * @return array
      */
     public function getData()
     {
-        $data =  $this->getTransactionData();
+        $data =  $this->getcategoryData();
         /** @var CategoryProvider $categoryProvider */
         foreach ($this->getCategoryProviders() as $categoryProvider) {
-            $categoryProvider->setCategory($this->getCategory())->setTransactionData($data);
-            $data = array_merge_recursive($data, $categoryProvider->getData());
+            $categoryProvider->setCategory($this->getCategory())->setCategoryData($data);
+            $data = array_merge($data, $categoryProvider->getData());
         }
 
         return $data;

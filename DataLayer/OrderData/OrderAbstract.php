@@ -18,7 +18,7 @@ abstract class OrderAbstract
     /**
      * @var OrderProvider[]
      */
-    private $orderProviders;
+    protected $orderProviders;
 
     /**
      * @var array
@@ -29,16 +29,6 @@ abstract class OrderAbstract
      * @var Order
      */
     private $order;
-
-    /**
-     * @param array $orderProviders
-     * @codeCoverageIgnore
-     */
-    public function __construct(
-        array $orderProviders = []
-    ) {
-        $this->orderProviders = $orderProviders;
-    }
 
     /**
      * @return array
@@ -64,14 +54,6 @@ abstract class OrderAbstract
     }
 
     /**
-     * @return Order
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-    /**
      * @param Order $order
      * @return OrderAbstract
      */
@@ -79,6 +61,14 @@ abstract class OrderAbstract
     {
         $this->order = $order;
         return $this;
+    }
+
+    /**
+     * @return Order
+     */
+    public function getOrder()
+    {
+        return $this->order;
     }
 
     /**

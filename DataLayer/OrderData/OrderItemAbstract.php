@@ -24,7 +24,7 @@ abstract class OrderItemAbstract
     /**
      * @var OrderItemProvider[]
      */
-    private $orderItemProviders;
+    protected $orderItemProviders;
 
     /**
      * @var array
@@ -36,15 +36,6 @@ abstract class OrderItemAbstract
      */
     private $item;
 
-    /**
-     * @param array $orderItemProviders
-     * @codeCoverageIgnore
-     */
-    public function __construct(
-        array $orderItemProviders = []
-    ) {
-        $this->orderItemProviders = $orderItemProviders;
-    }
 
     /**
      * @return array

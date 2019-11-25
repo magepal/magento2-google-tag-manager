@@ -14,16 +14,26 @@ namespace MagePal\GoogleTagManager\DataLayer\ProductData;
 class ProductProvider extends ProductAbstract
 {
     /**
+     * @param array $productProviders
+     * @codeCoverageIgnore
+     */
+    public function __construct(
+        array $productProviders = []
+    ) {
+        $this->productProviders = $productProviders;
+    }
+
+    /**
      * @return array
      */
     public function getData()
     {
-        $data =  $this->getTransactionData();
+        $data =  $this->getProductData();
         /** @var ProductAbstract $productProvider */
         foreach ($this->getProductProviders() as $productProvider) {
-            $productProvider->setProduct($this->getProduct())->setTransactionData($data);
+            $productProvider->setProduct($this->getProduct())->setProductData($data);
 
-            $data = array_merge_recursive($data, $productProvider->getData());
+            $data = array_merge($data, $productProvider->getData());
         }
 
         return $data;

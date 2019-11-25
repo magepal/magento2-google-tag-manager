@@ -9,14 +9,10 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="after.body.start">
-          <block class="MagePal\GoogleTagManager\Block\GtmCode" name="magepal_gtm_iframe" as="magepal_gtm_iframe" template="MagePal_GoogleTagManager::iframe.phtml" />
+          <block class="MagePal\GoogleTagManager\Block\GtmCode" name="magepal_gtm_iframe" as="magepal_gtm_iframe" before="-" template="MagePal_GoogleTagManager::iframe.phtml" />
         </referenceContainer>
         <referenceBlock name="head.additional">
-            <block class="MagePal\GoogleTagManager\Block\DataLayer" name="magepal_gtm_datalayer" as="magepal_gtm_datalayer" template="MagePal_GoogleTagManager::js.phtml">
-                <arguments>
-                    <argument name="show_ecommerce_currency_code" xsi:type="boolean">true</argument>
-                </arguments>
-            </block>
+            <block class="MagePal\GoogleTagManager\Block\DataLayer" name="magepal_gtm_datalayer" as="magepal_gtm_datalayer" before="-" template="MagePal_GoogleTagManager::js.phtml" />
         </referenceBlock>
     </body>
 </page>

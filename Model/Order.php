@@ -140,7 +140,7 @@ class Order extends DataObject
             }
 
             $transaction = [
-                'event' => 'gtm.orderComplete',
+                'event' => DataLayerEvent::GTM_ORDER_COMPLETE_EVENT,
                 'transactionId' => $order->getIncrementId(),
                 'transactionAffiliation' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
                 'transactionTotal' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
@@ -157,7 +157,7 @@ class Order extends DataObject
 
             // retain backward comparability with gtm.orderComplete event
             $result[] = $transaction = [
-                'event' => 'purchase'
+                'event' => DataLayerEvent::PURCHASE_EVENT
             ];
         }
 

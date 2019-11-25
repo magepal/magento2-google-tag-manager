@@ -7,14 +7,16 @@
 
 namespace MagePal\GoogleTagManager\Block\Data;
 
+use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\Model\Customer as GtmCustomerModel;
 
 /**
  * Class Customer
  * @package MagePal\GoogleTagManager\Block\Data
  */
-class Customer extends \Magento\Framework\View\Element\Template
+class Customer extends Template
 {
     /**
      * @var GtmCustomerModel
@@ -41,7 +43,7 @@ class Customer extends \Magento\Framework\View\Element\Template
      */
     protected function _prepareLayout()
     {
-        /** @var $tm \MagePal\GoogleTagManager\Block\DataLayer */
+        /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
         $tm->addVariable('customer', $this->gtmCustomer->getCustomer());
 
