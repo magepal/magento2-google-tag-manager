@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.okvpn.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 [![Latest Stable Version](https://poser.okvpn.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 
-##### Integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions.  (For Magento 2.0.x, 2.1.x, 2.2.x and 2.3.x)
+##### Integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions. (For Magento 2.0.x, 2.1.x, 2.2.x and 2.3.x)
 
 ### What is Google Tag Manager
 Google Tag Manager (GTM) is a user-friendly, powerful and essential integration for every Magento store. It simplifies the process of adding, edit and manage third-party JavaScript tags and other snippets of code on your Magento site. 
