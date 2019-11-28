@@ -232,7 +232,7 @@ Our Magento extension provide a vast array of over 60 preconfigure data layer el
   * cart.remove.products[].category*  
 
 #### Order
-* Trigger: event equals gtm.orderComplete (Google Analytics)
+* Trigger: event equals purchase (Google Analytics)
   * transactionId
   * transactionAffiliation
   * transactionTotal
