@@ -7,7 +7,8 @@
 define([
     'Magento_Customer/js/customer-data',
     'jquery',
-    'underscore'
+    'underscore',
+    'mage/cookies'
 ], function (customerData, $, _) {
     'use strict';
 
