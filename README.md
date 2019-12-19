@@ -27,7 +27,7 @@ Adding Google Tag Manager code snippet to the header section of your Magento sto
 Learn more about [customizing Google Tag Manger](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#api). 
 
 ### Google Analytics Enhanced E-commerce
-Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager v1.2.0](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. 
+Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. 
 Gain valuable insight and increase your conversion rate by leveraging Google Enhanced Ecommerce to better understand your user actions and behaviors.
 
 Learn more about our [Google Enhanced Ecommerce](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) extension today. A small increase in your store’s conversion rate can make a giant impact on your revenue.
