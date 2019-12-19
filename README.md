@@ -5,11 +5,11 @@
 [![Total Downloads](https://poser.okvpn.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 [![Latest Stable Version](https://poser.okvpn.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 
-##### Integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions. 
+#### Whether you are a small Magento retailer or an Enterprise customer, our suite of Google Tag Manager extensions will help you integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions.
 For Magento 2.0.x, 2.1.x, 2.2.x and 2.3.x
 
 ### What is Google Tag Manager
-Google Tag Manager (GTM) is a user-friendly, powerful and essential integration for every Magento store. It simplifies the process of adding, edit and manage third-party JavaScript tags and other snippets of code on your Magento site. 
+Google Tag Manager (GTM) is a user-friendly, powerful and essential integration for every Magento store. It simplifies the process of adding, editing and managing third-party JavaScript tags and other snippets of code on your Magento site. 
 With GTM, you can quickly and easily add Facebook tags, AdWords Conversion Tracking, Re-marketing, Bing UET, SnapChat, DoubleClick code, Google Analytics and many more in a breeze without the need for a developer to make changes to your Magento code providing the data is available to Google Tag Manager. 
 
 Google Tag Manager makes running your digital marketing campaigns much easier when calibrating with multiple department and Ad agencies by making available the right set of tools so that everyone can get their job done quickly without relying on developers. 
@@ -23,7 +23,7 @@ Extracting, customizing and adding your own custom data from your Magento store 
 
 
 ### Why use our Google Tag Manager extension?
-Google Tag Manager is only as powerful as the data layer powering it. Adding Google Tag Manager code snippet to the header section of your Magento store may seems like the ideal quick and easy way to add GTM. But this will not be sufficient when integrating any third-parties tracking codes that require site specific data from Magento, such as page type, product name, product price, order items, order id or any other data. Our extension provide all the necessary data elements to accomplish any integration with in 2 minutes and if the data is not available then you can quickly extending our extension with a few lines of code.
+Adding Google Tag Manager code snippet to the header section of your Magento store may seem like the ideal and most efficient way to add GTM to your site. But this will not be sufficient and limit your ability to take full advantage of GTM when integrating third-parties tracking codes that require data from your Magento stores, such as product name, price, items added to cart, order items, total, shipping amount or any other data. Our extension provides hundreds of data elements and events to accomplish any integration and provides the building block to make your next integration a success. With a few lines of code, you can quickly extend our extension to accomplish your most challenging integration. Google Tag Manager is only as powerful as the data layer powering it. 
 Learn more about [customizing Google Tag Manger](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#api). 
 
 ### Google Analytics Enhanced E-commerce
@@ -64,6 +64,7 @@ Please Note: Merchants should consult with their own legal counsel to ensure tha
 | Custom Image Pixel Tracking |     |    |  X |
 | Custom iFrame Tracking      |     |    |  X |
 | Third-Party Integration     |     |    |  X |
+| Extend individual page type |     |    |  X |
 
 GTM - [Google Tag Manager for Magento 2 Extension](https://www.magepal.com/magento2/extensions/google-tag-manager.html)
 
