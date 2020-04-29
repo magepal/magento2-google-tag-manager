@@ -151,7 +151,7 @@ class Data extends AbstractHelper
      * @param $price
      * @return float
      */
-    public static function formatPrice($price)
+    public function formatPrice($price)
     {
         return (float)sprintf('%.2F', $price);
     }
