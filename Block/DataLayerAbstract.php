@@ -128,7 +128,7 @@ class DataLayerAbstract extends Template
         $result = [];
 
         foreach ($this->getDataLayer() as $data) {
-            $result[] = sprintf("%s.push(%s);\n", $this->getDataLayerName(), json_encode($data));
+            $result[] = sprintf("window.%s.push(%s);\n", $this->getDataLayerName(), json_encode($data));
         }
 
         return implode("\n", $result);

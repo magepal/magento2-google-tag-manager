@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MagePal LLC. All rights reserved.
+ * See COPYING.txt for license details.
+ * http://www.magepal.com | support@magepal.com
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="magepal_gtm_datalayer">
+            <action method="addVariable">
+                <argument name="name" xsi:type="string">list</argument>
+                <argument name="value" xsi:type="string">checkout</argument>
+            </action>
+            <block class="MagePal\GoogleTagManager\Block\Data\Customer" name="magepal_gtm_block_customer"/>
+            <block class="MagePal\GoogleTagManager\Block\Data\Checkout" name="magepal_gtm_block_cart"/>
+        </referenceBlock>
+    </body>
+</page>

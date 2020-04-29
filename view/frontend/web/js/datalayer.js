@@ -78,6 +78,8 @@ define([
     //load gtm
     function initTracking(dataLayerName, accountId)
     {
+        $(document).trigger('gtm:beforeInitialize');
+
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
@@ -90,6 +92,8 @@ define([
             j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', dataLayerName, accountId);
+
+        $(document).trigger('gtm:afterInitialize');
     }
 
     function pushData(dataLayerName, dataLayer)
