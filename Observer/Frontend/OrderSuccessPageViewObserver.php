@@ -10,10 +10,6 @@ namespace MagePal\GoogleTagManager\Observer\Frontend;
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
 
-/**
- * Class OrderSuccessPageViewObserver
- * @package MagePal\GoogleTagManager\Observer\Frontend
- */
 class OrderSuccessPageViewObserver implements ObserverInterface
 {
     /**

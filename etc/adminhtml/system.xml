@@ -76,10 +76,6 @@
                      </style>
                   ]]>
                 </comment>
-                <field id="module_version" translate="label" type="label" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Module Version</label>
-                    <frontend_model>MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Module\Version</frontend_model>
-                </field>
                 <field id="composer_version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Composer Version</label>
                     <frontend_model>MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Composer\Version</frontend_model>

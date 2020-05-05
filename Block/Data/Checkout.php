@@ -15,10 +15,6 @@ use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\Model\Cart as GtmCartModel;
 use MagePal\GoogleTagManager\Model\DataLayerEvent;
 
-/**
- * Class Checkout
- * @package MagePal\GoogleTagManager\Block\Data
- */
 class Checkout extends Template
 {
 

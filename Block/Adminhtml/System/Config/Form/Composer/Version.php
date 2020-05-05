@@ -16,10 +16,6 @@ use Magento\Framework\Component\ComponentRegistrarInterface;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
 
-/**
- * Class Version
- * @package MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Composer
- */
 class Version extends Field
 {
 
@@ -115,7 +111,7 @@ class Version extends Field
                 return !empty($data->version) ? $data->version : __('Unknown');
             }
         } catch (Exception $e) {
-            //
+            return 'Unknown';
         }
 
         return 'Unknown';

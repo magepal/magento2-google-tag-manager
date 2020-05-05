@@ -10,10 +10,6 @@ namespace MagePal\GoogleTagManager\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\UrlInterface;
 
-/**
- * Class Product
- * @package MagePal\GoogleTagManager\Helper
- */
 class Product extends AbstractHelper
 {
 

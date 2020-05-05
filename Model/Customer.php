@@ -10,10 +10,6 @@ namespace MagePal\GoogleTagManager\Model;
 use Magento\Customer\Model\Session;
 use Magento\Framework\DataObject;
 
-/**
- * Class Customer
- * @package MagePal\GoogleTagManager\Model
- */
 class Customer extends DataObject
 {
 

@@ -14,8 +14,6 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 /**
- * Class DataLayerAbstract
- * @package MagePal\GoogleTagManager\Block
  * @method getList()
  */
 class DataLayerAbstract extends Template
@@ -247,7 +245,7 @@ class DataLayerAbstract extends Template
     }
 
     /**
-     * @return mixed
+     * @return string
      * @throws NoSuchEntityException
      */
     public function getStoreCurrencyCode()
@@ -258,7 +256,7 @@ class DataLayerAbstract extends Template
     /**
      * Return cookie restriction mode value.
      *
-     * @return bool
+     * @return int
      */
     public function isCookieRestrictionModeEnabled()
     {

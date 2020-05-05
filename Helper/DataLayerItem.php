@@ -12,10 +12,6 @@ use Magento\Sales\Model\Order\Item as OrderItem;
 use Magento\Store\Model\ScopeInterface;
 use MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Field\ItemVariantFormat;
 
-/**
- * Class Item
- * @package MagePal\GoogleTagManager\Helper
- */
 class DataLayerItem extends Data
 {
     /**

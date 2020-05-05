@@ -23,8 +23,6 @@ use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 use MagePal\GoogleTagManager\Helper\DataLayerItem;
 
 /**
- * Class Order
- * @package MagePal\GoogleTagManager\Model
  * @method $this setOrderIds(Array $orderIds)
  * @method Array getOrderIds()
  */
@@ -249,7 +247,7 @@ class Order extends DataObject
                                 ->getData();
         }
 
-        $transaction = [
+        return [
             'order_id' => $order->getIncrementId(),
             'store_name' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
             'total' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
@@ -265,8 +263,6 @@ class Order extends DataObject
             'is_guest_checkout' => $order->getCustomerIsGuest() ? true : false,
             'items' => $products
         ];
-
-        return $transaction;
     }
 
     /**

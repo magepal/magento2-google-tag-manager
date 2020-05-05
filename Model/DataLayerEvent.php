@@ -7,10 +7,6 @@
 
 namespace MagePal\GoogleTagManager\Model;
 
-/**
- * Class DataLayerEvent
- * @package MagePal\GoogleTagManager\Model
- */
 class DataLayerEvent
 {
     const ADD_TO_CART_EVENT = 'addToCart';

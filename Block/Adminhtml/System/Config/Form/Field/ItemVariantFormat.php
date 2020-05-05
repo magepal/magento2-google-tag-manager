@@ -9,20 +9,10 @@ namespace MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Field;
 
 use Magento\Framework\Option\ArrayInterface;
 
-/**
- * Class ItemVariantFormat
- * @package MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Field
- */
 class ItemVariantFormat implements ArrayInterface
 {
-    /**
-     * Short format
-     */
     const SHORT_FORMAT = 1;
 
-    /**
-     * long format
-     */
     const LONG_FORMAT = 2;
 
     const DEFAULT_FORMAT = self::SHORT_FORMAT;

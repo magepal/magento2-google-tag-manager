@@ -12,10 +12,6 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\Model\Customer as GtmCustomerModel;
 
-/**
- * Class Customer
- * @package MagePal\GoogleTagManager\Block\Data
- */
 class Customer extends Template
 {
     /**

@@ -13,8 +13,6 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Block\DataLayer;
 
 /**
- * Class Order
- * @package MagePal\GoogleTagManager\Block\Data
  * @method Array setOrderIds(Array $orderIds)
  * @method Array getOrderIds()
  */

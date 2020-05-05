@@ -10,10 +10,6 @@ namespace MagePal\GoogleTagManager\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
-/**
- * Class Data
- * @package MagePal\GoogleTagManager\Helper
- */
 class Data extends AbstractHelper
 {
     /**
@@ -102,7 +98,6 @@ class Data extends AbstractHelper
             $store_id
         );
     }
-
 
     /**
      * @param null $store_id

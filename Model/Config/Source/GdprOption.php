@@ -8,10 +8,6 @@ namespace MagePal\GoogleTagManager\Model\Config\Source;
 
 use Magento\Framework\Option\ArrayInterface;
 
-/**
- * Class GdprType
- * @package MagePal\GmailSmtpApp\Model\Config\Source
- */
 class GdprOption implements ArrayInterface
 {
     const USE_COOKIE_RESTRICTION_MODE = 1;

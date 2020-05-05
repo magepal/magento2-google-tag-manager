@@ -11,10 +11,6 @@ use Magento\Cookie\Helper\Cookie;
 use MagePal\GoogleTagManager\Block\Data\Order;
 use MagePal\GoogleTagManager\Model\Config\Source\GdprOption;
 
-/**
- * Class DataLayer
- * @package MagePal\GoogleTagManager\Block
- */
 class DataLayer extends DataLayerAbstract
 {
 
@@ -72,7 +68,7 @@ class DataLayer extends DataLayerAbstract
 
     /**
      * @param null $store_id
-     * @return bool
+     * @return int
      */
     public function isGdprEnabled($store_id = null)
     {
@@ -81,7 +77,7 @@ class DataLayer extends DataLayerAbstract
 
     /**
      * @param null $store_id
-     * @return bool
+     * @return int
      */
     public function addJsInHead($store_id = null)
     {

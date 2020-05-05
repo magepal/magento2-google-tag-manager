@@ -18,10 +18,6 @@ use MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteItemProvider;
 use MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider;
 use MagePal\GoogleTagManager\Helper\DataLayerItem as dataLayerItemHelper;
 
-/**
- * Class Cart
- * @package MagePal\GoogleTagManager\Model
- */
 class Cart extends DataObject
 {
 
@@ -94,7 +90,6 @@ class Cart extends DataObject
 
         if ($quote->getItemsCount()) {
             $items = [];
-            /** @var Item $item */
             foreach ($quote->getAllVisibleItems() as $item) {
                 $itemData = [
                     'sku' => $item->getSku(),

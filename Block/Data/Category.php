@@ -16,10 +16,6 @@ use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\DataLayer\CategoryData\CategoryProvider;
 use MagePal\GoogleTagManager\Model\DataLayerEvent;
 
-/**
- * Class Category
- * @package MagePal\GoogleTagManager\Block\Data
- */
 class Category extends Template
 {
     /**
