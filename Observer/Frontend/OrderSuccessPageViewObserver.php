@@ -9,26 +9,29 @@ namespace MagePal\GoogleTagManager\Observer\Frontend;
 
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\View\Element\BlockInterface;
+use Magento\Framework\View\LayoutInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class OrderSuccessPageViewObserver implements ObserverInterface
 {
     /**
-     * @var \Magento\Framework\View\LayoutInterface
+     * @var LayoutInterface
      */
     protected $_layout;
 
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     protected $_storeManager;
 
     /**
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\View\LayoutInterface $layout
+     * @param StoreManagerInterface $storeManager
+     * @param LayoutInterface $layout
      */
     public function __construct(
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\View\LayoutInterface $layout
+        StoreManagerInterface $storeManager,
+        LayoutInterface $layout
     ) {
         $this->_layout = $layout;
         $this->_storeManager = $storeManager;
@@ -47,6 +50,7 @@ class OrderSuccessPageViewObserver implements ObserverInterface
             return;
         }
 
+        /** @var BlockInterface $block */
         $block = $this->_layout->getBlock('magepal_gtm_datalayer');
         if ($block) {
             $block->setOrderIds($orderIds);
