@@ -7,7 +7,8 @@
 
 namespace MagePal\GoogleTagManager\Block\Data;
 
-use Magento\Catalog\Model\Product as CatalogProduct;
+use Exception;
+use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Block\Product\AbstractProduct;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Helper\Data;
@@ -17,10 +18,6 @@ use MagePal\GoogleTagManager\DataLayer\ProductData\ProductProvider;
 use MagePal\GoogleTagManager\Helper\Product as ProductHelper;
 use MagePal\GoogleTagManager\Model\DataLayerEvent;
 
-/**
- * Class Product
- * @package MagePal\GoogleTagManager\Block\Data
- */
 class Product extends AbstractProduct
 {
     /**
@@ -39,7 +36,7 @@ class Product extends AbstractProduct
     private $productProvider;
 
     /**
-     * @param  Context|Context  $context
+     * @param  Context  $context
      * @param  ProductHelper  $productHelper
      * @param  ProductProvider  $productProvider
      * @param  array  $data
@@ -65,8 +62,6 @@ class Product extends AbstractProduct
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
-
-        /** @var $product CatalogProduct */
         $product = $this->getProduct();
 
         if ($product) {
@@ -123,13 +118,19 @@ class Product extends AbstractProduct
     protected function getProductCategoryName()
     {
         $categoryName = '';
-        $categoryArray = $this->getBreadCrumbPath();
-        if (count($categoryArray) > 1) {
-            end($categoryArray);
-            $categoryName = prev($categoryArray);
-        } elseif ($this->getProduct()) {
-            $category = $this->getProduct()->getCategoryCollection()->addAttributeToSelect('name')->getFirstItem();
-            $categoryName = ($category) ? $category->getName() : '';
+
+        try {
+            $categoryArray = $this->getBreadCrumbPath();
+
+            if (count($categoryArray) > 1) {
+                end($categoryArray);
+                $categoryName = prev($categoryArray);
+            } elseif ($this->getProduct()) {
+                $category = $this->getProduct()->getCategoryCollection()->addAttributeToSelect('name')->getFirstItem();
+                $categoryName = ($category) ? $category->getName() : '';
+            }
+        } catch (Exception $e) {
+            $categoryName = '';
         }
 
         return $categoryName;

@@ -11,10 +11,6 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
-/**
- * Class GtmCode
- * @package MagePal\GoogleTagManager\Block
- */
 class GtmCode extends Template
 {
 
