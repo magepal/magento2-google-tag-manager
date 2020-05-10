@@ -9,10 +9,6 @@ namespace MagePal\GoogleTagManager\DataLayer\OrderData;
 
 use Magento\Sales\Model\Order;
 
-/**
- * Class OrderAbstract
- * @package MagePal\GoogleTagManager\DataLayer\OrderData
- */
 abstract class OrderAbstract
 {
     /**

@@ -9,10 +9,6 @@ namespace MagePal\GoogleTagManager\DataLayer\OrderData;
 
 use Magento\Sales\Model\Order\Item;
 
-/**
- * Class OrderItemAbstract
- * @package MagePal\GoogleTagManager\DataLayer\OrderData
- */
 abstract class OrderItemAbstract
 {
     const LIST_TYPE_GOOGLE = 1;
@@ -35,7 +31,6 @@ abstract class OrderItemAbstract
      * @var Item
      */
     private $item;
-
 
     /**
      * @return array

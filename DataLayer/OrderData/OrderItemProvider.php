@@ -7,15 +7,10 @@
 
 namespace MagePal\GoogleTagManager\DataLayer\OrderData;
 
-/**
- * Class OrderItemProvider
- * @package MagePal\GoogleTagManager\DataLayer\OrderData
- */
 class OrderItemProvider extends OrderItemAbstract
 {
     /**
      * @param array $orderItemProviders
-     * @codeCoverageIgnore
      */
     public function __construct(
         array $orderItemProviders = []
@@ -29,13 +24,13 @@ class OrderItemProvider extends OrderItemAbstract
     public function getData()
     {
         $data =  $this->getItemData();
-        /** @var OrderItemAbstract $orderItemProvider */
+        $arraysToMerge = [];
+
         foreach ($this->getOrderItemProviders() as $orderItemProvider) {
             $orderItemProvider->setItem($this->getItem())->setItemData($data);
-
-            $data = array_merge($data, $orderItemProvider->getData());
+            $arraysToMerge[] = $orderItemProvider->getData();
         }
 
-        return $data;
+        return empty($arraysToMerge) ? $data : array_merge($data, ...$arraysToMerge);
     }
 }
