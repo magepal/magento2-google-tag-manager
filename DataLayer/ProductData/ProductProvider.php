@@ -7,10 +7,6 @@
 
 namespace MagePal\GoogleTagManager\DataLayer\ProductData;
 
-/**
- * Class ProductProvider
- * @package MagePal\GoogleTagManager\DataLayer\ProductData
- */
 class ProductProvider extends ProductAbstract
 {
     /**
@@ -29,13 +25,14 @@ class ProductProvider extends ProductAbstract
     public function getData()
     {
         $data =  $this->getProductData();
+        $arraysToMerge = [];
+
         /** @var ProductAbstract $productProvider */
         foreach ($this->getProductProviders() as $productProvider) {
             $productProvider->setProduct($this->getProduct())->setProductData($data);
-
-            $data = array_merge($data, $productProvider->getData());
+            $arraysToMerge[] = $productProvider->getData();
         }
 
-        return $data;
+        return empty($arraysToMerge) ? $data : array_merge($data, ...$arraysToMerge);
     }
 }

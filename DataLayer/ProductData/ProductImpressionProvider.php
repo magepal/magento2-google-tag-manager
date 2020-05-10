@@ -7,10 +7,6 @@
 
 namespace MagePal\GoogleTagManager\DataLayer\ProductData;
 
-/**
- * Class ProductImpressionProvider
- * @package MagePal\GoogleTagManager\DataLayer\ProductData
- */
 class ProductImpressionProvider extends ProductImpressionAbstract
 {
 
@@ -30,13 +26,14 @@ class ProductImpressionProvider extends ProductImpressionAbstract
     public function getData()
     {
         $data =  $this->getItemData();
+        $arraysToMerge = [];
+
         /** @var ProductImpressionAbstract $productImpressionProvider */
         foreach ($this->getProductImpressionProviders() as $productImpressionProvider) {
             $productImpressionProvider->setProduct($this->getProduct())->setItemData($data);
-
-            $data = array_merge($data, $productImpressionProvider->getData());
+            $arraysToMerge[] = $productImpressionProvider->getData();
         }
 
-        return $data;
+        return empty($arraysToMerge) ? $data : array_merge($data, ...$arraysToMerge);
     }
 }

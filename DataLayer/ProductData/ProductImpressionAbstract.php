@@ -9,10 +9,6 @@ namespace MagePal\GoogleTagManager\DataLayer\ProductData;
 
 use Magento\Catalog\Model\Product;
 
-/**
- * Class ProductAbstract
- * @package MagePal\GoogleTagManager\DataLayer\ProductData
- */
 abstract class ProductImpressionAbstract
 {
     /**
