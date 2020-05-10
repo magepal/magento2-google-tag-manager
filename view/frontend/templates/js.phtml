@@ -4,36 +4,40 @@
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
  */
+
+/** @var $block MagePal\GoogleTagManager\Block\DataLayer **/
+$dataLayerName = $block->getDataLayerName();
+$accountId = $block->getAccountId();
 ?>
-<?php /** @var $block MagePal\GoogleTagManager\Block\DataLayer **/ ?>
+
 <!-- Google Tag Manager by MagePal -->
 <script type="text/javascript">
-    window.<?= $block->getDataLayerName() ?> = window.<?= $block->getDataLayerName() ?> || [];
+    window.<?= /* @noEscape */ $dataLayerName ?> = window.<?= /* @noEscape */ $dataLayerName ?> || [];
 
-    <?php if (!$block->isGdprEnabled() && $block->addJsInHead()) : ?>
-    <?= $block->getDataLayerJs() ?>
+<?php if (!$block->isGdprEnabled() && $block->addJsInHead()): ?>
+    <?= /* @noEscape */ $block->getDataLayerJs() ?>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        j=d.createElement(s),dl=l!='<?= /* @noEscape */ $dataLayerName ?>'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','<?= $block->getDataLayerName() ?>','<?= $block->getAccountId() ?>');
-    <?php endif; ?>
+    })(window,document,'script','<?= /* @noEscape */ $dataLayerName ?>','<?= /* @noEscape */ $accountId ?>');
+<?php endif; ?>
 </script>
 
-<?php if ($block->isGdprEnabled() || !$block->addJsInHead()) : ?>
+<?php if ($block->isGdprEnabled() || !$block->addJsInHead()): ?>
 <script type="text/x-magento-init">
     {
         "*": {
             "magepalGtmDatalayer": {
-                "isCookieRestrictionModeEnabled": <?= $block->isCookieRestrictionModeEnabled() ?>,
-                "currentWebsite": <?= $block->getCurrentWebsiteId() ?>,
-                "cookieName": "<?= $block->getCookieRestrictionName() ?>",
-                "dataLayer": "<?= $block->getDataLayerName() ?>",
-                "accountId": "<?= $block->getAccountId() ?>",
-                "data": <?= $block->getDataLayerJson() ?>,
-                "isGdprEnabled": <?= $block->isGdprEnabled() ?>,
-                "gdprOption": <?= $block->getGdprOption() ?>,
-                "addJsInHeader": <?= $block->addJsInHead() ?>
+                "isCookieRestrictionModeEnabled": <?= /* @noEscape */ $block->isCookieRestrictionModeEnabled() ?>,
+                "currentWebsite": <?= /* @noEscape */ $block->getCurrentWebsiteId() ?>,
+                "cookieName": "<?= /* @noEscape */ $block->getCookieRestrictionName() ?>",
+                "dataLayer": "<?= /* @noEscape */ $block->getDataLayerName() ?>",
+                "accountId": "<?= /* @noEscape */ $block->getAccountId() ?>",
+                "data": <?= /* @noEscape */ $block->getDataLayerJson() ?>,
+                "isGdprEnabled": <?= /* @noEscape */ $block->isGdprEnabled() ?>,
+                "gdprOption": <?= /* @noEscape */ $block->getGdprOption() ?>,
+                "addJsInHeader": <?= /* @noEscape */ $block->addJsInHead() ?>
             }
         }
     }

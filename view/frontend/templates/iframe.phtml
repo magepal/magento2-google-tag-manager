@@ -4,10 +4,12 @@
  * See COPYING.txt for license details.
  * http://www.magepal.com | support@magepal.com
  */
+
+/** @var $block MagePal\GoogleTagManager\Block\GtmCode **/
+$accountId = $block->getAccountId();
 ?>
-<?php /** @var $block MagePal\GoogleTagManager\Block\GtmCode **/ ?>
 
 <!-- Google Tag Manager by MagePal -->
-<noscript><iframe src="<?= '/' . '/' ?>www.googletagmanager.com/ns.html?id=<?php echo $block->getAccountId() ?>"
+<noscript><iframe src="<?= '/' . '/' ?>www.googletagmanager.com/ns.html?id=<?= /* @noEscape */ $accountId ?>"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager by MagePal -->

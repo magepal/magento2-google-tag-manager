@@ -11,10 +11,6 @@ use Magento\Customer\CustomerData\SectionSourceInterface;
 use MagePal\GoogleTagManager\Model\Cart as GtmCartModel;
 use MagePal\GoogleTagManager\Model\Customer as GtmCustomerModel;
 
-/**
- * Class JsDataLayer
- * @package MagePal\GoogleTagManager\CustomerData
- */
 class JsDataLayer implements SectionSourceInterface
 {
     /**

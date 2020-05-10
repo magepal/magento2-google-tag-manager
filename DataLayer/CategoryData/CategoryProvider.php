@@ -7,15 +7,10 @@
 
 namespace MagePal\GoogleTagManager\DataLayer\CategoryData;
 
-/**
- * Class CategoryProvider
- * @package MagePal\GoogleTagManager\DataLayer
- */
 class CategoryProvider extends CategoryAbstract
 {
     /**
      * @param array $categoryProviders
-     * @codeCoverageIgnore
      */
     public function __construct(
         array $categoryProviders = []
@@ -29,12 +24,14 @@ class CategoryProvider extends CategoryAbstract
     public function getData()
     {
         $data =  $this->getcategoryData();
+        $arraysToMerge = [];
+
         /** @var CategoryProvider $categoryProvider */
         foreach ($this->getCategoryProviders() as $categoryProvider) {
             $categoryProvider->setCategory($this->getCategory())->setCategoryData($data);
-            $data = array_merge($data, $categoryProvider->getData());
+            $arraysToMerge[] = $categoryProvider->getData();
         }
 
-        return $data;
+        return empty($arraysToMerge) ? $data : array_merge($data, ...$arraysToMerge);
     }
 }

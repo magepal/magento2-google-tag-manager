@@ -9,10 +9,6 @@ namespace MagePal\GoogleTagManager\DataLayer\CategoryData;
 
 use Magento\Catalog\Model\Category;
 
-/**
- * Class CategoryPageProvider
- * @package MagePal\GoogleTagManager\Model\DataLayer
- */
 abstract class CategoryAbstract
 {
     /**
