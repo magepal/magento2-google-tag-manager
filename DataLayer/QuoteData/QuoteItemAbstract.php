@@ -9,10 +9,6 @@ namespace MagePal\GoogleTagManager\DataLayer\QuoteData;
 
 use Magento\Quote\Model\Quote\Item;
 
-/**
- * Class QuoteItemAbstract
- * @package MagePal\GoogleTagManager\DataLayer\QuoteData
- */
 abstract class QuoteItemAbstract
 {
     const LIST_TYPE_GOOGLE = 1;

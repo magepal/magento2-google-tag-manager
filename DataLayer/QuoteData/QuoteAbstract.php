@@ -9,10 +9,6 @@ namespace MagePal\GoogleTagManager\DataLayer\QuoteData;
 
 use Magento\Quote\Model\Quote;
 
-/**
- * Class QuoteAbstract
- * @package MagePal\GoogleTagManager\DataLayer\QuoteData
- */
 abstract class QuoteAbstract
 {
     /**

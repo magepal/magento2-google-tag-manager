@@ -7,10 +7,6 @@
 
 namespace MagePal\GoogleTagManager\DataLayer\QuoteData;
 
-/**
- * Class QuoteProvider
- * @package MagePal\GoogleTagManager\DataLayer\QuoteData
- */
 class QuoteProvider extends QuoteAbstract
 {
     /**
@@ -29,13 +25,14 @@ class QuoteProvider extends QuoteAbstract
     public function getData()
     {
         $data =  $this->getTransactionData();
+        $arraysToMerge = [];
+
         /** @var QuoteAbstract $quoteProvider */
         foreach ($this->getQuoteProviders() as $quoteProvider) {
             $quoteProvider->setQuote($this->getQuote())->setTransactionData($data);
-
-            $data = array_merge($data, $quoteProvider->getData());
+            $arraysToMerge[] = $quoteProvider->getData();
         }
 
-        return $data;
+        return empty($arraysToMerge) ? $data : array_merge($data, ...$arraysToMerge);
     }
 }
