@@ -13,7 +13,6 @@ use Magento\Framework\Escaper;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Quote\Model\Quote;
-use Magento\Quote\Model\Quote\Item;
 use MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteItemProvider;
 use MagePal\GoogleTagManager\DataLayer\QuoteData\QuoteProvider;
 use MagePal\GoogleTagManager\Helper\DataLayerItem as dataLayerItemHelper;
@@ -27,7 +26,7 @@ class Cart extends DataObject
     protected $checkoutSession;
 
     /**
-     * @var dataLayerdataLayerItemHelper
+     * @var dataLayerItemHelper
      */
     protected $dataLayerItemHelper;
 
@@ -93,7 +92,7 @@ class Cart extends DataObject
             foreach ($quote->getAllVisibleItems() as $item) {
                 $itemData = [
                     'sku' => $item->getSku(),
-                    'parent_sku' => $item->getProduct()->getData('sku'),
+                    'parent_sku' => $item->getProduct() ? $item->getProduct()->getData('sku') : $item->getSku(),
                     'name' => $this->escapeJsQuote($item->getName()),
                     'product_type' => $item->getProductType(),
                     'price' => $this->dataLayerItemHelper->formatPrice($item->getPrice()),

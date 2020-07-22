@@ -13,7 +13,6 @@ use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 class GtmCode extends Template
 {
-
     /**
      * @var GtmHelper
      */

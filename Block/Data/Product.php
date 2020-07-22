@@ -62,9 +62,8 @@ class Product extends AbstractProduct
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
-        $product = $this->getProduct();
 
-        if ($product) {
+        if ($product = $this->getProduct()) {
             $productData = [
                 'id' => $product->getId(),
                 'sku' => $product->getSku(),
@@ -99,15 +98,18 @@ class Product extends AbstractProduct
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
+        $price = 0;
 
         /** @var $product ProductInterface */
-        $product = $this->getProduct();
-
-        if ($product->getTypeId() == Type::TYPE_SIMPLE) {
-            return $tm->formatPrice($product->getPrice());
-        } else {
-            return $tm->formatPrice($product->getFinalPrice());
+        if ($product = $this->getProduct()) {
+            if ($product->getTypeId() == Type::TYPE_SIMPLE) {
+                $price = $product->getPrice();
+            } else {
+                $price = $product->getFinalPrice();
+            }
         }
+
+        return $tm->formatPrice($price);
     }
 
     /**

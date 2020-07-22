@@ -15,6 +15,8 @@ use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 /**
  * @method getList()
+ * @method setListType()
+ * @method getListType()
  */
 class DataLayerAbstract extends Template
 {

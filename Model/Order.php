@@ -35,7 +35,7 @@ class Order extends DataObject
     protected $gtmHelper;
 
     /**
-     * @var CollectionFactory
+     * @var CollectionFactoryInterface
      */
     protected $_salesOrderCollection;
 
@@ -113,7 +113,7 @@ class Order extends DataObject
 
         $result = [];
 
-        /* @var OrderAlias $order */
+        /* @var SalesOrder $order */
 
         foreach ($collection as $order) {
             $products = [];
@@ -204,20 +204,20 @@ class Order extends DataObject
     }
 
     /**
-     * @param OrderAlias $order
+     * @param SalesOrder $order
      * @return array
      * @throws NoSuchEntityException
      */
     public function getOrderDataLayer(SalesOrder $order)
     {
-        /* @var OrderAlias $order */
+        /* @var SalesOrder $order */
         /* @var Item $item */
         $products = [];
         foreach ($order->getAllVisibleItems() as $item) {
             $product = [
                 'sku' => $item->getSku(),
                 'id' => $item->getSku(),
-                'parent_sku' => $item->getProduct()->getData('sku'),
+                'parent_sku' => $item->getProduct() ? $item->getProduct()->getData('sku') : $item->getSku(),
                 'name' => $this->escapeJsQuote($item->getProductOptionByCode('simple_name') ?: $item->getName()),
                 'parent_name' => $this->escapeJsQuote($item->getName()),
                 'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),

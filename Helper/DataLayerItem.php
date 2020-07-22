@@ -69,12 +69,13 @@ class DataLayerItem extends Data
     }
 
     /**
-     * @param OrderItem $item
+     * @param OrderItem $item | QuoteItem $item
      * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getCategories($item)
     {
-        if (!$this->isCategoryLayerEnabled()) {
+        if (!$this->isCategoryLayerEnabled() || !$item->getProduct()) {
             return [];
         }
 
@@ -147,13 +148,17 @@ class DataLayerItem extends Data
         }
 
         if (!array_key_exists($item->getItemId(), $this->variants)) {
-            $productOptions = [];
-
             if ($item instanceof OrderItem) {
                 $productOptions = $this->getItemOptions($item->getProductOptions());
-            } elseif ($item instanceof QuoteItem) {
-                $itemOptionInstance = $item->getProduct()->getTypeInstance(true)->getOrderOptions($item->getProduct());
+            } elseif ($item instanceof QuoteItem
+                && $item->getProduct()
+                && $item->getProduct()->getCustomOption('simple_product')
+                && $item->getProduct()->getCustomOption('simple_product')->getProduct()
+            ) {
+                $itemOptionInstance = $item->getProduct()->getTypeInstance()->getOrderOptions($item->getProduct());
                 $productOptions = $this->getItemOptions($itemOptionInstance);
+            } else {
+                $productOptions = '';
             }
 
             $this->variants[$item->getItemId()] = $this->getItemVariantOption($productOptions);
@@ -211,10 +216,14 @@ class DataLayerItem extends Data
         $product = [
             'name' => $item->getName(),
             'id' => $item->getSku(),
-            'price' => $this->formatPrice($item->getPrice() ?: $item->getProduct()->getPrice()),
+            'price' => $this->formatPrice($item->getPrice()),
             'quantity' => $qty * 1,
-            'parent_sku' => $item->getProduct()->getData('sku'),
+            'parent_sku' => $item->getProduct() ? $item->getProduct()->getData('sku') : $item->getSku(),
         ];
+
+        if (!$item->getPrice() && $item->getProduct()) {
+            $product['price'] =  $this->formatPrice($item->getProduct()->getPrice());
+        }
 
         if ($variant = $this->getItemVariant($item)) {
             $product['variant'] = $variant;
