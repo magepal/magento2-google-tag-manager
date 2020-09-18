@@ -267,7 +267,7 @@ class Order extends DataObject
 
     /**
      * @param $order
-     * @return string
+     * @return array
      */
     public function getPaymentMethod(SalesOrder $order)
     {
