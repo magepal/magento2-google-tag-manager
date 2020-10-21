@@ -40,7 +40,7 @@
         "magepal/magento2-core":">1.1.0"
     },
     "type": "magento2-module",
-    "version": "2.5.1",
+    "version": "2.5.2",
     "autoload": {
         "files": [
             "registration.php"

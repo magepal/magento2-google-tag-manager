@@ -12,6 +12,7 @@ use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Block\Product\AbstractProduct;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Helper\Data;
+use Magento\Catalog\Pricing\Price\FinalPrice;
 use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\DataLayer\ProductData\ProductProvider;
 use MagePal\GoogleTagManager\Helper\Product as ProductHelper;
@@ -100,8 +101,12 @@ class Product extends AbstractProduct
         $price = 0;
 
         /** @var $product ProductInterface */
-        if ($product = $this->getProduct()) {
-            $price = !$product->getSpecialPrice() ? $product->getPrice() : $product->getSpecialPrice();
+        if ($this->getProduct()) {
+            $price = $this->getProduct()
+                ->getPriceInfo()
+                ->getPrice(FinalPrice::PRICE_CODE)
+                ->getAmount()
+                ->getBaseAmount() ?: 0;
         }
 
         return $tm->formatPrice($price);
