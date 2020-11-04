@@ -6,7 +6,7 @@
 [![Latest Stable Version](https://poser.okvpn.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 
 #### Whether you are a small Magento retailer or an Enterprise customer, our suite of Google Tag Manager extensions will help you integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions.
-For Magento 2.0.x, 2.1.x, 2.2.x and 2.3.x
+For Magento 2.0.x, 2.1.x, 2.2.x, 2.3.x and 2.4.x
 
 <a href="https://www.magepal.com/magento2/extensions/digital-marketing.html"><img alt="Magento Enhanced Ecommerce for Google Tag Manager" src="https://user-images.githubusercontent.com/1415141/88172990-d89cd300-cbef-11ea-8a51-cc39f55b0218.png" /></a>
 
