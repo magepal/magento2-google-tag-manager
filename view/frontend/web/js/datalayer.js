@@ -67,16 +67,16 @@ define([
                 }
             }
         } else if (config.gdprOption === 2) {
-            allowServices = $.mage.cookies.get(config.cookieName) !== null ? true : false;
+            allowServices = $.mage.cookies.get(config.cookieName) !== null;
         } else if (config.gdprOption === 3) {
-            allowServices = $.mage.cookies.get(config.cookieName) === null ? true : false;
+            allowServices = $.mage.cookies.get(config.cookieName) === null;
         }
 
         return allowServices;
     }
 
     //load gtm
-    function initTracking(dataLayerName, accountId)
+    function initTracking(dataLayerName, accountId, containerCode)
     {
         $(document).trigger('gtm:beforeInitialize');
 
@@ -89,7 +89,7 @@ define([
             var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s), dl = l != dataLayerName ? '&l=' + l : '';
             j.async = true;
-            j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+            j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl + containerCode;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', dataLayerName, accountId);
 
@@ -111,7 +111,7 @@ define([
 
         if (isTrackingAllowed(config)) {
             pushData(config.dataLayer, config.data);
-            initTracking(config.dataLayer, config.accountId);
+            initTracking(config.dataLayer, config.accountId, config.containerCode);
         }
 
         var dataObject = customerData.get('magepal-gtm-jsdatalayer');

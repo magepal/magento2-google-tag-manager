@@ -218,9 +218,12 @@ class DataLayerItem extends Data
             'id' => $item->getSku(),
             'price' => $this->formatPrice($item->getPrice()),
             'quantity' => $qty * 1,
-            'parent_sku' => $item->getProduct() ? $item->getProduct()->getData('sku') : $item->getSku(),
-            'item_id' => $item->getItemId()
+            'parent_sku' => $item->getProduct() ? $item->getProduct()->getData('sku') : $item->getSku()
         ];
+
+        if ($item->getItemId()) {
+            $product['item_id'] = $item->getItemId();
+        }
 
         if (!$item->getPrice() && $item->getProduct()) {
             $product['price'] =  $this->formatPrice($item->getProduct()->getPrice());

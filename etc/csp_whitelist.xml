@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="mp-csp-googleapis-js" type="host">http://www.googletagmanager.com/</value>
+                <value id="mp-csp-googleapis-js-ssl" type="host">https://www.googletagmanager.com/</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="mp-csp-googleapis-frame" type="host">https://www.googletagmanager.com/</value>
+                <value id="mp-csp-googleapis-frame-ssl" type="host">https://www.googletagmanager.com/</value>
+            </values>
+        </policy>
+        <policy id="media-src">
+            <values>
+                <value id="custom-csp-googleapis-media" type="host">http://www.googleadservices.com/</value>
+                <value id="custom-csp-googleapis-media-ga" type="host">http://www.google-analytics.com/</value>
+                <value id="custom-csp-googleapis-media-ssl" type="host">https://www.googleadservices.com/</value>
+                <value id="custom-csp-googleapis-media-ga-ssl" type="host">https://www.google-analytics.com/</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="custom-csp-googleapis-media" type="host">http://www.googleadservices.com/</value>
+                <value id="custom-csp-googleapis-media-ga" type="host">http://www.google-analytics.com/</value>
+                <value id="custom-csp-googleapis-img-ssl" type="host">https://www.googleadservices.com/</value>
+                <value id="custom-csp-googleapis-img-ga-ssl" type="host">https://www.google-analytics.com/</value>
+                <value id="custom-csp-google-img-ga-ssl" type="host">https://www.google.com/</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="custom-csp-googleapis-cs" type="host">http://stats.g.doubleclick.net/</value>
+                <value id="custom-csp-googleapis-cs-ssl" type="host">https://stats.g.doubleclick.net/</value>
+                <value id="custom-csp-googleapis-cs-ga" type="host">http://www.google-analytics.com/</value>
+                <value id="custom-csp-googleapis-cs-ga-ssl" type="host">https://www.google-analytics.com/</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

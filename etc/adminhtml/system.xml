@@ -160,6 +160,23 @@
                     </depends>
                 </field>
             </group>
+            <group id="gtm_container" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>GTM Container</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Multiple Environments</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="code" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Code</label>
+                    <comment>
+                        <![CDATA[Copy and Paste Container Code. Eg. '&amp;gtm_auth=abc_xyz&amp;gtm_preview=env-00&amp;gtm_cookies_win=x' without quotes]]>
+                    </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
         </section>
     </system>
 </config>

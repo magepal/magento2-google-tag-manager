@@ -51,6 +51,15 @@ class GtmCode extends Template
     }
 
     /**
+     * @return string
+     */
+    public function getEmbeddedAccountId()
+    {
+        return $this->_gtmHelper->isMultiContainerEnabled() ?
+            $this->getAccountId() . $this->_gtmHelper->getMultiContainerCode() : $this->getAccountId();
+    }
+
+    /**
      * Render tag manager JS
      *
      * @return string

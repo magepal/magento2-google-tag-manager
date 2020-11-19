@@ -113,6 +113,32 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param null $store_id
+     * @return int
+     */
+    public function isMultiContainerEnabled($store_id = null)
+    {
+        return (int) $this->scopeConfig->isSetFlag(
+            'googletagmanager/gtm_container/enabled',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getMultiContainerCode($store_id = null)
+    {
+        return trim($this->scopeConfig->getValue(
+            'googletagmanager/gtm_container/code',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        ));
+    }
+
+    /**
      * Check if cookie restriction mode is enabled for this store
      * Fix issue in 2.1.9
      * @return bool

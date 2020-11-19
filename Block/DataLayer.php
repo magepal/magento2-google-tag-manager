@@ -11,6 +11,10 @@ use Magento\Cookie\Helper\Cookie;
 use MagePal\GoogleTagManager\Block\Data\Order;
 use MagePal\GoogleTagManager\Model\Config\Source\GdprOption;
 
+/**
+ * Class DataLayer
+ * @method array getOrderIds()
+ */
 class DataLayer extends DataLayerAbstract
 {
 
@@ -41,6 +45,14 @@ class DataLayer extends DataLayerAbstract
     public function getAccountId()
     {
         return $this->_gtmHelper->getAccountId();
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmbeddedCode()
+    {
+        return $this->_gtmHelper->isMultiContainerEnabled() ? $this->_gtmHelper->getMultiContainerCode() : '';
     }
 
     /**

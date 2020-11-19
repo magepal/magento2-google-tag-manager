@@ -29,7 +29,7 @@
         {
             "name": "Renon Stewart",
             "email": "renon@magepal.com",
-            "homepage": "http://www.magepal.com/",
+            "homepage": "https://www.magepal.com/",
             "role": "Leader"
         }
     ],
@@ -39,8 +39,11 @@
         "magento/framework": "100.0.*|100.1.*|101.0.*|102.0.*|103.0.*",
         "magepal/magento2-core":">1.1.0"
     },
+    "suggest" : {
+        "magepal/magento2-enhanced-ecommerce": "Get more from Google Tag Manager with Enhanced E-commerce. Learn more at https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html"
+    },
     "type": "magento2-module",
-    "version": "2.5.2",
+    "version": "2.5.5",
     "autoload": {
         "files": [
             "registration.php"
