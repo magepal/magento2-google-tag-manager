@@ -13,7 +13,7 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Block\DataLayer;
 
 /**
- * @method Array setOrderIds(Array $orderIds)
+ * @method $this setOrderIds(Array $orderIds)
  * @method Array getOrderIds()
  */
 class Order extends Template
