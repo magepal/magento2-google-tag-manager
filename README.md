@@ -91,6 +91,8 @@ DL - [DataLayer for Google Tag Manager Extension](https://www.magepal.com/magent
 * Advance Data layer with over 60+ data elements
 * Fully customizable with 10 lines of code
 * General Data Protection Regulation (GDPR) Support
+* GTM Multiple Environments Support
+* Content Security Policies Support
 
 ### Benefits of using Google Tag Manager with Magento
 There are a number of benefits to using GTM with Magento:
