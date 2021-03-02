@@ -123,7 +123,7 @@ class Product extends AbstractProduct
     protected function getBreadCrumbPath()
     {
         $titleArray = [];
-        $breadCrumbs = $this->catalogHelper->getBreadcrumbPath();
+        $breadCrumbs = $this->catalogHelper->getBreadcrumbPath() ?? [];
 
         foreach ($breadCrumbs as $breadCrumb) {
             $titleArray[] = $breadCrumb['label'];
