@@ -14,9 +14,18 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 
 /**
+ * @method setBlockName($name)
+ * @method getBlockName()
+ * @method setList($name)
  * @method getList()
- * @method setListType()
+ * @method setListType($type)
  * @method getListType()
+ * @method setItemListName($name)
+ * @method getItemListName()
+ * @method setUseWidgetTitle($title)
+ * @method getUseWidgetTitle()
+ * @method getShowCategory()
+ * @method getCatalogWidgetBlockList()
  */
 class DataLayerAbstract extends Template
 {
@@ -88,6 +97,14 @@ class DataLayerAbstract extends Template
             ['dataLayer' => $this]
         );
 
+        return $this->processDataLayer();
+    }
+
+    /**
+     * @return array
+     */
+    public function processDataLayer()
+    {
         $result = [];
 
         if (!empty($this->getVariables())) {

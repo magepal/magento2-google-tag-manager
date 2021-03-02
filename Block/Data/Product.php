@@ -8,11 +8,9 @@
 namespace MagePal\GoogleTagManager\Block\Data;
 
 use Exception;
-use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Block\Product\AbstractProduct;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Helper\Data;
-use Magento\Catalog\Pricing\Price\FinalPrice;
 use MagePal\GoogleTagManager\Block\DataLayer;
 use MagePal\GoogleTagManager\DataLayer\ProductData\ProductProvider;
 use MagePal\GoogleTagManager\Helper\Product as ProductHelper;
@@ -70,7 +68,7 @@ class Product extends AbstractProduct
                 'parent_sku' => $product->getData('sku'),
                 'product_type' => $product->getTypeId(),
                 'name' => $product->getName(),
-                'price' => $this->getPrice(),
+                'price' => $this->productHelper->getProductPrice($product),
                 'attribute_set_id' => $product->getAttributeSetId(),
                 'path' => implode(" > ", $this->getBreadCrumbPath()),
                 'category' => $this->getProductCategoryName(),
@@ -89,27 +87,6 @@ class Product extends AbstractProduct
         }
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrice()
-    {
-        /** @var $tm DataLayer */
-        $tm = $this->getParentBlock();
-        $price = 0;
-
-        /** @var $product ProductInterface */
-        if ($this->getProduct()) {
-            $price = $this->getProduct()
-                ->getPriceInfo()
-                ->getPrice(FinalPrice::PRICE_CODE)
-                ->getAmount()
-                ->getBaseAmount() ?: 0;
-        }
-
-        return $tm->formatPrice($price);
     }
 
     /**

@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.okvpn.org/magepal/magento2-googletagmanager/downloads)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 [![Latest Stable Version](https://poser.okvpn.org/magepal/magento2-googletagmanager/v/stable)](https://packagist.org/packages/magepal/magento2-googletagmanager)
 
-#### Whether you are a small Magento retailer or an Enterprise customer, our suite of Google Tag Manager extensions will help you integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions.
+#### Whether you are a small Magento retailer or an Enterprise customer, our suite of Google Tag Manager extensions will help you integrate the most challenging GTM projects within days, instead of spending weeks or months creating custom solutions.
 For Magento 2.0.x, 2.1.x, 2.2.x, 2.3.x and 2.4.x
 
 <a href="https://www.magepal.com/magento2/extensions/digital-marketing.html"><img alt="Magento Enhanced Ecommerce for Google Tag Manager" src="https://user-images.githubusercontent.com/1415141/88172990-d89cd300-cbef-11ea-8a51-cc39f55b0218.png" /></a>
@@ -19,12 +19,12 @@ Magento code providing the data is available to Google Tag Manager.
 
 Google Tag Manager makes running your digital marketing campaigns much easier when calibrating with multiple department and Ad agencies by making available the right set of tools so that everyone can get their job done quickly without relying on developers. 
 
-Without having the all data you need at your finger tips your integration will become a difficult, time-consuming and messy since each developer will only focus on the current task at hand instead of focusing on writing reusable components for future integration.
+Without having the all data you need at your fingertips your integration will become a difficult, time-consuming and messy since each developer will only focus on the current task at hand instead of focusing on writing reusable components for future integration.
 
 Our extension provides a vast array of over 60 preconfigure data layer elements to make integrating your Magento store with any other third-party service a breeze using Google Tag Manager. 
 Extracting, customizing and adding your own custom data from your Magento store to Google Tag Manager is as easy as 10 lines of code using our easy to customize APIs.
 
->:warning: Google Tag Manager 2.5.0 has some breaking changes to Enhanced Ecommerce. Please download the latest version of Enhanced Ecommerce 1.5.0 or greater from www.magepal.com account.
+>:warning: Google Tag Manager 2.6.0 has some breaking changes to Enhanced Ecommerce. Please download the latest version of Enhanced Ecommerce 1.6.0 or greater from www.magepal.com account.
 
 
 ### Why use our Google Tag Manager extension?
@@ -34,8 +34,12 @@ full advantage of GTM when integrating third-parties tracking codes that require
 such as product name, price, items added to cart, order items, total, shipping amount or any other data. Our extension 
 provides hundreds of data elements and events to accomplish any integration and provides the building block to make 
 your next integration a success. With a few lines of code, you can quickly extend our extension to accomplish your 
-most challenging integration. Google Tag Manager is only as powerful as the data layer powering it. 
+most challenging integration. Google Tag Manager is only as powerful as the data layer powering it.
 Learn more about [customizing Google Tag Manger](https://www.magepal.com/help/docs/google-tag-manager-for-magento/#api). 
+
+### Google Analytics 4
+Upgrade to the next generation of tracking from Google. [Google Analytics 4](https://www.magepal.com/google-analytics-4-for-google-tag-manager.html?utm_source=ga4%20for%20Google%20Tag%20Manager&utm_medium=github) comes with a bunch of key features that make it very different and more powerful than Enhanced Ecommerce.
+Gain access to GA4 new approach to privacy-first tracking, channel measurement, and AI based predictive data with MagePal Google Analytics 4 Extension.
 
 ### Google Analytics Enhanced E-commerce
 Want to track more? Upgrade to our new [Enhanced E-commerce for Google Tag Manager](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html?utm_source=Enhanced%20Ecommerce%20for%20Google%20Tag%20Manager&utm_medium=github) to take full advantage of Google Analytics most powerful e-commerce features. 
@@ -58,27 +62,29 @@ Please Note: Merchants should consult with their own legal counsel to ensure tha
 
 ### Get more from Google Tag Manager with our add-on Extensions
 
-| Features                    | GTM | EE | DL |
-|-----------------------------|:---:|:--:|:--:|
-| Global Page Tracking        |  X  |  X |    |
-| Order Conversion Tracking   |  X  |  X |    |
-| Page Type Event             |     |  X |    |
-| Product Clicks              |     |  X |    |
-| Product Detail Impressions  |     |  X |    |
-| Add to Cart                 |     |  X |    |
-| Remove from Cart            |     |  X |    |
-| Checkout Steps              |     |  X |    |
-| Order Refunds               |     |  X |    |
-| Admin Order Tracking        |     |  X |    |
-| Access DataLayer using JS   |     |    |  X |
-| Bing UET Tracking           |     |    |  X |
-| Full Facebook Tracking      |     |    |  X |
-| Custom Image Pixel Tracking |     |    |  X |
-| Custom iFrame Tracking      |     |    |  X |
-| Third-Party Integration     |     |    |  X |
-| Extend individual page type |     |    |  X |
+| Features                    | GTM |  EE | GA4 | DL |
+|-----------------------------|:---:|:---:|:---:|:---:|
+| Global Page Tracking        |  X  |  X  |  X  |    |
+| Order Conversion Tracking   |  X  |  X  |  X  |    |
+| Page Type Event             |     |  X  |  X  |    |
+| Product Clicks              |     |  X  |  X  |    |
+| Product Detail Impressions  |     |  X  |  X  |    |
+| Add to Cart                 |     |  X  |  X  |    |
+| Remove from Cart            |     |  X  |  X  |    |
+| Checkout Steps              |     |  X  |  X  |    |
+| Order Refunds               |     |  X  |  X  |    |
+| Admin Order Tracking        |     |  X  |  X  |    |
+| Access DataLayer using JS   |     |     |     | X  |
+| Bing UET Tracking           |     |     |     | X  |
+| Full Facebook Tracking      |     |     |     | X  |
+| Custom Image Pixel Tracking |     |     |     | X  |
+| Custom iFrame Tracking      |     |     |     | X  |
+| Third-Party Integration     |     |     |     | X  |
+| Extend individual page type |     |     |     | X  |
 
 GTM - [Google Tag Manager for Magento 2 Extension](https://www.magepal.com/magento2/extensions/google-tag-manager.html)
+
+GA4 - [Google Analytics 4 for Google Tag Manager Extension](https://www.magepal.com/magento2/extensions/google-analytics-4-for-google-tag-manager.html)
 
 EE - [Enhanced E-commerce for Google Tag Manager Extension](https://www.magepal.com/magento2/extensions/enhanced-ecommerce-for-google-tag-manager.html)
 
@@ -152,22 +158,26 @@ Our Magento extension provide a vast array of over 60 preconfigure data layer el
 * Events
   * productImpression*, categoryPage**, allPage**, catalogCategoryViewPage**, mpCustomerSession
   * productClick*, addToCart*, productListSwatchClicked**, productListSwatchSelected**
+  *  view_item_list***, select_item***, add_to_cart***
     
 ##### Product Detail Page Events
 * Events
   * productDetail*, productImpression*, productPage**, allPage**, catalogProductViewPage**, mpCustomerSession 
-  * productClick*, addToCart*, removeFromCart*, productDetailSwatchClicked**, productDetailSwatchSelected**, addToCartItemOutOfStock*, addToCartItemOptionRequired*
+  * productClick*, addToCart*, removeFromCart*, productDetailSwatchClicked**, productDetailSwatchSelected**, addToCartItemOutOfStock*, addToCartItemOptionRequired*, addToCartItemInvalidQtyIncrements*
+  * view_item***, select_item***, add_to_cart***, view_item_list***
   
 ##### Shopping Cart Page Events
 * Events
   * cartPage**, allPage**, checkoutCartIndexPage**, productImpression*, mpCustomerSession
   * productClick*, addToCart*, removeFromCart*
-  
+  * select_item***, add_to_cart***, remove_from_cart***, view_item_list***
+    
 ##### Checkout Page Events
 * Events
   * checkoutPage**, allPage**, checkoutIndexIndexPage**, checkout*, checkoutOption*, mpCustomerSession
   * checkoutEmailValidation*, shippingMethodAdded*, checkoutShippingStepCompleted*, checkoutShippingStepFailed*, paymentMethodAdded*, checkoutPaymentStepFailed*, checkoutPaymentStepCompleted*
-
+  * begin_checkout***, add_shipping_info***, add_payment_info***
+    
 ##### Order Confirmation Page Events
 * Events
   * purchase*, orderSuccessPage**, allPage**, checkoutOnepageSuccessPage**
@@ -345,7 +355,8 @@ Our Magento extension provide a vast array of over 60 preconfigure data layer el
 `*` - Data layer provide by our [Enhanced Ecommerce Extension](https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html)
 
 `**`  - Data layer provide by our [Data Layer Extension](https://www.magepal.com/magento2/extensions/datalayer-for-google-tag-manager.html)
-  
+
+`***`  - Data layer provide by our [Google Analytics 4 Extension](https://www.magepal.com/google-analytics-4-for-google-tag-manager.html)
 
 Contribution
 ---

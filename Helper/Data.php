@@ -7,6 +7,9 @@
 
 namespace MagePal\GoogleTagManager\Helper;
 
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Pricing\Price\FinalPrice;
+use Magento\Catalog\Model\Product\Type;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
@@ -201,5 +204,85 @@ class Data extends AbstractHelper
     {
         $this->_dataLayerName = $name;
         return $this;
+    }
+
+    /**
+     * @param null $store_id
+     * @return bool
+     */
+    public function isCategoryLayerEnabled($store_id = null)
+    {
+        return $this->scopeConfig->isSetFlag(
+            'googletagmanager/general/category_layer',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * @param ProductInterface $product
+     * @param array $viewItem
+     */
+    public function addCategoryElements($product, &$viewItem)
+    {
+        if (!$this->isCategoryLayerEnabled() || !$product) {
+            return;
+        }
+
+        $categoryList = [];
+        $index = 1;
+        $categoryCollection = $product->getCategoryCollection();
+        $categories = $categoryCollection->addAttributeToSelect('name');
+
+        if (array_key_exists('item_category', $viewItem)) {
+            $index = 2;
+            $categoryList[] = $viewItem['item_category'];
+        }
+
+        foreach ($categories as $category) {
+            if (!in_array($category->getName(), $categoryList)) {
+                $categoryList[] = $category->getName();
+
+                if ($index == 1) {
+                    $viewItem['item_category'] = $category->getName();
+                    $index++;
+                } else {
+                    $viewItem['item_category_' . $index] = $category->getName();
+                    $index++;
+                }
+
+                if ($index >= 5) {
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param $product
+     * @return float
+     */
+    public function getProductPrice($product)
+    {
+        $price = 0;
+
+        /** @var $product ProductInterface */
+        if ($product) {
+            $price = $product
+                ->getPriceInfo()
+                ->getPrice(FinalPrice::PRICE_CODE)
+                ->getAmount()
+                ->getBaseAmount() ?: 0;
+        }
+
+        if (!$price) {
+            if ($product->getTypeId() == Type::TYPE_SIMPLE) {
+                $price = $product->getPrice();
+            } else {
+                $price = $product->getFinalPrice();
+            }
+        }
+
+        return $this->formatPrice($price);
     }
 }

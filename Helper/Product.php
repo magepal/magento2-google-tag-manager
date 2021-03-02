@@ -7,12 +7,11 @@
 
 namespace MagePal\GoogleTagManager\Helper;
 
-use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\UrlInterface;
 
-class Product extends AbstractHelper
+class Product extends Data
 {
-
     public function getImageUrl($product)
     {
         /** @var $product ProductInterface */

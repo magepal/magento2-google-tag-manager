@@ -29,6 +29,11 @@ abstract class ProductImpressionAbstract
     private $listType = '';
 
     /**
+     * @var string
+     */
+    private $itemListName = '';
+
+    /**
      * @return array
      */
     abstract public function getData();
@@ -92,6 +97,24 @@ abstract class ProductImpressionAbstract
     public function setListType(string $listType)
     {
         $this->listType = $listType;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getItemListName()
+    {
+        return $this->itemListName;
+    }
+
+    /**
+     * @param string $itemListName
+     * @return ProductImpressionAbstract
+     */
+    public function setItemListName(string $itemListName)
+    {
+        $this->itemListName = $itemListName;
         return $this;
     }
 }

@@ -56,19 +56,6 @@ class DataLayerItem extends Data
     }
 
     /**
-     * @param null $store_id
-     * @return bool
-     */
-    public function isCategoryLayerEnabled($store_id = null)
-    {
-        return $this->scopeConfig->isSetFlag(
-            'googletagmanager/general/category_layer',
-            ScopeInterface::SCOPE_STORE,
-            $store_id
-        );
-    }
-
-    /**
      * @param OrderItem $item | QuoteItem $item
      * @return array
      * @throws \Magento\Framework\Exception\LocalizedException
