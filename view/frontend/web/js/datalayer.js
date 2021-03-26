@@ -109,7 +109,7 @@ define([
 
         window[config.dataLayer] = window[config.dataLayer] || [];
 
-        if (isTrackingAllowed(config)) {
+        if (_.has(config, 'accountId') && isTrackingAllowed(config)) {
             pushData(config.dataLayer, config.data);
             initTracking(config.dataLayer, config.accountId, config.containerCode);
         }

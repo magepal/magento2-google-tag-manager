@@ -23,7 +23,7 @@ use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
 use MagePal\GoogleTagManager\Helper\DataLayerItem;
 
 /**
- * @method $this setOrderIds(Array $orderIds)
+ * @method $this setOrderIds($orderIds)
  * @method Array getOrderIds()
  */
 class Order extends DataObject
@@ -116,41 +116,7 @@ class Order extends DataObject
         /* @var SalesOrder $order */
 
         foreach ($collection as $order) {
-            $products = [];
-            /* @var Item $item */
-            foreach ($order->getAllVisibleItems() as $item) {
-                $product = [
-                    'sku' => $item->getSku(),
-                    'name' => $this->escapeJsQuote($item->getName()),
-                    'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
-                    'quantity' => $item->getQtyOrdered() * 1
-                ];
-
-                if ($category = $this->dataLayerItemHelper->getFirstCategory($item)) {
-                    $product['category'] = $category;
-                }
-
-                $products[] = $this->orderItemProvider
-                                    ->setItem($item)
-                                    ->setItemData($product)
-                                    ->setListType(OrderItemProvider::LIST_TYPE_GOOGLE)
-                                    ->getData();
-            }
-
-            $transaction = [
-                'event' => DataLayerEvent::GTM_ORDER_COMPLETE_EVENT,
-                'transactionId' => $order->getIncrementId(),
-                'transactionAffiliation' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
-                'transactionTotal' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
-                'transactionSubTotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
-                'transactionShipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
-                'transactionTax' => $this->gtmHelper->formatPrice($order->getTaxAmount()),
-                'transactionCouponCode' => $order->getCouponCode() ? $order->getCouponCode() : '',
-                'transactionDiscount' => $this->gtmHelper->formatPrice($order->getDiscountAmount()),
-                'transactionProducts' => $products,
-                'order' => $this->getOrderDataLayer($order)
-            ];
-
+            $transaction = $this->getTransactionDetail($order);
             $result[] = $this->orderProvider->setOrder($order)->setTransactionData($transaction)->getData();
 
             // retain backward comparability with gtm.orderComplete event
@@ -160,6 +126,49 @@ class Order extends DataObject
         }
 
         return $result;
+    }
+
+    public function getTransactionDetail($order)
+    {
+        return [
+            'event' => DataLayerEvent::GTM_ORDER_COMPLETE_EVENT,
+            'transactionId' => $order->getIncrementId(),
+            'transactionAffiliation' => $this->_storeManager->getStore()->getFrontendName(),
+            'transactionTotal' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
+            'transactionSubTotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
+            'transactionShipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
+            'transactionTax' => $this->gtmHelper->formatPrice($order->getTaxAmount()),
+            'transactionCouponCode' => $order->getCouponCode() ? $order->getCouponCode() : '',
+            'transactionDiscount' => $this->gtmHelper->formatPrice($order->getDiscountAmount()),
+            'transactionProducts' => $this->getItemTransactionDetail($order),
+            'order' => $this->getOrderDataLayer($order)
+        ];
+    }
+
+    public function getItemTransactionDetail($order)
+    {
+        $products = [];
+        /* @var Item $item */
+        foreach ($order->getAllVisibleItems() as $item) {
+            $product = [
+                'sku' => $item->getSku(),
+                'name' => $item->getName(),
+                'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
+                'quantity' => $item->getQtyOrdered() * 1
+            ];
+
+            if ($category = $this->dataLayerItemHelper->getFirstCategory($item)) {
+                $product['category'] = $category;
+            }
+
+            $products[] = $this->orderItemProvider
+                ->setItem($item)
+                ->setItemData($product)
+                ->setListType(OrderItemProvider::LIST_TYPE_GOOGLE)
+                ->getData();
+        }
+
+        return $products;
     }
 
     /**
@@ -218,8 +227,8 @@ class Order extends DataObject
                 'sku' => $item->getSku(),
                 'id' => $item->getSku(),
                 'parent_sku' => $item->getProduct() ? $item->getProduct()->getData('sku') : $item->getSku(),
-                'name' => $this->escapeJsQuote($item->getProductOptionByCode('simple_name') ?: $item->getName()),
-                'parent_name' => $this->escapeJsQuote($item->getName()),
+                'name' => $item->getProductOptionByCode('simple_name') ?: $item->getName(),
+                'parent_name' => $item->getName(),
                 'price' => $this->gtmHelper->formatPrice($item->getBasePrice()),
                 'price_incl_tax' => $this->dataLayerItemHelper->formatPrice($item->getPriceInclTax()),
                 'quantity' => $item->getQtyOrdered() * 1,
@@ -249,7 +258,7 @@ class Order extends DataObject
 
         return [
             'order_id' => $order->getIncrementId(),
-            'store_name' => $this->escapeJsQuote($this->_storeManager->getStore()->getFrontendName()),
+            'store_name' => $this->_storeManager->getStore()->getFrontendName(),
             'total' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
             'subtotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
             'shipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),

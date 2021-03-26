@@ -44,5 +44,15 @@ $containerCode = $block->getEmbeddedCode();
         }
     }
 </script>
+<?php else : ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "magepalGtmDatalayer": {
+                "dataLayer": "<?= /* @noEscape */ $block->getDataLayerName() ?>",
+            }
+        }
+    }
+</script>
 <?php endif; ?>
 <!-- End Google Tag Manager by MagePal -->

@@ -93,7 +93,7 @@ class Cart extends DataObject
                 $itemData = [
                     'sku' => $item->getSku(),
                     'parent_sku' => $item->getProduct() ? $item->getProduct()->getData('sku') : $item->getSku(),
-                    'name' => $this->escapeJsQuote($item->getName()),
+                    'name' => $item->getName(),
                     'product_type' => $item->getProductType(),
                     'price' => $this->dataLayerItemHelper->formatPrice($item->getPrice()),
                     'price_incl_tax' => $this->dataLayerItemHelper->formatPrice($item->getPriceInclTax()),
