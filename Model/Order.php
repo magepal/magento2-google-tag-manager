@@ -10,13 +10,13 @@ namespace MagePal\GoogleTagManager\Model;
 use Exception;
 use Magento\Framework\DataObject;
 use Magento\Framework\Escaper;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Model\Order as SalesOrder;
 use Magento\Sales\Model\Order\Item;
 use Magento\Sales\Model\Order\Payment;
 use Magento\Sales\Model\ResourceModel\Order\Collection;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactoryInterface;
-use Magento\Store\Model\StoreManagerInterface;
 use MagePal\GoogleTagManager\DataLayer\OrderData\OrderItemProvider;
 use MagePal\GoogleTagManager\DataLayer\OrderData\OrderProvider;
 use MagePal\GoogleTagManager\Helper\Data as GtmHelper;
@@ -44,9 +44,6 @@ class Order extends DataObject
      */
     protected $_orderCollection = null;
 
-    /** @var StoreManagerInterface */
-    protected $_storeManager;
-
     /**
      * Escaper
      *
@@ -70,7 +67,6 @@ class Order extends DataObject
      * Order constructor.
      * @param CollectionFactoryInterface $salesOrderCollection
      * @param GtmHelper $gtmHelper
-     * @param StoreManagerInterface $storeManager
      * @param Escaper $escaper
      * @param OrderProvider $orderProvider
      * @param OrderItemProvider $orderItemProvider
@@ -80,7 +76,6 @@ class Order extends DataObject
     public function __construct(
         CollectionFactoryInterface $salesOrderCollection,
         GtmHelper $gtmHelper,
-        StoreManagerInterface $storeManager,
         Escaper $escaper,
         OrderProvider $orderProvider,
         OrderItemProvider $orderItemProvider,
@@ -90,7 +85,6 @@ class Order extends DataObject
         parent::__construct($data);
         $this->gtmHelper = $gtmHelper;
         $this->_salesOrderCollection = $salesOrderCollection;
-        $this->_storeManager = $storeManager;
         $this->_escaper = $escaper;
         $this->orderProvider = $orderProvider;
         $this->orderItemProvider = $orderItemProvider;
@@ -117,12 +111,14 @@ class Order extends DataObject
 
         foreach ($collection as $order) {
             $transaction = $this->getTransactionDetail($order);
-            $result[] = $this->orderProvider->setOrder($order)->setTransactionData($transaction)->getData();
+            $data = $this->orderProvider->setOrder($order)->setTransactionData($transaction)->getData();
+            $result[] = $data;
 
             // retain backward comparability with gtm.orderComplete event
-            $result[] = $transaction = [
-                'event' => DataLayerEvent::PURCHASE_EVENT
-            ];
+            if ($transaction['event'] !== DataLayerEvent::PURCHASE_EVENT) {
+                $data['event'] = DataLayerEvent::PURCHASE_EVENT;
+                $result[] = $data;
+            }
         }
 
         return $result;
@@ -133,7 +129,7 @@ class Order extends DataObject
         return [
             'event' => DataLayerEvent::GTM_ORDER_COMPLETE_EVENT,
             'transactionId' => $order->getIncrementId(),
-            'transactionAffiliation' => $this->_storeManager->getStore()->getFrontendName(),
+            'transactionAffiliation' => $this->escapeReturn($order->getStoreName()),
             'transactionTotal' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
             'transactionSubTotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
             'transactionShipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
@@ -215,7 +211,7 @@ class Order extends DataObject
     /**
      * @param SalesOrder $order
      * @return array
-     * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function getOrderDataLayer(SalesOrder $order)
     {
@@ -238,7 +234,7 @@ class Order extends DataObject
                 'discount_amount' => $this->gtmHelper->formatPrice($item->getDiscountAmount()),
                 'discount_percent' => $this->gtmHelper->formatPrice($item->getDiscountPercent()),
                 'tax_amount' => $this->gtmHelper->formatPrice($item->getTaxAmount()),
-                'is_virtual' => $item->getIsVirtual() ? true : false,
+                'is_virtual' => (bool)$item->getIsVirtual(),
             ];
 
             if ($variant = $this->dataLayerItemHelper->getItemVariant($item)) {
@@ -258,7 +254,7 @@ class Order extends DataObject
 
         return [
             'order_id' => $order->getIncrementId(),
-            'store_name' => $this->_storeManager->getStore()->getFrontendName(),
+            'store_name' => $this->escapeReturn($order->getStoreName()),
             'total' => $this->gtmHelper->formatPrice($order->getBaseGrandTotal()),
             'subtotal' => $this->gtmHelper->formatPrice($order->getBaseSubtotal()),
             'shipping' => $this->gtmHelper->formatPrice($order->getBaseShippingAmount()),
@@ -268,8 +264,8 @@ class Order extends DataObject
             'discount' => $this->gtmHelper->formatPrice($order->getDiscountAmount()),
             'payment_method' => $this->getPaymentMethod($order),
             'shipping_method' => ['title' => $order->getShippingDescription(), 'code' => $order->getShippingMethod()],
-            'is_virtual' => $order->getIsVirtual() ? true : false,
-            'is_guest_checkout' => $order->getCustomerIsGuest() ? true : false,
+            'is_virtual' => (bool)$order->getIsVirtual(),
+            'is_guest_checkout' => (bool)$order->getCustomerIsGuest(),
             'items' => $products
         ];
     }
@@ -283,11 +279,11 @@ class Order extends DataObject
         try {
             /** @var Payment $payment */
             $payment = $order->getPayment();
-            $method = $payment->getMethodInstance();
+            $methodInstance = $payment->getMethodInstance();
 
             $method = [
-                'title' => $method->getTitle(),
-                'code' => $method->getCode()
+                'title' => $methodInstance->getTitle(),
+                'code' => $methodInstance->getCode()
             ];
         } catch (Exception $e) {
             $method = [
