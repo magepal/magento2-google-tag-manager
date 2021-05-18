@@ -24,7 +24,7 @@ Without having the all data you need at your fingertips your integration will be
 Our extension provides a vast array of over 60 preconfigure data layer elements to make integrating your Magento store with any other third-party service a breeze using Google Tag Manager. 
 Extracting, customizing and adding your own custom data from your Magento store to Google Tag Manager is as easy as 10 lines of code using our easy to customize APIs.
 
->:warning: Google Tag Manager 2.6.0 has some breaking changes to Enhanced Ecommerce. Please download the latest version of Enhanced Ecommerce 1.6.0 or greater from www.magepal.com account.
+>:warning: Google Tag Manager 2.7.0 has some breaking changes to Enhanced Ecommerce. Please download the latest version of Enhanced Ecommerce 1.7.0 or greater from www.magepal.com account.
 
 
 ### Why use our Google Tag Manager extension?
