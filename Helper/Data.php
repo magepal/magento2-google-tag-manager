@@ -259,30 +259,11 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param $product
+     * @param ProductInterface $product
      * @return float
      */
-    public function getProductPrice($product)
+    public function getProductPrice(ProductInterface $product): float
     {
-        $price = 0;
-
-        /** @var $product ProductInterface */
-        if ($product) {
-            $price = $product
-                ->getPriceInfo()
-                ->getPrice(FinalPrice::PRICE_CODE)
-                ->getAmount()
-                ->getBaseAmount() ?: 0;
-        }
-
-        if (!$price) {
-            if ($product->getTypeId() == Type::TYPE_SIMPLE) {
-                $price = $product->getPrice();
-            } else {
-                $price = $product->getFinalPrice();
-            }
-        }
-
-        return $this->formatPrice($price);
+        return $this->formatPrice($product->getFinalPrice());
     }
 }
