@@ -28,6 +28,7 @@
                 <value id="custom-csp-googleapis-img-ssl" type="host">https://www.googleadservices.com/</value>
                 <value id="custom-csp-googleapis-img-ga-ssl" type="host">https://www.google-analytics.com/</value>
                 <value id="custom-csp-google-img-ga-ssl" type="host">https://www.google.com/</value>
+                <value id="custom-csp-googletagmanager-img" type="host">www.googletagmanager.com</value>
             </values>
         </policy>
         <policy id="connect-src">
