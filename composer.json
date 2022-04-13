@@ -40,7 +40,8 @@
         "magepal/magento2-core": ">=1.1.11"
     },
     "suggest" : {
-        "magepal/magento2-enhanced-ecommerce": "Get more from Google Tag Manager with Enhanced E-commerce. Learn more at https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html"
+        "magepal/magento2-enhanced-ecommerce": "Get more from Google Tag Manager with Enhanced E-commerce. Learn more at https://www.magepal.com/enhanced-ecommerce-for-google-tag-manager.html",
+        "magepal/magento2-google-analytics4": "Prepare for the future with Google Analytics 4. Learn more at https://www.magepal.com/google-analytics-4-for-google-tag-manager.html"
     },
     "type": "magento2-module",
     "version": "2.7.1",
