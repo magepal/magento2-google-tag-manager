@@ -247,7 +247,7 @@ class Data extends AbstractHelper
                     $viewItem['item_category'] = $category->getName();
                     $index++;
                 } else {
-                    $viewItem['item_category_' . $index] = $category->getName();
+                    $viewItem['item_category' . $index] = $category->getName();
                     $index++;
                 }
 
