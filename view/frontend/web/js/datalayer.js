@@ -52,7 +52,9 @@ define([
     {
         var allowServices = false,
             allowedCookies,
-            allowedWebsites;
+            allowedWebsites,
+            cookieGroupSettings,
+            allowedCookieGroupSettings;
 
         if (!config.isGdprEnabled || (!config.isGdprEnabled && !config.addJsInHeader)) {
             allowServices = true;
@@ -70,6 +72,16 @@ define([
             allowServices = $.mage.cookies.get(config.cookieName) !== null;
         } else if (config.gdprOption === 3) {
             allowServices = $.mage.cookies.get(config.cookieName) === null;
+        } else if (config.gdprOption === 4) {
+            cookieGroupSettings = $.mage.cookies.get(config.cookieName);
+
+            if (cookieGroupSettings !== null) {
+                allowedCookieGroupSettings = JSON.parse(cookieGroupSettings);
+
+                if (allowedCookieGroupSettings[config.cookieGroupName] === 1) {
+                    allowServices = true;
+                }
+            }
         }
 
         return allowServices;

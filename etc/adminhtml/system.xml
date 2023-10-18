@@ -113,7 +113,15 @@
                 <field id="restriction_cookie_name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Cookie Name</label>
                     <depends>
-                        <field id="*/*/option" separator=",">2,3</field>
+                        <field id="*/*/option" separator=",">2,3,4</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric</validate>
+                </field>
+                <field id="restriction_cookie_group_name" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cookie Group Name</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
                         <field id="*/*/enabled">1</field>
                     </depends>
                     <validate>required-entry alphanumeric</validate>

@@ -78,6 +78,19 @@ class Data extends AbstractHelper
 
     /**
      * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionGroupName($store_id = null)
+    {
+        return $this->scopeConfig->getValue(
+            'googletagmanager/gdpr/restriction_cookie_group_name',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * @param null $store_id
      * @return bool
      */
     public function isGdprEnabled($store_id = null)

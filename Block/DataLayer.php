@@ -80,6 +80,15 @@ class DataLayer extends DataLayerAbstract
 
     /**
      * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionGroupName($store_id = null)
+    {
+        return $this->_gtmHelper->getCookieRestrictionGroupName($store_id);
+    }
+
+    /**
+     * @param null $store_id
      * @return int
      */
     public function isGdprEnabled($store_id = null)
