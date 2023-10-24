@@ -78,8 +78,31 @@ define([
             if (cookieGroupSettings !== null) {
                 allowedCookieGroupSettings = JSON.parse(cookieGroupSettings);
 
-                if (allowedCookieGroupSettings[config.cookieGroupName] === 1) {
-                    allowServices = true;
+                // If accept all is expected to be an array
+                if (config.cookieGroupAcceptAll.trim() !== '' && config.cookieGroupAcceptAllValue.trim() !== '') {
+                    // Check array key as string or int
+                    if (allowedCookieGroupSettings[config.cookieGroupAcceptAll] == config.cookieGroupAcceptAllValue ||
+                        allowedCookieGroupSettings[parseInt(config.cookieGroupAcceptAll)] == config.cookieGroupAcceptAllValue) {
+                        return config.cookieGroupNameNegate == 0 ? 'true':'false';
+                    }
+                }
+                // If accept all is not expected to be an array
+                else if (config.cookieGroupAcceptAll.trim() !== '' && config.cookieGroupAcceptAllValue.trim() === '') {
+                    if (allowedCookieGroupSettings == config.cookieGroupAcceptAll) {
+                        return config.cookieGroupNameNegate == 0 ? 'true':'false';
+                    }
+                }
+
+                if (config.cookieGroupNameValue.trim() !== '') {
+                    // Check array key as string or int
+                    if (allowedCookieGroupSettings[config.cookieGroupName] == config.cookieGroupNameValue ||
+                        allowedCookieGroupSettings[parseInt(config.cookieGroupName)] == config.cookieGroupNameValue) {
+                        allowServices = config.cookieGroupNameNegate == 0 ? 'true':'false';
+                    }
+                } else {
+                    if (allowedCookieGroupSettings.includes(config.cookieGroupName)) {
+                        allowServices = config.cookieGroupNameNegate == 0 ? 'true':'false';
+                    }
                 }
             }
         }
