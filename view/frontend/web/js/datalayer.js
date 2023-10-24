@@ -76,32 +76,44 @@ define([
             cookieGroupSettings = $.mage.cookies.get(config.cookieName);
 
             if (cookieGroupSettings !== null) {
-                allowedCookieGroupSettings = JSON.parse(cookieGroupSettings);
 
-                // If accept all is expected to be an array
-                if (config.cookieGroupAcceptAll.trim() !== '' && config.cookieGroupAcceptAllValue.trim() !== '') {
-                    // Check array key as string or int
-                    if (allowedCookieGroupSettings[config.cookieGroupAcceptAll] == config.cookieGroupAcceptAllValue ||
-                        allowedCookieGroupSettings[parseInt(config.cookieGroupAcceptAll)] == config.cookieGroupAcceptAllValue) {
-                        return config.cookieGroupNameNegate == 0 ? 'true':'false';
-                    }
-                }
-                // If accept all is not expected to be an array
-                else if (config.cookieGroupAcceptAll.trim() !== '' && config.cookieGroupAcceptAllValue.trim() === '') {
-                    if (allowedCookieGroupSettings == config.cookieGroupAcceptAll) {
-                        return config.cookieGroupNameNegate == 0 ? 'true':'false';
-                    }
-                }
+                // Check if JSON
+                if (isJSON(cookieGroupSettings)) {
 
-                if (config.cookieGroupNameValue.trim() !== '') {
-                    // Check array key as string or int
-                    if (allowedCookieGroupSettings[config.cookieGroupName] == config.cookieGroupNameValue ||
-                        allowedCookieGroupSettings[parseInt(config.cookieGroupName)] == config.cookieGroupNameValue) {
-                        allowServices = config.cookieGroupNameNegate == 0 ? 'true':'false';
+                    allowedCookieGroupSettings = JSON.parse(cookieGroupSettings);
+
+                    // If accept all is expected to be an array
+                    if (config.cookieGroupAcceptAll.trim() !== '' && config.cookieGroupAcceptAllValue.trim() !== '') {
+                        // Check array key as string or int
+                        if (allowedCookieGroupSettings[config.cookieGroupAcceptAll] == config.cookieGroupAcceptAllValue ||
+                            allowedCookieGroupSettings[parseInt(config.cookieGroupAcceptAll)] == config.cookieGroupAcceptAllValue) {
+                            return config.cookieGroupNameNegate == 0 ? 'true' : 'false';
+                        }
+                    }
+                    // If accept all is not expected to be an array
+                    else if (config.cookieGroupAcceptAll.trim() !== '' && config.cookieGroupAcceptAllValue.trim() === '') {
+                        if (allowedCookieGroupSettings == config.cookieGroupAcceptAll) {
+                            return config.cookieGroupNameNegate == 0 ? 'true' : 'false';
+                        }
+                    }
+
+                    if (config.cookieGroupNameValue.trim() !== '') {
+                        // Check array key as string or int
+                        if (allowedCookieGroupSettings[config.cookieGroupName] == config.cookieGroupNameValue ||
+                            allowedCookieGroupSettings[parseInt(config.cookieGroupName)] == config.cookieGroupNameValue) {
+                            allowServices = config.cookieGroupNameNegate == 0 ? 'true' : 'false';
+                        }
+                    } else {
+                        if (allowedCookieGroupSettings.includes(config.cookieGroupName)) {
+                            allowServices = config.cookieGroupNameNegate == 0 ? 'true' : 'false';
+                        }
                     }
                 } else {
-                    if (allowedCookieGroupSettings.includes(config.cookieGroupName)) {
-                        allowServices = config.cookieGroupNameNegate == 0 ? 'true':'false';
+                    // Assume comma separated list
+                    const cookieArray = cookieGroupSettings.split(",");
+
+                    if (cookieArray.includes(config.cookieGroupName) || cookieArray.includes(config.cookieGroupAcceptAll)) {
+                        allowServices = config.cookieGroupNameNegate == 0 ? 'true' : 'false';
                     }
                 }
             }
@@ -161,6 +173,14 @@ define([
             updateDataLayer(gtmDataLayer, dataObject(), false);
         }
 
+    }
+
+    function isJSON(str) {
+        try {
+            return (JSON.parse(str) && !!str);
+        } catch (e) {
+            return false;
+        }
     }
 
 });
