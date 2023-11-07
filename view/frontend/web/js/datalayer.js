@@ -219,7 +219,7 @@ define([
                 clearInterval(checkInterval);
                 $(document).trigger('gtm:afterInitialize');
             }
-        }, 500);
+        }, 100);
     }
 
     /**
