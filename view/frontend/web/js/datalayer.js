@@ -243,7 +243,7 @@ define([
 
         window[config.dataLayer] = window[config.dataLayer] || [];
 
-        if (_.has(config, 'accountId') && isTrackingAllowed(config)) {
+        if ((_.has(config, 'accountId') || !!config.isExternal) && isTrackingAllowed(config)) {
             pushData(config.dataLayer, config.data);
             initTracking(config.dataLayer, config.accountId, config.containerCode, config.isExternal);
         }
