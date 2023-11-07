@@ -15,7 +15,7 @@ $containerCode = $block->getEmbeddedCode();
 <script type="text/javascript">
     window.<?= /* @noEscape */ $dataLayerName ?> = window.<?= /* @noEscape */ $dataLayerName ?> || [];
 
-<?php if (!$block->isGdprEnabled() && $block->addJsInHead()): ?>
+<?php if (!$block->isExternal() && !$block->isGdprEnabled() && $block->addJsInHead()): ?>
     <?= /* @noEscape */ $block->getDataLayerJs() ?>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
