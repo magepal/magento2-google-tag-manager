@@ -155,12 +155,12 @@ define([
     {
         $(document).trigger('gtm:beforeInitialize');
         // if true we also use the uniqueEventId of the start event
-        // to detect if GTM is ready. Seems like the extension dont
+        // to detect if GTM is ready. Seems like the extension doesn´t
         // generate this id, our third party app does. But to keep
         // the compatibility to the self generated dataLayer event
         // we set it to false. However, it would be better if the
-        // extension adds this id. Or if this is an option in the
-        // administration panel.
+        // extension adds this id. Or -if this would be an option-
+        //  in the administration panel.
         const strict = false;
         // we need to know, if we need to create the tracker by our self,
         // or if we need to detect if the tag manager was generated
@@ -196,6 +196,7 @@ define([
         })(window, document, 'script', dataLayerName, accountId);
         $(document).trigger('gtm:afterInitialize');
     }
+
 
     /**
      * The function `initTrackingExternal` checks if GTM (Google Tag Manager) is ready and fires the

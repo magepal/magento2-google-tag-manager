@@ -60,8 +60,8 @@ class GtmCode extends Template
     }
 
     /**
-     * If the GTM sould be loaded external by an third party,
-     * like an gdrp service, this function will return true
+     * If the GTM should be loaded externally by an third party,
+     * like an GDPR service, this function will return true
      * and false otherwise
      * 
      * @return bool
