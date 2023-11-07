@@ -24,7 +24,6 @@ $containerCode = $block->getEmbeddedCode();
     })(window,document,'script','<?= /* @noEscape */ $dataLayerName ?>','<?= /* @noEscape */ $accountId ?>');
 <?php endif; ?>
 </script>
-
 <?php if ($block->isGdprEnabled() || !$block->addJsInHead()): ?>
 <script type="text/x-magento-init">
     {
@@ -39,7 +38,8 @@ $containerCode = $block->getEmbeddedCode();
                 "isGdprEnabled": <?= /* @noEscape */ $block->isGdprEnabled() ?>,
                 "gdprOption": <?= /* @noEscape */ $block->getGdprOption() ?>,
                 "addJsInHeader": <?= /* @noEscape */ $block->addJsInHead() ?>,
-                "containerCode": "<?= /* @noEscape */ $block->getEmbeddedCode() ?>"
+                "containerCode": "<?= /* @noEscape */ $block->getEmbeddedCode() ?>",
+                "isExternal": <?= /* @noEscape */ $block->isExternal() ?>
             }
         }
     }
@@ -49,7 +49,8 @@ $containerCode = $block->getEmbeddedCode();
     {
         "*": {
             "magepalGtmDatalayer": {
-                "dataLayer": "<?= /* @noEscape */ $block->getDataLayerName() ?>"
+                "dataLayer": "<?= /* @noEscape */ $block->getDataLayerName() ?>",
+                "isExternal": <?= /* @noEscape */ $block->isExternal() ?>
             }
         }
     }

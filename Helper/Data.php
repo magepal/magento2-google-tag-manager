@@ -64,6 +64,22 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Whether Tag Manager should be loaded
+     * by an external third party app
+     *
+     * @param null $store_id
+     * @return bool
+     */
+    public function isExternal($store_id = null)
+    {
+        return $this->scopeConfig->getValue(
+            'googletagmanager/general/external',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }    
+
+    /**
      * @param null $store_id
      * @return string
      */

@@ -80,6 +80,15 @@ class DataLayer extends DataLayerAbstract
 
     /**
      * @param null $store_id
+     * @return bool
+     */
+    public function isExternal($store_id = null)
+    {
+        return (int) $this->_gtmHelper->isExternal($store_id);
+    }       
+
+    /**
+     * @param null $store_id
      * @return int
      */
     public function isGdprEnabled($store_id = null)
