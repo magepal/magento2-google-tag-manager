@@ -154,10 +154,6 @@ define([
     function initTracking(dataLayerName, accountId, containerCode, isExternal)
     {
         $(document).trigger('gtm:beforeInitialize');
-        // we need to know if we need to create the tracker by our self,
-        // or if we need to detect if the tag manager was generated
-        // by an external party (an external gdpr check for example)
-        const isExternalGTM = !!isExternal;
         // if true we also use the uniqueEventId of the start event
         // to detect if GTM is ready. Seems like the extension dont
         // generate this id, our third party app does. But to keep
@@ -166,8 +162,10 @@ define([
         // extension adds this id. Or if this is an option in the
         // administration panel.
         const strict = false;
-        // check which way we like to use to initialize the tracking
-        isExternalGTM
+        // we need to know, if we need to create the tracker by our self,
+        // or if we need to detect if the tag manager was generated
+        // by an external party (an external gdpr check for example)
+        !!isExternal
             // initialize the tracking, by waiting until GTM is ready
             ? initTrackingExternal(dataLayerName, strict)
             // initialize the tracking the default way, by generating it
