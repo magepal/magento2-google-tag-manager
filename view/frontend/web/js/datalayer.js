@@ -154,10 +154,6 @@ define([
         // or if we need to detect if the tag manager was generated
         // by an external party (an external gdpr check for example)
         const isExternalGTM = !!isExternal;
-
-        console.clear();
-        console.log("EXT: ",isExternalGTM)
-
         // if true we also use the uniqueEventId of the start event
         // to detect if GTM is ready. Seems like the extension dont
         // generate this id, our third party app does. But to keep
