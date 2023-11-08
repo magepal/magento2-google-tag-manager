@@ -8,7 +8,14 @@
 /** @var $block MagePal\GoogleTagManager\Block\GtmCode **/
 ?>
 
-<!-- Google Tag Manager by MagePal -->
-<noscript><iframe src="<?= '/' . '/' ?>www.googletagmanager.com/ns.html?id=<?= /* @noEscape */ $block->getEmbeddedAccountId() ?>"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager by MagePal -->
+<?php
+// only include the noscript tag and iFrame
+// if the script is not loaded externally by
+// a third party...
+if(!$block->isExternal()): ?>
+    <!-- Google Tag Manager by MagePal -->
+    <noscript>
+        <iframe src="<?= '/' . '/' ?>www.googletagmanager.com/ns.html?id=<?= /* @noEscape */ $block->getEmbeddedAccountId() ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager by MagePal -->
+<?php endif; ?>

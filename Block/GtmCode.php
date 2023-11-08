@@ -60,6 +60,17 @@ class GtmCode extends Template
     }
 
     /**
+     * If the GTM should be loaded externally by an third party,
+     * like an GDPR service, this function will return true
+     * and false otherwise
+     * 
+     * @return bool
+     */
+    public function isExternal(){
+        return $this->_gtmHelper->isExternal();
+    }
+
+    /**
      * Render tag manager JS
      *
      * @return string

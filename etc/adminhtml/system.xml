@@ -55,12 +55,24 @@
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="external" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>External</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        If you like to include GTM by your self due to an external gdpr solution for example,
+                        you need to set this to "Yes" and include GTM like described by your provider.
+                    </comment>  
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>              
                 <field id="account" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Account Number</label>
                     <comment>e.g GTM-XXXXXX</comment>
                     <validate>required-entry validate-no-html-tags</validate>
                     <depends>
                         <field id="*/*/active">1</field>
+                        <field id="*/*/external">0</field>
                     </depends>
                 </field>
                 <field id="item_variant_layer" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -68,6 +80,7 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="*/*/active">1</field>
+                        <field id="*/*/external">0</field>
                     </depends>
                 </field>
                 <field id="item_variant_format" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -75,20 +88,24 @@
                     <source_model>MagePal\GoogleTagManager\Block\Adminhtml\System\Config\Form\Field\ItemVariantFormat</source_model>
                     <depends>
                         <field id="*/*/active">1</field>
+                        <field id="*/*/external">0</field>
                         <field id="*/*/item_variant_layer">1</field>
                     </depends>
                 </field>
-
                 <field id="category_layer" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Add Category to data layer?</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="*/*/active">1</field>
+                        <field id="*/*/external">0</field>
                     </depends>
                 </field>
             </group>
             <group id="gdpr" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Data Protection Regulation (GDPR)</label>
+                <depends>
+                    <field id="googletagmanager/general/external">0</field>
+                </depends>
                 <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable GDPR</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
