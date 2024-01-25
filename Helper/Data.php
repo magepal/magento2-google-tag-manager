@@ -220,6 +220,45 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param null $store_id
+     * @return bool
+     */
+    public function isAdvancedSettingsEnabled($store_id = null)
+    {
+        return $this->scopeConfig->isSetFlag(
+            'googletagmanager/advanced_settings/enabled',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getAdvancedSettingsJsCode($store_id = null)
+    {
+        return $this->scopeConfig->getValue(
+            'googletagmanager/advanced_settings/js_code',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getAdvancedSettingsIframeCode($store_id = null)
+    {
+        return $this->scopeConfig->getValue(
+            'googletagmanager/advanced_settings/iframe_code',
+            ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    /**
      * @param ProductInterface $product
      * @param array $viewItem
      */

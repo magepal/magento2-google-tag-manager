@@ -32,14 +32,14 @@
                         that make it very similar, yet more powerful than Enhanced Ecommerce.
                         Gain access to GA4 new approach to privacy-first tracking, channel measurement, and AI based predictive data with our new Google Analytics 4 extension.
                     </div>
+                    <div id="upgrade-to-datalayer">
+                        Adding Facebook Pixel, Bing UET, or other third-party JavaScript to your site using Google Tag Manager?
+                        Learn how simple and easy it is to integrate any third party service with our new <a href="http://bit.ly/MPE-DLGTM">DataLayer extension</a>.
+                    </div>
                     <div id="upgrade-to-enhanced-ecommerce">
                         Want to learn more about your customers? Gain valuable insight on your customers shopping behavior, sales performance and more.
                         Upgrade to our new <a href="http://bit.ly/MPE-EEGTM">Enhanced E-commerce</a> today,
                         to take full advantage of Google Analytics most valuable features and reports.
-                    </div>
-                    <div id="upgrade-to-datalayer">
-                        Adding Facebook Pixel, Bing UET, or other third-party JavaScript to your site using Google Tag Manager?
-                        Learn how simple and easy it is to integrate any third party service with our new <a href="http://bit.ly/MPE-DLGTM">DataLayer extension</a>.
                     </div>
                     <hr class="magepal-hr" />
                   ]]>
@@ -99,9 +99,7 @@
                     <depends>
                         <field id="*/*/enabled">0</field>
                     </depends>
-                    <comment>
-                        Note: Data Layer event firing Order may change
-                    </comment>
+                    <comment>Note: Data Layer events firing sequence may change.</comment>
                 </field>
                 <field id="option" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Options</label>
@@ -124,6 +122,36 @@
                     </comment>
                     <depends>
                         <field id="*/*/option" separator=",">1</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="advanced_settings" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Advanced Settings</label>
+                <comment><![CDATA[Utilize advanced settings to set up the most sophisticated Google Tag Manager configuration for Multiple Environments & Custom Domain.]]></comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Advanced Settings</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="js_code" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Tag Manager JavaScript Code</label>
+                    <comment>
+                        <![CDATA[Copy and Paste the entire Google Tag Manager JavaScript Code.]]>
+                    </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="iframe_code" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Tag Manager iFrame Code</label>
+                    <comment>
+                        <![CDATA[Copy and Paste the entire Google Tag Manager iFrame HTML Code.]]>
+                    </comment>
+                    <validate>required-entry</validate>
+                    <depends>
                         <field id="*/*/enabled">1</field>
                     </depends>
                 </field>

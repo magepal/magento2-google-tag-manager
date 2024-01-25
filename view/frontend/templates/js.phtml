@@ -15,7 +15,7 @@ $containerCode = $block->getEmbeddedCode();
 <script type="text/javascript">
     window.<?= /* @noEscape */ $dataLayerName ?> = window.<?= /* @noEscape */ $dataLayerName ?> || [];
 
-<?php if (!$block->isGdprEnabled() && $block->addJsInHead()): ?>
+<?php if (!$block->isGdprEnabled() && $block->addJsInHead() && !$block->isAdvancedSettingsEnabled()): ?>
     <?= /* @noEscape */ $block->getDataLayerJs() ?>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -25,7 +25,11 @@ $containerCode = $block->getEmbeddedCode();
 <?php endif; ?>
 </script>
 
-<?php if ($block->isGdprEnabled() || !$block->addJsInHead()): ?>
+<?php if ($block->isAdvancedSettingsEnabled()): ?>
+    <?= /* @noEscape */ $block->getAdvancedSettingsJsCode() ?>
+<?php endif; ?>
+
+<?php if (($block->isGdprEnabled() || !$block->addJsInHead()) && !$block->isAdvancedSettingsEnabled()) : ?>
 <script type="text/x-magento-init">
     {
         "*": {

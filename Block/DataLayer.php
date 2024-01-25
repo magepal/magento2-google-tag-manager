@@ -95,4 +95,22 @@ class DataLayer extends DataLayerAbstract
     {
         return (int) $this->_gtmHelper->addJsInHead($store_id);
     }
+
+    /**
+     * @param null $store_id
+     * @return bool
+     */
+    public function isAdvancedSettingsEnabled($store_id = null)
+    {
+        return $this->_gtmHelper->isAdvancedSettingsEnabled($store_id);
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getAdvancedSettingsJsCode($store_id = null)
+    {
+        return $this->_gtmHelper->getAdvancedSettingsJsCode($store_id);
+    }
 }

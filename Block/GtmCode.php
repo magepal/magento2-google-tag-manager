@@ -72,4 +72,22 @@ class GtmCode extends Template
 
         return parent::_toHtml();
     }
+
+    /**
+     * @param null $store_id
+     * @return bool
+     */
+    public function isAdvancedSettingsEnabled($store_id = null)
+    {
+        return $this->_gtmHelper->isAdvancedSettingsEnabled($store_id);
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getAdvancedSettingsIframeCode($store_id = null)
+    {
+        return $this->_gtmHelper->getAdvancedSettingsIframeCode($store_id);
+    }
 }
