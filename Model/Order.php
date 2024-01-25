@@ -276,20 +276,26 @@ class Order extends DataObject
      */
     public function getPaymentMethod(SalesOrder $order)
     {
+        $method = [
+            'title' => '',
+            'code' => ''
+        ];
+
         try {
             /** @var Payment $payment */
             $payment = $order->getPayment();
-            $methodInstance = $payment->getMethodInstance();
 
+            if (!$payment) {
+                return $method;
+            }
+
+            $methodInstance = $payment->getMethodInstance();
             $method = [
                 'title' => $methodInstance->getTitle(),
                 'code' => $methodInstance->getCode()
             ];
         } catch (Exception $e) {
-            $method = [
-                'title' => '',
-                'code' => ''
-            ];
+            /** return empty method */
         }
 
         return $method;
