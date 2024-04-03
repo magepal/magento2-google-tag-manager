@@ -26,6 +26,7 @@ $containerCode = $block->getEmbeddedCode();
 </script>
 
 <?php if ($block->isAdvancedSettingsEnabled()): ?>
+    <?= /* @noEscape */ $block->getDataLayerJs() ?>
     <?= /* @noEscape */ $block->getAdvancedSettingsJsCode() ?>
 <?php endif; ?>
 
