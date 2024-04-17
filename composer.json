@@ -44,7 +44,7 @@
         "magepal/magento2-google-analytics4": "Prepare for the future with Google Analytics 4. Learn more at https://www.magepal.com/google-analytics-4-for-google-tag-manager.html"
     },
     "type": "magento2-module",
-    "version": "2.7.6",
+    "version": "2.7.7",
     "autoload": {
         "files": [
             "registration.php"
