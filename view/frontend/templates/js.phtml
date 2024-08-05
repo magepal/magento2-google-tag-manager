@@ -6,30 +6,35 @@
  */
 
 /** @var $block MagePal\GoogleTagManager\Block\DataLayer **/
+/** @var $secureRenderer \Magento\Framework\View\Helper\SecureHtmlRenderer */
 $dataLayerName = $block->getDataLayerName();
 $accountId = $block->getAccountId();
-$containerCode = $block->getEmbeddedCode();
+$containerCode = $block->getEmbeddedCode() ? "+'{$block->getEmbeddedCode()}'" : '';
 ?>
 
 <!-- Google Tag Manager by MagePal -->
-<script type="text/javascript">
-    window.<?= /* @noEscape */ $dataLayerName ?> = window.<?= /* @noEscape */ $dataLayerName ?> || [];
+<?php $scriptString = <<<script
+window.{$dataLayerName} = window.{$dataLayerName} || [];
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
 
 <?php if (!$block->isGdprEnabled() && $block->addJsInHead() && !$block->isAdvancedSettingsEnabled()): ?>
-    <?= /* @noEscape */ $block->getDataLayerJs() ?>
+    <?php $scriptString = <<<script
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='<?= /* @noEscape */ $dataLayerName ?>'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl<?= /* @noEscape */ $containerCode ? "+'{$containerCode}'" : '' ?>;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','<?= /* @noEscape */ $dataLayerName ?>','<?= /* @noEscape */ $accountId ?>');
+        j=d.createElement(s),dl=l!='{$dataLayerName}'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl{$containerCode};f.parentNode.insertBefore(j,f);
+    })(window,document,'script','{$dataLayerName}','{$accountId}');
+    script;
+    ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $block->getDataLayerJs(), false) ?>
 <?php endif; ?>
-</script>
 
 <?php if ($block->isAdvancedSettingsEnabled()): ?>
-<script type="text/javascript">
-    <?= /* @noEscape */ $block->getDataLayerJs() ?>
-</script>
-    <?= /* @noEscape */ $block->getAdvancedSettingsJsCode() ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $block->getAdvancedSettingsJsCode(), false) ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $block->getDataLayerJs(), false) ?>
 <?php endif; ?>
 
 <?php if (($block->isGdprEnabled() || !$block->addJsInHead()) && !$block->isAdvancedSettingsEnabled()) : ?>

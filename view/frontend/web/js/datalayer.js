@@ -110,8 +110,8 @@ define([
         window[config.dataLayer] = window[config.dataLayer] || [];
 
         if (_.has(config, 'accountId') && isTrackingAllowed(config)) {
-            pushData(config.dataLayer, config.data);
             initTracking(config.dataLayer, config.accountId, config.containerCode);
+            pushData(config.dataLayer, config.data);
         }
 
         var dataObject = customerData.get('magepal-gtm-jsdatalayer');
