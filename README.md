@@ -1,4 +1,4 @@
-<a href="http://www.magepal.com" title="Magento2 Custom Developer" ><img src="https://image.ibb.co/dHBkYH/Magepal_logo.png" width="100" align="right" alt="MagePal Adobe Commerce Extensions" /></a>
+<a href="https://www.magepal.com" title="Magento2 Custom Developer" ><img src="https://image.ibb.co/dHBkYH/Magepal_logo.png" width="100" align="right" alt="MagePal Adobe Commerce Extensions" /></a>
 
 # Google Tag Manager for Magento 2 / Adobe Commerce with Advance Data Layer
 
