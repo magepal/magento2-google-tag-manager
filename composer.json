@@ -34,7 +34,7 @@
         }
     ],
     "require": {
-        "php": "~7.3.0|~7.4.0|~8.1.0|~8.2.0|~8.3.0",
+        "php": "~7.3.0|~7.4.0|~8.1.0|~8.2.0|~8.3.0|~8.4.0",
         "magento/module-backend": "102.0.*",
         "magento/framework": "103.0.*",
         "magepal/magento2-core": ">=1.1.11"
@@ -44,7 +44,7 @@
         "magepal/magento2-google-analytics4": "Prepare for the future with Google Analytics 4. Learn more at https://www.magepal.com/google-analytics-4-for-google-tag-manager.html"
     },
     "type": "magento2-module",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "autoload": {
         "files": [
             "registration.php"
