@@ -80,6 +80,51 @@ class DataLayer extends DataLayerAbstract
 
     /**
      * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionGroupName($store_id = null)
+    {
+        return $this->_gtmHelper->getCookieRestrictionGroupName($store_id);
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionGroupNameValue($store_id = null)
+    {
+        return $this->_gtmHelper->getCookieRestrictionGroupNameValue($store_id);
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionGroupAcceptAll($store_id = null)
+    {
+        return $this->_gtmHelper->getCookieRestrictionGroupAcceptAll($store_id);
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionGroupAcceptAllValue($store_id = null)
+    {
+        return $this->_gtmHelper->getCookieRestrictionGroupAcceptAllValue($store_id);
+    }
+
+    /**
+     * @param null $store_id
+     * @return string
+     */
+    public function getCookieRestrictionGroupNegate($store_id = null)
+    {
+        return $this->_gtmHelper->getCookieRestrictionGroupNegate($store_id);
+    }
+
+    /**
+     * @param null $store_id
      * @return int
      */
     public function isGdprEnabled($store_id = null)
