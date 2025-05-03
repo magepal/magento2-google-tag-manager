@@ -201,11 +201,14 @@ class Order extends DataObject
 
     /**
      * @param $data
-     * @return string
+     * @return array|string|null
      */
     public function escapeReturn($data)
     {
-        return trim(str_replace(["\r\n", "\r", "\n"], ' ', $data));
+        if (!is_null($data) && !is_array($data)) {
+            return trim(str_replace(["\r\n", "\r", "\n"], ' ', $data));
+        }
+        return $data;
     }
 
     /**
