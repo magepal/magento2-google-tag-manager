@@ -62,7 +62,7 @@ class DataLayerItem extends Data
      */
     public function getCategories($item)
     {
-        if (!$this->isCategoryLayerEnabled() || !$item->getProduct()) {
+        if (!$this->isCategoryLayerEnabled() || !$item->getProduct() || !$item->getItemId()) {
             return [];
         }
 
@@ -130,7 +130,7 @@ class DataLayerItem extends Data
      */
     public function getItemVariant($item)
     {
-        if (!$this->isItemVariantLayerEnabled()) {
+        if (!$this->isItemVariantLayerEnabled() || !$item->getItemId()) {
             return '';
         }
 
