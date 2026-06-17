@@ -111,10 +111,80 @@
                 <field id="restriction_cookie_name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Cookie Name</label>
                     <depends>
-                        <field id="*/*/option" separator=",">2,3</field>
+                        <field id="*/*/option" separator=",">2,3,4</field>
                         <field id="*/*/enabled">1</field>
                     </depends>
                     <validate>required-entry alphanumeric</validate>
+                </field>
+                <field id="restriction_cookie_group_name" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cookie Group Name</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric</validate>
+                </field>
+                <field id="restriction_cookie_group_name_is_array" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cookie Group Name is array</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        e.g If the cookie is stored as something like {"performance":1} or {"performance":0} select YES. If only contains comma seperated list leave as NO.
+                    </comment>
+                </field>
+                <field id="restriction_cookie_group_name_value" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>True Value for Cookie Group</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
+                        <field id="*/*/enabled">1</field>
+                        <field id="*/*/restriction_cookie_group_name_is_array">1</field>
+                    </depends>
+                    <validate>alphanumeric</validate>
+                    <comment>
+                        Usually either "1" or "true". Enter value without quotes.
+                    </comment>
+                </field>
+                <field id="restriction_cookie_group_accept_all" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Accept All Value</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>alphanumeric</validate>
+                </field>
+                <field id="restriction_cookie_group_accept_all_is_array" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Accept all value is array</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        e.g If the cookie is stored as something like {"accept":1} or {0:0} select YES. If the cookie value only contains comma seperated list leave as NO.
+                    </comment>
+                </field>
+                <field id="restriction_cookie_group_accept_all_value" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Accept all true value</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
+                        <field id="*/*/enabled">1</field>
+                        <field id="*/*/restriction_cookie_group_accept_all_is_array">1</field>
+                    </depends>
+                    <validate>alphanumeric</validate>
+                    <comment>
+                        Usually either "1" or "true". Enter value without quotes.
+                    </comment>
+                </field>
+                <field id="restriction_cookie_group_negate" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Negate</label>
+                    <depends>
+                        <field id="*/*/option" separator=",">4</field>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="note" translate="label" type="note" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" >
                     <comment>
