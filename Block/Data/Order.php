@@ -13,8 +13,8 @@ use Magento\Framework\View\Element\Template\Context;
 use MagePal\GoogleTagManager\Block\DataLayer;
 
 /**
- * @method $this setOrderIds(Array $orderIds)
- * @method Array getOrderIds()
+ * @method $this setOrderIds(array $orderIds)
+ * @method array getOrderIds()
  */
 class Order extends Template
 {
@@ -44,10 +44,10 @@ class Order extends Template
     public function addOrderLayer()
     {
         $transactions = $this->orderDataArray->setOrderIds($this->getOrderIds())->getOrderLayer();
+        /** @var $tm DataLayer */
+        $tm = $this->getParentBlock();
 
-        if (!empty($transactions)) {
-            /** @var $tm DataLayer */
-            $tm = $this->getParentBlock();
+        if ($tm && !empty($transactions)) {
             foreach ($transactions as $order) {
                 $tm->addCustomDataLayer($order);
             }

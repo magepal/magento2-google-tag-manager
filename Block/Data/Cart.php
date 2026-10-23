@@ -49,13 +49,16 @@ class Cart extends Template
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
 
-        $data = [
-            'event' => DataLayerEvent::CART_PAGE_EVENT,
-            'cart' => $this->gtmCart->getCart()
-        ];
+        if ($tm) {
+            $data = [
+                'event' => DataLayerEvent::CART_PAGE_EVENT,
+                'cart' => $this->gtmCart->getCart()
+            ];
 
-        $tm->addVariable('list', 'cart');
-        $tm->addCustomDataLayerByEvent(DataLayerEvent::CART_PAGE_EVENT, $data);
+            $tm->addVariable('list', 'cart');
+            $tm->addCustomDataLayerByEvent(DataLayerEvent::CART_PAGE_EVENT, $data);
+        }
+
         return $this;
     }
 }

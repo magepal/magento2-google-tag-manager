@@ -41,7 +41,10 @@ class Customer extends Template
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
-        $tm->addVariable('customer', $this->gtmCustomer->getCustomer());
+
+        if ($tm) {
+            $tm->addVariable('customer', $this->gtmCustomer->getCustomer());
+        }
 
         return $this;
     }

@@ -49,13 +49,15 @@ class Checkout extends Template
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
 
-        $data = [
-            'event' => DataLayerEvent::CHECKOUT_PAGE_EVENT,
-            'cart' => $this->gtmCart->getCart()
-        ];
+        if ($tm) {
+            $data = [
+                'event' => DataLayerEvent::CHECKOUT_PAGE_EVENT,
+                'cart' => $this->gtmCart->getCart()
+            ];
 
-        $tm->addVariable('list', 'checkout');
-        $tm->addCustomDataLayerByEvent(DataLayerEvent::CHECKOUT_PAGE_EVENT, $data);
+            $tm->addVariable('list', 'checkout');
+            $tm->addCustomDataLayerByEvent(DataLayerEvent::CHECKOUT_PAGE_EVENT, $data);
+        }
 
         return $this;
     }

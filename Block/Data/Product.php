@@ -60,8 +60,9 @@ class Product extends AbstractProduct
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
+        $product = $this->getProduct();
 
-        if ($product = $this->getProduct()) {
+        if ($tm && $product) {
             $productData = [
                 'id' => $product->getId(),
                 'sku' => $product->getSku(),

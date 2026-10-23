@@ -78,11 +78,10 @@ class Category extends Template
     {
         /** @var $tm DataLayer */
         $tm = $this->getParentBlock();
-
         /** @var $category ProductCategory */
         $category = $this->getCurrentCategory();
 
-        if ($category) {
+        if ($tm && $category) {
             $categoryData = [
                 'id' => $category->getId(),
                 'name' => $category->getName(),
